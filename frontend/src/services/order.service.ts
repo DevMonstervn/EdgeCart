@@ -1,5 +1,5 @@
-import { apiClient } from './api.js';
-import type { ApiResponse, Order, CheckoutInput } from '@edgecart/shared';
+import { apiClient, resetGuestSessionId } from './api.js';
+import type { ApiResponse, Order, CheckoutInput, Cart, CartItem } from '@edgecart/shared';
 
 export interface CheckoutResult {
   orderId: string;
@@ -11,6 +11,36 @@ export interface CheckoutResult {
 
 export const orderService = {
   async checkout(input: CheckoutInput, idempotencyKey?: string): Promise<CheckoutResult> {
+    // Sync local guest cart items to backend guest session cart before submitting checkout
+    if (!localStorage.getItem('ec_access_token')) {
+      try {
+        const rawCart = localStorage.getItem('ec_cart_items');
+        const parsedItems: CartItem[] = rawCart ? JSON.parse(rawCart) : [];
+        const unsyncedGuestItems = parsedItems.filter(
+          (i) => i.cartId === 'local_cart' || (typeof i.id === 'string' && i.id.startsWith('temp_'))
+        );
+
+        if (unsyncedGuestItems.length > 0) {
+          resetGuestSessionId();
+          let latestItems: CartItem[] | null = null;
+          for (const item of unsyncedGuestItems) {
+            const syncRes = await apiClient.post<ApiResponse<Cart>>('/cart/items', {
+              variantId: item.variantId,
+              quantity: item.quantity,
+            });
+            if (syncRes.data.success && syncRes.data.data?.items) {
+              latestItems = syncRes.data.data.items;
+            }
+          }
+          if (latestItems) {
+            localStorage.setItem('ec_cart_items', JSON.stringify(latestItems));
+          }
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+
     const key = idempotencyKey || crypto.randomUUID();
     const res = await apiClient.post<ApiResponse<CheckoutResult>>('/checkout', input, {
       headers: {

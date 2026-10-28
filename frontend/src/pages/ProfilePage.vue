@@ -3,10 +3,10 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
+import { getRoleBadgeClass } from '../utils/format.js';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import Modal from '../components/Modal.vue';
 import {
-  User,
   Mail,
   Phone,
   Shield,
@@ -14,7 +14,8 @@ import {
   LogOut,
   ShoppingBag,
   Plus,
-  CheckCircle2,
+  Store,
+  Sparkles,
 } from 'lucide-vue-next';
 
 const router = useRouter();
@@ -55,21 +56,23 @@ onMounted(async () => {
   <DefaultLayout>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">Hồ Sơ Cá Nhân</h1>
-      <p class="text-xs sm:text-sm text-slate-500 mb-8">Quản lý thông tin tài khoản và địa chỉ giao hàng của bạn</p>
+      <p class="text-xs sm:text-sm text-slate-500 mb-8">Quản lý thông tin tài khoản, vai trò và địa chỉ giao hàng của bạn</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- User Info Card (1 col) -->
-        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs flex flex-col items-center text-center">
+        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
           <div class="w-20 h-20 rounded-full bg-brand-100 text-brand-700 font-black text-2xl flex items-center justify-center mb-4 ring-4 ring-brand-50">
             {{ auth.user?.fullName?.charAt(0) || 'U' }}
           </div>
 
           <h2 class="text-lg font-bold text-slate-900">{{ auth.user?.fullName }}</h2>
-          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold mt-1 mb-4"
-            :class="auth.isAdmin ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'"
+          <span
+            class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold border mt-1.5 mb-4"
+            :class="getRoleBadgeClass(auth.user?.role, auth.user?.isSeller)"
           >
-            <Shield class="w-3 h-3" />
-            {{ auth.user?.role || 'CUSTOMER' }}
+            <Shield v-if="auth.canAccessAdmin" class="w-3 h-3" />
+            <Store v-else-if="auth.isSeller" class="w-3 h-3" />
+            <span>{{ auth.roleLabel }}</span>
           </span>
 
           <div class="w-full border-t border-slate-100 pt-4 space-y-3 text-xs text-left">
@@ -97,37 +100,65 @@ onMounted(async () => {
         <!-- Details & Addresses (2 cols) -->
         <div class="md:col-span-2 space-y-6">
           <!-- Quick Access Cards -->
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <RouterLink
               to="/orders"
-              class="p-4 bg-white rounded-2xl border border-slate-100 shadow-2xs hover:border-brand-300 transition flex items-center gap-3"
+              class="p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-300 transition flex items-center gap-3"
             >
               <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
                 <ShoppingBag class="w-5 h-5" />
               </div>
               <div>
                 <h4 class="text-xs sm:text-sm font-bold text-slate-900">Đơn hàng của tôi</h4>
-                <p class="text-[11px] text-slate-400">Xem lịch sử & trạng thái</p>
+                <p class="text-[11px] text-slate-400">Xem lịch sử & trạng thái mua sắm</p>
               </div>
             </RouterLink>
 
             <RouterLink
-              v-if="auth.isAdmin"
+              v-if="auth.isSeller"
+              to="/seller"
+              class="p-4 bg-white rounded-2xl border border-teal-100 shadow-sm hover:border-teal-300 transition flex items-center gap-3"
+            >
+              <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                <Store class="w-5 h-5" />
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900">Kênh Người Bán</h4>
+                <p class="text-[11px] text-slate-400">Quản lý cửa hàng, sản phẩm & đơn</p>
+              </div>
+            </RouterLink>
+
+            <RouterLink
+              v-else-if="auth.isCustomer && !auth.isSeller"
+              to="/become-seller"
+              class="p-4 bg-white rounded-2xl border border-amber-100 shadow-sm hover:border-amber-300 transition flex items-center gap-3"
+            >
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                <Sparkles class="w-5 h-5" />
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900">Đăng ký bán hàng</h4>
+                <p class="text-[11px] text-slate-400">Mở gian hàng hoặc xem tiến độ duyệt</p>
+              </div>
+            </RouterLink>
+
+            <RouterLink
+              v-if="auth.canAccessAdmin"
               to="/admin"
-              class="p-4 bg-white rounded-2xl border border-indigo-100 shadow-2xs hover:border-indigo-300 transition flex items-center gap-3"
+              class="p-4 bg-white rounded-2xl border border-indigo-100 shadow-sm hover:border-indigo-300 transition flex items-center gap-3"
             >
               <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
                 <Shield class="w-5 h-5" />
               </div>
               <div>
-                <h4 class="text-xs sm:text-sm font-bold text-slate-900">Admin Portal</h4>
-                <p class="text-[11px] text-slate-400">Quản lý hệ thống</p>
+                <h4 class="text-xs sm:text-sm font-bold text-slate-900">Hệ thống Quản trị</h4>
+                <p class="text-[11px] text-slate-400">Vai trò: {{ auth.roleLabel }}</p>
               </div>
             </RouterLink>
           </div>
 
           <!-- Sổ Địa Chỉ Giao Hàng -->
-          <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs space-y-4">
+          <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
               <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2">
                 <MapPin class="w-4 h-4 text-brand-600" />

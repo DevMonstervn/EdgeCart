@@ -20,6 +20,8 @@ export class CartService {
       id: i.id,
       cartId: i.cart_id,
       variantId: i.variant_id,
+      storeId: i.store_id,
+      storeName: i.store_name,
       productName: i.product_name,
       variantTitle: i.variant_title,
       sku: i.sku,
@@ -49,28 +51,58 @@ export class CartService {
     variantId: string,
     quantity: number
   ): Promise<Cart> {
-    const variant = await this.productRepo.findVariantById(variantId);
-    if (!variant || variant.is_active !== 1) {
+    const variant = await this.productRepo.findVariantWithOwnership(variantId);
+    if (
+      !variant ||
+      variant.is_active !== 1 ||
+      variant.product_is_active !== 1 ||
+      (variant.product_store_id !== null && variant.store_status !== 'ACTIVE')
+    ) {
       throw new Error('Sản phẩm không tồn tại hoặc đã ngừng kinh doanh');
     }
 
-    if (quantity > variant.stock_quantity) {
+    const dbCart = await this.cartRepo.getOrCreateCart(userId, sessionId);
+    const existingItems = await this.cartRepo.getCartItems(dbCart.id);
+    const existingItem = existingItems.find((i) => i.variant_id === variantId);
+    const cumulativeQty = (existingItem ? existingItem.quantity : 0) + quantity;
+
+    if (cumulativeQty > variant.stock_quantity) {
       throw new Error(`Kho chỉ còn ${variant.stock_quantity} sản phẩm`);
     }
 
-    const dbCart = await this.cartRepo.getOrCreateCart(userId, sessionId);
     await this.cartRepo.addItem(dbCart.id, variantId, quantity, variant.price);
 
     return await this.getCart(userId, sessionId);
   }
 
   async updateQuantity(userId: string | null, sessionId: string | null, itemId: string, quantity: number): Promise<Cart> {
-    await this.cartRepo.updateItemQuantity(itemId, quantity);
+    const dbCart = await this.cartRepo.getOrCreateCart(userId, sessionId);
+    const existingItems = await this.cartRepo.getCartItems(dbCart.id);
+    const targetItem = existingItems.find((i) => i.id === itemId);
+
+    if (!targetItem) {
+      throw new Error('Sản phẩm không tồn tại trong giỏ hàng');
+    }
+
+    if (quantity > 0) {
+      if (
+        targetItem.product_is_active !== 1 ||
+        (targetItem.store_id !== null && targetItem.store_status !== 'ACTIVE')
+      ) {
+        throw new Error('Sản phẩm không tồn tại hoặc đã ngừng kinh doanh');
+      }
+      if (quantity > targetItem.current_stock) {
+        throw new Error(`Kho chỉ còn ${targetItem.current_stock} sản phẩm`);
+      }
+    }
+
+    await this.cartRepo.updateItemQuantity(itemId, quantity, dbCart.id);
     return await this.getCart(userId, sessionId);
   }
 
   async removeItem(userId: string | null, sessionId: string | null, itemId: string): Promise<Cart> {
-    await this.cartRepo.removeItem(itemId);
+    const dbCart = await this.cartRepo.getOrCreateCart(userId, sessionId);
+    await this.cartRepo.removeItem(itemId, dbCart.id);
     return await this.getCart(userId, sessionId);
   }
 

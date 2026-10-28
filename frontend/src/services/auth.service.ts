@@ -32,9 +32,9 @@ export const authService = {
     return res.data.data;
   },
 
-  async logout(): Promise<void> {
+  async logout(refreshToken?: string | null): Promise<void> {
     try {
-      await apiClient.post('/auth/logout');
+      await apiClient.post('/auth/logout', refreshToken ? { refreshToken } : {});
     } finally {
       localStorage.removeItem('ec_access_token');
       localStorage.removeItem('ec_refresh_token');

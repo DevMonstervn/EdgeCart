@@ -17,6 +17,9 @@ import {
   AlertCircle,
   Plus,
   Minus,
+  Store,
+  BadgeCheck,
+  ExternalLink,
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -186,6 +189,43 @@ onMounted(() => {
           <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug mb-3">
             {{ product.name }}
           </h1>
+
+          <!-- Store Attribution Card -->
+          <div class="mb-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
+            <div v-if="product.store" class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-black text-sm flex items-center justify-center overflow-hidden shrink-0">
+                <img
+                  v-if="product.store.logoUrl"
+                  :src="product.store.logoUrl"
+                  :alt="product.store.name"
+                  class="w-full h-full object-cover"
+                />
+                <Store v-else class="w-5 h-5" />
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-slate-900 truncate">{{ product.store.name }}</div>
+                <div class="text-[11px] text-slate-500">Gian hàng đối tác trên EdgeCart</div>
+              </div>
+            </div>
+            <div v-else class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                <BadgeCheck class="w-5 h-5" />
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-slate-900">EdgeCart Official</div>
+                <div class="text-[11px] text-slate-500">Sản phẩm phân phối chính thức bởi hệ thống</div>
+              </div>
+            </div>
+
+            <RouterLink
+              v-if="product.store?.slug"
+              :to="`/stores/${product.store.slug}`"
+              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-brand-500 text-xs font-bold text-brand-700 shrink-0 transition"
+            >
+              <span>Xem cửa hàng</span>
+              <ExternalLink class="w-3.5 h-3.5" />
+            </RouterLink>
+          </div>
 
           <!-- Price Display -->
           <div class="flex items-baseline gap-3 mb-6 p-4 rounded-2xl bg-white border border-slate-100 shadow-2xs">

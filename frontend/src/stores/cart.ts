@@ -4,12 +4,18 @@ import type { CartItem } from '@edgecart/shared';
 import { cartService } from '../services/cart.service.js';
 import { useAuthStore } from './auth.js';
 import { useToastStore } from './toast.js';
-import { extractErrorMessage } from '../services/api.js';
+import { extractErrorMessage, AUTH_CLEARED_EVENT } from '../services/api.js';
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>(JSON.parse(localStorage.getItem('ec_cart_items') || '[]'));
   const isLoading = ref<boolean>(false);
   const isSyncing = ref<boolean>(false);
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener(AUTH_CLEARED_EVENT, () => {
+      items.value = [];
+    });
+  }
 
   const totalItems = computed(() => {
     return items.value.reduce((sum, item) => sum + item.quantity, 0);
@@ -71,6 +77,8 @@ export const useCartStore = defineStore('cart', () => {
       return false;
     }
 
+    const snapshot = items.value.map((i) => ({ ...i }));
+
     // Optimistic Local Update
     if (existing) {
       existing.quantity = newQty;
@@ -84,20 +92,29 @@ export const useCartStore = defineStore('cart', () => {
       });
     }
     saveToLocal();
-    toast.success(`Đã thêm "${payload.productName}" vào giỏ hàng`);
 
-    // Sync to backend if authenticated
+    // Sync to backend if authenticated and replace temp IDs with authoritative D1 IDs
     if (auth.isAuthenticated) {
       try {
-        await cartService.addItem({
+        const remoteCart = await cartService.addItem({
           variantId: payload.variantId,
           quantity: payload.quantity,
         });
+        if (remoteCart && remoteCart.items) {
+          items.value = remoteCart.items;
+          saveToLocal();
+        }
+        toast.success(`Đã thêm "${payload.productName}" vào giỏ hàng`);
+        return true;
       } catch (err) {
-        console.warn('Failed to sync item to backend:', extractErrorMessage(err));
+        items.value = snapshot;
+        saveToLocal();
+        toast.error(extractErrorMessage(err));
+        return false;
       }
     }
 
+    toast.success(`Đã thêm "${payload.productName}" vào giỏ hàng`);
     return true;
   }
 
@@ -117,14 +134,37 @@ export const useCartStore = defineStore('cart', () => {
       return;
     }
 
+    const previousQty = item.quantity;
+    const previousTotal = item.totalPrice;
+    const currentItemId = item.id;
+
     item.quantity = quantity;
     item.totalPrice = quantity * item.unitPrice;
     saveToLocal();
 
     if (auth.isAuthenticated) {
       try {
-        await cartService.updateItemQuantity(item.id, quantity);
+        let targetItemId = currentItemId;
+        if (targetItemId.startsWith('temp_')) {
+          const latestCart = await cartService.getCart();
+          const matched = latestCart.items.find((i) => i.variantId === variantId);
+          if (!matched) {
+            throw new Error('Sản phẩm không tồn tại trong giỏ hàng');
+          }
+          targetItemId = matched.id;
+        }
+        const remoteCart = await cartService.updateItemQuantity(targetItemId, quantity);
+        if (remoteCart && remoteCart.items) {
+          items.value = remoteCart.items;
+          saveToLocal();
+        }
       } catch (err) {
+        const current = items.value.find((i) => i.variantId === variantId);
+        if (current) {
+          current.quantity = previousQty;
+          current.totalPrice = previousTotal;
+          saveToLocal();
+        }
         toast.error(extractErrorMessage(err));
       }
     }
@@ -136,29 +176,53 @@ export const useCartStore = defineStore('cart', () => {
     const item = items.value.find((i) => i.variantId === variantId);
     if (!item) return;
 
+    const snapshot = items.value.map((i) => ({ ...i }));
+    const currentItemId = item.id;
+
     items.value = items.value.filter((i) => i.variantId !== variantId);
     saveToLocal();
     toast.info('Đã xóa sản phẩm khỏi giỏ hàng');
 
-    if (auth.isAuthenticated && !item.id.startsWith('temp_')) {
+    if (auth.isAuthenticated) {
       try {
-        await cartService.removeItem(item.id);
-      } catch {
-        // Handled silently
+        let targetItemId: string | undefined = currentItemId;
+        if (targetItemId.startsWith('temp_')) {
+          const latestCart = await cartService.getCart();
+          targetItemId = latestCart.items.find((i) => i.variantId === variantId)?.id;
+        }
+        if (targetItemId) {
+          const remoteCart = await cartService.removeItem(targetItemId);
+          if (remoteCart && remoteCart.items) {
+            items.value = remoteCart.items;
+            saveToLocal();
+          }
+        }
+      } catch (err) {
+        items.value = snapshot;
+        saveToLocal();
+        toast.error(extractErrorMessage(err));
       }
     }
   }
 
   async function mergeGuestCart() {
     const auth = useAuthStore();
-    if (!auth.isAuthenticated || items.value.length === 0) return;
+    if (!auth.isAuthenticated) return;
 
-    try {
-      isSyncing.value = true;
-      const guestItems = items.value.map((i) => ({
+    const guestItems = items.value
+      .filter((i) => i.cartId === 'local_cart' || i.id.startsWith('temp_'))
+      .map((i) => ({
         variantId: i.variantId,
         quantity: i.quantity,
       }));
+
+    if (guestItems.length === 0) {
+      await fetchBackendCart();
+      return;
+    }
+
+    try {
+      isSyncing.value = true;
       const remoteCart = await cartService.mergeCart(guestItems);
       if (remoteCart && remoteCart.items) {
         items.value = remoteCart.items;
@@ -166,6 +230,7 @@ export const useCartStore = defineStore('cart', () => {
       }
     } catch (err) {
       console.warn('Failed to merge cart on login:', err);
+      await fetchBackendCart();
     } finally {
       isSyncing.value = false;
     }

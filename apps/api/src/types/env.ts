@@ -4,6 +4,8 @@ export interface Env {
   R2: R2Bucket;
   ENVIRONMENT: string;
   APP_URL: string;
+  ALLOWED_ORIGINS?: string;
+  R2_PUBLIC_BASE_URL?: string;
   JWT_SECRET: string;
 }
 

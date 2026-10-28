@@ -1,4 +1,13 @@
-import type { UserRole, UserStatus, OrderStatus, PaymentStatus, PaymentMethod } from '../constants/index.js';
+import type {
+  UserRole,
+  UserStatus,
+  StoreStatus,
+  SellerRequestStatus,
+  OrderStatus,
+  PaymentStatus,
+  PaymentMethod,
+  AllowedImageMimeType,
+} from '../constants/index.js';
 
 export interface User {
   id: string;
@@ -6,9 +15,62 @@ export interface User {
   fullName: string;
   phone?: string | null;
   role: UserRole;
+  isSeller?: boolean;
   status: UserStatus;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface StoreSummary {
+  id: string;
+  name: string;
+  slug: string;
+  logoUrl?: string | null;
+  status: StoreStatus;
+}
+
+export interface Store {
+  id: string;
+  ownerUserId: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  logoUrl?: string | null;
+  bannerUrl?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  status: StoreStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SellerRequest {
+  id: string;
+  userId: string;
+  userEmail?: string;
+  userFullName?: string;
+  storeName: string;
+  storeSlug: string;
+  storeDescription?: string | null;
+  phone?: string | null;
+  businessEmail?: string | null;
+  status: SellerRequestStatus;
+  rejectionReason?: string | null;
+  reviewedBy?: string | null;
+  reviewedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AdminAuditLog {
+  id: string;
+  userId?: string | null;
+  action: string;
+  entity: string;
+  entityId?: string | null;
+  payload?: unknown;
+  ipAddress?: string | null;
+  createdAt: string;
 }
 
 export interface Address {
@@ -69,9 +131,26 @@ export interface ProductImage {
   createdAt: string;
 }
 
+export interface PresignedUploadResponse {
+  uploadUrl: string;
+  publicUrl: string;
+  r2Key: string;
+  contentType: AllowedImageMimeType;
+  maxSizeBytes: number;
+  expiresIn: number;
+}
+
+export interface UploadedMediaObject {
+  r2Key: string;
+  imageUrl: string;
+  contentType: AllowedImageMimeType;
+  size: number;
+}
+
 export interface Product {
   id: string;
   categoryId: string;
+  storeId?: string | null;
   name: string;
   slug: string;
   description?: string | null;
@@ -81,6 +160,7 @@ export interface Product {
   isFeatured: boolean;
   isActive: boolean;
   category?: Category;
+  store?: StoreSummary | null;
   variants?: ProductVariant[];
   images?: ProductImage[];
   createdAt: string;
@@ -91,6 +171,8 @@ export interface CartItem {
   id: string;
   cartId: string;
   variantId: string;
+  storeId?: string | null;
+  storeName?: string | null;
   productName: string;
   variantTitle: string;
   sku: string;
@@ -115,12 +197,14 @@ export interface OrderItem {
   orderId: string;
   productId: string;
   variantId: string;
+  storeId?: string | null;
   productName: string;
   variantTitle: string;
   sku: string;
   unitPrice: number;
   quantity: number;
   totalPrice: number;
+  fulfillmentStatus?: OrderStatus;
 }
 
 export interface Order {

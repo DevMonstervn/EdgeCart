@@ -74,6 +74,7 @@ export class MockD1Database {
 
 export class MockKVNamespace {
   private store = new Map<string, { value: string; expiresAt?: number }>();
+  public listCallCount = 0;
 
   async get(key: string, type: 'text' | 'json' = 'text'): Promise<any> {
     const item = this.store.get(key);
@@ -101,38 +102,189 @@ export class MockKVNamespace {
     this.store.delete(key);
   }
 
-  async list(options?: { prefix?: string }): Promise<{ keys: Array<{ name: string }> }> {
+  async list(options?: {
+    prefix?: string;
+    limit?: number;
+    cursor?: string;
+  }): Promise<
+    | { keys: Array<{ name: string }>; list_complete: true; cacheStatus: null }
+    | { keys: Array<{ name: string }>; list_complete: false; cursor: string; cacheStatus: null }
+  > {
+    this.listCallCount += 1;
     const now = Date.now();
-    const keys: Array<{ name: string }> = [];
+    const matchedKeys: string[] = [];
+
     for (const [key, item] of this.store.entries()) {
       if (item.expiresAt && now > item.expiresAt) {
         this.store.delete(key);
         continue;
       }
       if (!options?.prefix || key.startsWith(options.prefix)) {
-        keys.push({ name: key });
+        matchedKeys.push(key);
       }
     }
-    return { keys };
+
+    // Real Cloudflare KV returns keys in lexicographical UTF-8 order, max 1,000 per page
+    matchedKeys.sort();
+    const pageLimit = Math.min(Math.max(1, options?.limit ?? 1000), 1000);
+    const startOffset = options?.cursor ? Math.max(0, Number(options.cursor) || 0) : 0;
+    const slice = matchedKeys.slice(startOffset, startOffset + pageLimit);
+    const nextOffset = startOffset + slice.length;
+
+    if (nextOffset < matchedKeys.length) {
+      return {
+        keys: slice.map((name) => ({ name })),
+        list_complete: false,
+        cursor: String(nextOffset),
+        cacheStatus: null,
+      };
+    }
+
+    return {
+      keys: slice.map((name) => ({ name })),
+      list_complete: true,
+      cacheStatus: null,
+    };
   }
 }
 
-export function createTestEnv(): Env {
+export interface StoredMockR2Object {
+  key: string;
+  bytes: Uint8Array;
+  httpMetadata?: { contentType?: string; cacheControl?: string };
+  customMetadata?: Record<string, string>;
+  httpEtag: string;
+  uploaded: Date;
+}
+
+export class MockR2Bucket {
+  private objects = new Map<string, StoredMockR2Object>();
+  public simulatePutError = false;
+  public simulateGetError = false;
+
+  async put(
+    key: string,
+    value: ArrayBuffer | ArrayBufferView | string | Blob,
+    options?: {
+      httpMetadata?: { contentType?: string; cacheControl?: string };
+      customMetadata?: Record<string, string>;
+    }
+  ): Promise<StoredMockR2Object> {
+    if (this.simulatePutError) {
+      throw new Error('Simulated Cloudflare R2 storage write error');
+    }
+
+    let bytes: Uint8Array;
+    if (typeof value === 'string') {
+      bytes = new TextEncoder().encode(value);
+    } else if (value instanceof ArrayBuffer) {
+      bytes = new Uint8Array(value.slice(0));
+    } else if (ArrayBuffer.isView(value)) {
+      bytes = new Uint8Array(value.buffer.slice(value.byteOffset, value.byteOffset + value.byteLength));
+    } else if (typeof Blob !== 'undefined' && value instanceof Blob) {
+      bytes = new Uint8Array(await value.arrayBuffer());
+    } else {
+      bytes = new Uint8Array(0);
+    }
+
+    const stored: StoredMockR2Object = {
+      key,
+      bytes,
+      httpMetadata: options?.httpMetadata,
+      customMetadata: options?.customMetadata,
+      httpEtag: `"mock-etag-${bytes.byteLength}-${Date.now()}"`,
+      uploaded: new Date(),
+    };
+    this.objects.set(key, stored);
+    return stored;
+  }
+
+  async get(key: string): Promise<{
+    key: string;
+    size: number;
+    httpMetadata?: { contentType?: string; cacheControl?: string };
+    customMetadata?: Record<string, string>;
+    httpEtag: string;
+    arrayBuffer: () => Promise<ArrayBuffer>;
+    text: () => Promise<string>;
+  } | null> {
+    if (this.simulateGetError) {
+      throw new Error('Simulated Cloudflare R2 storage read error');
+    }
+
+    const found = this.objects.get(key);
+    if (!found) return null;
+
+    return {
+      key: found.key,
+      size: found.bytes.byteLength,
+      httpMetadata: found.httpMetadata,
+      customMetadata: found.customMetadata,
+      httpEtag: found.httpEtag,
+      arrayBuffer: async () =>
+        found.bytes.buffer.slice(found.bytes.byteOffset, found.bytes.byteOffset + found.bytes.byteLength) as ArrayBuffer,
+      text: async () => new TextDecoder().decode(found.bytes),
+    };
+  }
+
+  async delete(key: string): Promise<void> {
+    this.objects.delete(key);
+  }
+
+  has(key: string): boolean {
+    return this.objects.has(key);
+  }
+}
+
+export function applyMigrationFile(d1: MockD1Database, fileName: string, implicitTransaction = true): void {
+  const migrationPath = path.resolve(__dirname, '../../migrations', fileName);
+  const sql = fs.readFileSync(migrationPath, 'utf8');
+  if (implicitTransaction) {
+    d1.exec('BEGIN TRANSACTION;');
+    try {
+      d1.exec(sql);
+      d1.exec('COMMIT;');
+    } catch (err) {
+      d1.exec('ROLLBACK;');
+      throw err;
+    }
+  } else {
+    d1.exec(sql);
+  }
+}
+
+export function createTestEnv(options?: { upToMigration?: string }): Env & {
+  __rawD1: MockD1Database;
+  __rawKV: MockKVNamespace;
+  __rawR2: MockR2Bucket;
+} {
   const d1 = new MockD1Database();
 
-  // Run initial schema migration
-  const migrationPath = path.resolve(__dirname, '../../migrations/0001_initial_schema.sql');
-  const sql = fs.readFileSync(migrationPath, 'utf8');
-  d1.exec(sql);
+  const migrationsDir = path.resolve(__dirname, '../../migrations');
+  const migrationFiles = fs
+    .readdirSync(migrationsDir)
+    .filter((f) => f.endsWith('.sql'))
+    .sort();
+
+  for (const file of migrationFiles) {
+    applyMigrationFile(d1, file, true);
+    if (options?.upToMigration && file === options.upToMigration) {
+      break;
+    }
+  }
 
   const kv = new MockKVNamespace();
+  const r2 = new MockR2Bucket();
 
   return {
     DB: d1 as unknown as D1Database,
     KV: kv as unknown as KVNamespace,
-    R2: {} as unknown as R2Bucket,
+    R2: r2 as unknown as R2Bucket,
     ENVIRONMENT: 'test',
     APP_URL: 'http://localhost:5173',
     JWT_SECRET: 'test-super-secret-jwt-key-for-test-suite',
+    __rawD1: d1,
+    __rawKV: kv,
+    __rawR2: r2,
   };
 }

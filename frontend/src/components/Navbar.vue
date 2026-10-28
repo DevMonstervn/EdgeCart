@@ -3,7 +3,17 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
 import { useCartStore } from '../stores/cart.js';
-import { ShoppingCart, User as UserIcon, Search, Menu, X, Shield, LogOut } from 'lucide-vue-next';
+import {
+  ShoppingCart,
+  User as UserIcon,
+  Search,
+  Menu,
+  X,
+  Shield,
+  Store,
+  Sparkles,
+  LogOut,
+} from 'lucide-vue-next';
 
 const router = useRouter();
 const auth = useAuthStore();
@@ -26,7 +36,7 @@ async function handleLogout() {
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 gap-4">
         <!-- Left: Logo & Mobile Toggle -->
@@ -57,8 +67,8 @@ async function handleLogout() {
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="Tìm kiếm sản phẩm, thương hiệu..."
-              class="w-full pl-10 pr-4 py-2 bg-slate-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-xl text-sm focus:outline-hidden transition shadow-2xs"
+              placeholder="Tìm kiếm sản phẩm, cửa hàng..."
+              class="w-full pl-10 pr-4 py-2 bg-slate-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-xl text-sm focus:outline-none transition"
             />
             <Search class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </form>
@@ -75,18 +85,41 @@ async function handleLogout() {
             <ShoppingCart class="w-5 h-5" />
             <span
               v-if="cart.totalItems > 0"
-              class="absolute 0 top-1 right-1 bg-brand-600 text-white text-[11px] font-bold rounded-full h-4.5 min-w-[18px] px-1 flex items-center justify-center shadow-xs"
+              class="absolute top-1 right-1 bg-brand-600 text-white text-[11px] font-bold rounded-full h-[18px] min-w-[18px] px-1 flex items-center justify-center shadow-sm"
             >
               {{ cart.totalItems }}
             </span>
           </RouterLink>
 
-          <!-- Desktop Navigation Links -->
+          <!-- Desktop Navigation Links (Role-Aware) -->
           <nav class="hidden md:flex items-center gap-4 text-sm font-medium text-slate-600">
             <RouterLink to="/products" class="hover:text-brand-600 transition">Sản phẩm</RouterLink>
-            <RouterLink v-if="auth.isAdmin" to="/admin" class="flex items-center gap-1 text-indigo-600 font-semibold hover:text-indigo-700 transition">
+
+            <RouterLink
+              v-if="auth.isSeller"
+              to="/seller"
+              class="inline-flex items-center gap-1.5 text-brand-700 font-semibold hover:text-brand-800 bg-brand-50 px-3 py-1.5 rounded-xl border border-brand-200 transition"
+            >
+              <Store class="w-4 h-4" />
+              <span>Kênh Người Bán</span>
+            </RouterLink>
+
+            <RouterLink
+              v-else-if="!auth.isAuthenticated || (auth.isCustomer && !auth.isSeller)"
+              to="/become-seller"
+              class="inline-flex items-center gap-1 text-slate-600 hover:text-brand-600 font-medium transition"
+            >
+              <Sparkles class="w-3.5 h-3.5 text-amber-500" />
+              <span>Mở cửa hàng</span>
+            </RouterLink>
+
+            <RouterLink
+              v-if="auth.canAccessAdmin"
+              to="/admin"
+              class="inline-flex items-center gap-1.5 text-indigo-700 font-semibold hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-xl border border-indigo-200 transition"
+            >
               <Shield class="w-4 h-4" />
-              Admin
+              <span>Quản trị</span>
             </RouterLink>
           </nav>
 
@@ -99,7 +132,10 @@ async function handleLogout() {
               <div class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
                 {{ auth.user?.fullName?.charAt(0) || 'U' }}
               </div>
-              <span class="max-w-[100px] truncate">{{ auth.user?.fullName }}</span>
+              <div class="flex flex-col text-left leading-tight">
+                <span class="max-w-[110px] truncate text-xs font-bold text-slate-800">{{ auth.user?.fullName }}</span>
+                <span class="text-[10px] font-semibold text-slate-400">{{ auth.roleLabel }}</span>
+              </div>
             </RouterLink>
           </div>
 
@@ -112,7 +148,7 @@ async function handleLogout() {
             </RouterLink>
             <RouterLink
               to="/register"
-              class="px-3.5 py-2 text-sm font-semibold rounded-xl bg-brand-600 hover:bg-brand-700 text-white shadow-xs transition"
+              class="px-3.5 py-2 text-sm font-semibold rounded-xl bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition"
             >
               Đăng ký
             </RouterLink>
@@ -127,7 +163,7 @@ async function handleLogout() {
             v-model="searchQuery"
             type="text"
             placeholder="Tìm kiếm sản phẩm..."
-            class="w-full pl-10 pr-4 py-2 bg-slate-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-xl text-sm focus:outline-hidden transition"
+            class="w-full pl-10 pr-4 py-2 bg-slate-100 focus:bg-white border border-transparent focus:border-brand-500 rounded-xl text-sm focus:outline-none transition"
           />
           <Search class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
         </form>
@@ -137,7 +173,7 @@ async function handleLogout() {
     <!-- Mobile Drawer Menu -->
     <div
       v-if="isMobileMenuOpen"
-      class="md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 flex flex-col gap-3 shadow-lg"
+      class="md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 flex flex-col gap-2.5 shadow-lg"
     >
       <RouterLink
         to="/"
@@ -154,15 +190,31 @@ async function handleLogout() {
         Tất cả sản phẩm
       </RouterLink>
 
+      <RouterLink
+        v-if="!auth.isAuthenticated || (auth.isCustomer && !auth.isSeller)"
+        to="/become-seller"
+        @click="isMobileMenuOpen = false"
+        class="flex items-center gap-2 py-2 text-sm font-semibold text-brand-700"
+      >
+        <Sparkles class="w-4 h-4 text-amber-500" />
+        Đăng ký bán hàng trên EdgeCart
+      </RouterLink>
+
       <div v-if="auth.isAuthenticated" class="pt-3 border-t border-slate-100 flex flex-col gap-2">
         <RouterLink
           to="/profile"
           @click="isMobileMenuOpen = false"
-          class="flex items-center gap-2 py-2 text-sm font-semibold text-slate-800"
+          class="flex items-center justify-between py-2 text-sm font-semibold text-slate-800"
         >
-          <UserIcon class="w-4 h-4 text-slate-500" />
-          Hồ sơ cá nhân: {{ auth.user?.fullName }}
+          <span class="flex items-center gap-2">
+            <UserIcon class="w-4 h-4 text-slate-500" />
+            <span>{{ auth.user?.fullName }}</span>
+          </span>
+          <span class="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-bold">
+            {{ auth.roleLabel }}
+          </span>
         </RouterLink>
+
         <RouterLink
           to="/orders"
           @click="isMobileMenuOpen = false"
@@ -170,15 +222,27 @@ async function handleLogout() {
         >
           Lịch sử đơn hàng
         </RouterLink>
+
         <RouterLink
-          v-if="auth.isAdmin"
+          v-if="auth.isSeller"
+          to="/seller"
+          @click="isMobileMenuOpen = false"
+          class="flex items-center gap-2 py-2 text-sm font-semibold text-brand-700"
+        >
+          <Store class="w-4 h-4" />
+          Kênh Người Bán
+        </RouterLink>
+
+        <RouterLink
+          v-if="auth.canAccessAdmin"
           to="/admin"
           @click="isMobileMenuOpen = false"
           class="flex items-center gap-2 py-2 text-sm font-semibold text-indigo-600"
         >
           <Shield class="w-4 h-4" />
-          Admin Dashboard
+          Hệ thống Quản trị ({{ auth.roleLabel }})
         </RouterLink>
+
         <button
           @click="handleLogout(); isMobileMenuOpen = false"
           class="flex items-center gap-2 py-2 text-sm font-semibold text-rose-600 text-left mt-1"

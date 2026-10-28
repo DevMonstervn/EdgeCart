@@ -3,6 +3,23 @@ import type { ApiResponse } from '@edgecart/shared';
 
 // Do NOT hardcode secrets or backend URLs without env support
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+const GUEST_SESSION_KEY = 'ec_session_id';
+
+export const AUTH_EXPIRED_EVENT = 'ec:auth-expired';
+export const AUTH_CLEARED_EVENT = 'ec:auth-cleared';
+
+export function getOrCreateGuestSessionId(): string {
+  let sessionId = localStorage.getItem(GUEST_SESSION_KEY);
+  if (!sessionId) {
+    sessionId = `guest_${crypto.randomUUID()}`;
+    localStorage.setItem(GUEST_SESSION_KEY, sessionId);
+  }
+  return sessionId;
+}
+
+export function resetGuestSessionId(): void {
+  localStorage.removeItem(GUEST_SESSION_KEY);
+}
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -12,17 +29,34 @@ export const apiClient = axios.create({
   timeout: 15000,
 });
 
-// Request Interceptor: Attach Access Token & Request ID
+function notifySessionExpired(): void {
+  localStorage.removeItem('ec_access_token');
+  localStorage.removeItem('ec_refresh_token');
+  delete apiClient.defaults.headers.common.Authorization;
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent(AUTH_EXPIRED_EVENT));
+  }
+}
+
+// Request Interceptor: Attach Access Token, Guest Session ID & Request ID
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem('ec_access_token');
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    if (config.headers) {
+      const token = localStorage.getItem('ec_access_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        delete config.headers.Authorization;
+      }
 
-    // Attach X-Request-Id for edge tracing
-    if (config.headers && !config.headers['X-Request-Id']) {
-      config.headers['X-Request-Id'] = crypto.randomUUID();
+      if (!config.headers['X-Session-Id']) {
+        config.headers['X-Session-Id'] = getOrCreateGuestSessionId();
+      }
+
+      // Attach X-Request-Id for edge tracing
+      if (!config.headers['X-Request-Id']) {
+        config.headers['X-Request-Id'] = crypto.randomUUID();
+      }
     }
 
     return config;
@@ -53,10 +87,15 @@ apiClient.interceptors.response.use(
     return response;
   },
   async (error: AxiosError<ApiResponse>) => {
-    const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
+    const originalRequest = error.config as (InternalAxiosRequestConfig & { _retry?: boolean }) | undefined;
 
     // Handle 401 Unauthorized & Token Refresh
-    if (error.response?.status === 401 && !originalRequest._retry && !originalRequest.url?.includes('/auth/')) {
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !originalRequest._retry &&
+      !originalRequest.url?.includes('/auth/')
+    ) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -75,9 +114,9 @@ apiClient.interceptors.response.use(
 
       const refreshToken = localStorage.getItem('ec_refresh_token');
       if (!refreshToken) {
-        localStorage.removeItem('ec_access_token');
-        localStorage.removeItem('ec_refresh_token');
+        notifySessionExpired();
         isRefreshing = false;
+        error.message = extractErrorMessage(error);
         return Promise.reject(error);
       }
 
@@ -98,30 +137,58 @@ apiClient.interceptors.response.use(
           }
           return apiClient(originalRequest);
         }
+
+        throw new Error(data.error?.message || 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
       } catch (refreshErr) {
+        notifySessionExpired();
+        if (refreshErr instanceof Error) {
+          refreshErr.message = extractErrorMessage(refreshErr);
+        }
         processQueue(refreshErr, null);
-        localStorage.removeItem('ec_access_token');
-        localStorage.removeItem('ec_refresh_token');
         return Promise.reject(refreshErr);
       } finally {
         isRefreshing = false;
       }
     }
 
+    error.message = extractErrorMessage(error);
     return Promise.reject(error);
   }
 );
 
-// Helper to extract clean error message
+// Helper to extract clean Vietnamese error message
 export function extractErrorMessage(error: unknown): string {
   if (axios.isAxiosError(error)) {
     const apiError = error.response?.data as ApiResponse | undefined;
     if (apiError?.error?.message) {
       return apiError.error.message;
     }
-    if (error.message) {
+
+    if (!error.response) {
+      if (error.code === 'ECONNABORTED') {
+        return 'Yêu cầu quá thời gian phản hồi. Vui lòng thử lại.';
+      }
+      return 'Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng và thử lại.';
+    }
+
+    const status = error.response.status;
+    if (status === 401) {
+      return 'Phiên đăng nhập không hợp lệ hoặc đã hết hạn. Vui lòng đăng nhập lại.';
+    }
+    if (status === 403) {
+      return 'Bạn không có quyền thực hiện thao tác này.';
+    }
+    if (status === 404) {
+      return 'Không tìm thấy dữ liệu yêu cầu.';
+    }
+    if (status >= 500) {
+      return 'Hệ thống đang bận hoặc gặp sự cố tạm thời. Vui lòng thử lại sau.';
+    }
+
+    if (error.message && !/^(Request failed with status code|Network Error)/i.test(error.message)) {
       return error.message;
     }
+    return 'Đã có lỗi xảy ra. Vui lòng thử lại sau.';
   }
   if (error instanceof Error) {
     return error.message;

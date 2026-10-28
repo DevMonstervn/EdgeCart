@@ -26,7 +26,8 @@
   ],
   "vars": {
     "ENVIRONMENT": "production",
-    "APP_URL": "https://edgecart.com"
+    "APP_URL": "https://buydragon.pages.dev",
+    "ALLOWED_ORIGINS": "https://buydragon.pages.dev"
   },
   "env": {
     "staging": {
@@ -53,7 +54,8 @@
       ],
       "vars": {
         "ENVIRONMENT": "staging",
-        "APP_URL": "https://staging.edgecart.com"
+        "APP_URL": "https://staging.buydragon.pages.dev",
+        "ALLOWED_ORIGINS": "https://staging.buydragon.pages.dev,https://buydragon.pages.dev"
       }
     }
   }

@@ -28,6 +28,9 @@ authRouter.post('/login', validateJson(LoginSchema), async (c) => {
     return ok(c, data);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Đăng nhập thất bại';
+    if (msg.includes('bị khóa')) {
+      return fail(c, 403, ERROR_CODES.ACCOUNT_LOCKED, msg);
+    }
     return fail(c, 401, ERROR_CODES.AUTH_INVALID_CREDENTIALS, msg);
   }
 });
@@ -46,8 +49,9 @@ authRouter.post('/refresh', validateJson(RefreshTokenSchema), async (c) => {
 
 authRouter.post('/logout', requireAuth(), async (c) => {
   const user = c.get('user' as any);
+  const body = await c.req.json().catch(() => ({}));
   const service = new AuthService(c.env);
-  await service.logout(user.sub);
+  await service.logout(user.sub, typeof body?.refreshToken === 'string' ? body.refreshToken : undefined);
   return ok(c, { message: 'Đăng xuất thành công' });
 });
 

@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
+import { getRoleBadgeClass } from '../utils/format.js';
 import Toast from '../components/Toast.vue';
 import {
   LayoutDashboard,
   Package,
   Boxes,
   ShoppingBag,
+  Store,
+  ClipboardCheck,
+  Users,
   ArrowLeft,
   LogOut,
   Menu,
@@ -20,12 +24,18 @@ const route = useRoute();
 const auth = useAuthStore();
 const isSidebarOpen = ref(false);
 
-const navItems = [
-  { label: 'Tổng quan', path: '/admin', icon: LayoutDashboard },
-  { label: 'Sản phẩm', path: '/admin/products', icon: Package },
-  { label: 'Đơn hàng', path: '/admin/orders', icon: ShoppingBag },
-  { label: 'Quản lý Kho', path: '/admin/inventory', icon: Boxes },
-];
+const navItems = computed(() => {
+  const items = [
+    { label: 'Tổng quan', path: '/admin', icon: LayoutDashboard, visible: auth.canAccessAdmin },
+    { label: 'Sản phẩm', path: '/admin/products', icon: Package, visible: auth.canManageProducts },
+    { label: 'Quản lý Kho', path: '/admin/inventory', icon: Boxes, visible: auth.canManageProducts },
+    { label: 'Đơn hàng', path: '/admin/orders', icon: ShoppingBag, visible: auth.canManageOrders },
+    { label: 'Cửa hàng', path: '/admin/stores', icon: Store, visible: auth.canViewStores },
+    { label: 'Duyệt Seller', path: '/admin/seller-requests', icon: ClipboardCheck, visible: auth.isSuperAdmin },
+    { label: 'Người dùng', path: '/admin/users', icon: Users, visible: auth.isSuperAdmin },
+  ];
+  return items.filter((item) => item.visible);
+});
 
 async function handleLogout() {
   await auth.logout();
@@ -38,7 +48,11 @@ async function handleLogout() {
     <!-- Mobile Header -->
     <header class="md:hidden bg-slate-900 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40">
       <div class="flex items-center gap-2">
-        <button @click="isSidebarOpen = !isSidebarOpen" class="p-1 rounded-lg text-slate-300 hover:text-white">
+        <button
+          @click="isSidebarOpen = !isSidebarOpen"
+          class="p-1 rounded-lg text-slate-300 hover:text-white"
+          aria-label="Mở menu quản trị"
+        >
           <Menu v-if="!isSidebarOpen" class="w-6 h-6" />
           <X v-else class="w-6 h-6" />
         </button>
@@ -63,7 +77,7 @@ async function handleLogout() {
         </div>
         <div>
           <h2 class="font-bold text-white text-base leading-tight">Admin Portal</h2>
-          <span class="text-[11px] text-slate-400">EdgeCart Backoffice</span>
+          <span class="text-[11px] text-indigo-300 font-semibold">{{ auth.roleLabel }}</span>
         </div>
       </div>
 
@@ -110,7 +124,7 @@ async function handleLogout() {
     <div
       v-if="isSidebarOpen"
       @click="isSidebarOpen = false"
-      class="fixed inset-0 bg-slate-900/60 z-40 md:hidden backdrop-blur-xs"
+      class="fixed inset-0 bg-slate-900/60 z-40 md:hidden backdrop-blur-sm"
     ></div>
 
     <!-- Main Content Area -->
@@ -121,14 +135,25 @@ async function handleLogout() {
           <h1 class="text-xl font-bold text-slate-900">Hệ Thống Quản Trị EdgeCart</h1>
         </div>
         <div class="flex items-center gap-4">
-          <RouterLink to="/" class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          <RouterLink
+            to="/"
+            class="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition"
+          >
             Xem Storefront ↗
           </RouterLink>
-          <div class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+          <div class="flex items-center gap-2.5 text-sm font-semibold text-slate-700 pl-3 border-l border-slate-200">
             <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">
-              AD
+              {{ auth.user?.fullName?.charAt(0) || 'A' }}
             </div>
-            <span>{{ auth.user?.fullName || 'Administrator' }}</span>
+            <div class="leading-tight">
+              <div class="text-xs font-bold text-slate-900">{{ auth.user?.fullName || 'Quản trị viên' }}</div>
+              <span
+                class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full border mt-0.5"
+                :class="getRoleBadgeClass(auth.user?.role, false)"
+              >
+                {{ auth.roleLabel }}
+              </span>
+            </div>
           </div>
         </div>
       </header>

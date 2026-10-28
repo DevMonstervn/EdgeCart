@@ -24,7 +24,8 @@ export class CheckoutService {
     userId: string | null,
     userEmail: string,
     input: CheckoutInput,
-    idempotencyKey?: string | null
+    idempotencyKey?: string | null,
+    sessionId?: string | null
   ): Promise<CheckoutOutput> {
     // 1. Check Idempotency Key via Cloudflare KV
     if (this.env.KV && idempotencyKey) {
@@ -35,12 +36,22 @@ export class CheckoutService {
       }
     }
 
-    // 2. Fetch User's Cart
-    const cart = await this.cartRepo.getOrCreateCart(userId, null);
+    // 2. Fetch User's or Guest's Cart
+    const cart = await this.cartRepo.getOrCreateCart(userId, userId ? null : sessionId || null);
     const cartItems = await this.cartRepo.getCartItems(cart.id);
 
     if (cartItems.length === 0) {
       throw new Error('Giỏ hàng của bạn đang trống');
+    }
+
+    // Validate product & store active status before deducting inventory
+    for (const ci of cartItems) {
+      if (ci.product_is_active !== 1) {
+        throw new Error(`Sản phẩm "${ci.product_name}" hiện đã ngừng kinh doanh`);
+      }
+      if (ci.store_id !== null && ci.store_status !== 'ACTIVE') {
+        throw new Error(`Cửa hàng cung cấp sản phẩm "${ci.product_name}" hiện đang tạm ngưng hoạt động`);
+      }
     }
 
     // 3. Compute Totals
@@ -72,6 +83,7 @@ export class CheckoutService {
       items: cartItems.map((ci) => ({
         productId: ci.product_id,
         variantId: ci.variant_id,
+        storeId: ci.store_id ?? null,
         productName: ci.product_name,
         variantTitle: ci.variant_title,
         sku: ci.sku,
@@ -81,8 +93,12 @@ export class CheckoutService {
       })),
     });
 
-    // 5. Clear Cart
+    // 5. Clear Cart & Invalidate Product Detail KV Cache (stock changed)
     await this.cartRepo.clearCart(cart.id);
+    if (this.env.KV) {
+      const uniqueSlugs = Array.from(new Set(cartItems.map((ci) => ci.product_slug).filter(Boolean)));
+      await Promise.all(uniqueSlugs.map((slug) => this.env.KV.delete(`cache:product:${slug}`)));
+    }
 
     // 6. Online Payment URL generation if selected
     let paymentUrl: string | undefined;

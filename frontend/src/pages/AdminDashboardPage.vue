@@ -1,38 +1,27 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { adminService, type DashboardStats } from '../services/admin.service.js';
+import { useAuthStore } from '../stores/auth.js';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
+import { formatDateTime, formatVND, getOrderStatusMeta } from '../utils/format.js';
 import {
   DollarSign,
   ShoppingBag,
   Package,
-  Users,
   AlertTriangle,
   ArrowUpRight,
   Plus,
+  Store,
+  ClipboardCheck,
+  Users,
 } from 'lucide-vue-next';
+
+const auth = useAuthStore();
 
 const stats = ref<DashboardStats | null>(null);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
-
-function formatVND(amount: number) {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-}
-
-function formatDate(iso: string) {
-  try {
-    return new Date(iso).toLocaleDateString('vi-VN', {
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  } catch {
-    return iso;
-  }
-}
 
 async function loadStats() {
   isLoading.value = true;
@@ -40,7 +29,6 @@ async function loadStats() {
   try {
     stats.value = await adminService.getStats();
   } catch (err: unknown) {
-    // If backend endpoint is not yet seeded, provide graceful fallback
     error.value = err instanceof Error ? err.message : 'Không thể tải số liệu thống kê';
   } finally {
     isLoading.value = false;
@@ -59,16 +47,36 @@ onMounted(() => {
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Bảng Điều Khiển Tổng Quan</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Theo dõi thời gian thực các chỉ số kinh doanh trên Edge</p>
+          <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+            Theo dõi thời gian thực các chỉ số kinh doanh toàn sàn • Quyền hiện tại:
+            <strong class="text-indigo-700">{{ auth.roleLabel }}</strong>
+          </p>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <RouterLink
+            v-if="auth.isSuperAdmin"
+            to="/admin/seller-requests"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold transition"
+          >
+            <ClipboardCheck class="w-4 h-4 text-amber-600" />
+            <span>Duyệt Seller</span>
+          </RouterLink>
+          <RouterLink
+            v-if="auth.canManageProducts"
             to="/admin/products"
             class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-sm transition"
           >
             <Plus class="w-4 h-4" />
-            <span>Thêm sản phẩm</span>
+            <span>Quản lý sản phẩm</span>
+          </RouterLink>
+          <RouterLink
+            v-else-if="auth.canManageOrders"
+            to="/admin/orders"
+            class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-sm transition"
+          >
+            <ShoppingBag class="w-4 h-4" />
+            <span>Xử lý đơn hàng</span>
           </RouterLink>
         </div>
       </div>
@@ -88,9 +96,9 @@ onMounted(() => {
       <div v-else-if="stats" class="space-y-6">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <!-- Total Revenue -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-2xs space-y-2">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Doanh thu</span>
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Doanh thu sàn</span>
               <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
                 <DollarSign class="w-4 h-4" />
               </div>
@@ -105,7 +113,7 @@ onMounted(() => {
           </div>
 
           <!-- Total Orders -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-2xs space-y-2">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Đơn hàng</span>
               <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
@@ -115,11 +123,11 @@ onMounted(() => {
             <div class="text-xl sm:text-2xl font-black text-slate-900">
               {{ stats.totalOrders || 0 }}
             </div>
-            <div class="text-[11px] text-slate-400">Giao dịch đã xử lý</div>
+            <div class="text-[11px] text-slate-400">Giao dịch toàn hệ thống</div>
           </div>
 
           <!-- Total Products -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-2xs space-y-2">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Sản phẩm</span>
               <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
@@ -129,11 +137,11 @@ onMounted(() => {
             <div class="text-xl sm:text-2xl font-black text-slate-900">
               {{ stats.totalProducts || 0 }}
             </div>
-            <div class="text-[11px] text-slate-400">Đang hoạt động trong kho</div>
+            <div class="text-[11px] text-slate-400">Đang hoạt động trên sàn</div>
           </div>
 
           <!-- Low Stock Alert -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-2xs space-y-2">
+          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cảnh báo kho</span>
               <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
@@ -143,22 +151,91 @@ onMounted(() => {
             <div class="text-xl sm:text-2xl font-black text-amber-600">
               {{ stats.lowStockCount || 0 }}
             </div>
-            <div class="text-[11px] text-amber-600 font-medium">SKU sắp hết hàng (&lt; 5)</div>
+            <div class="text-[11px] text-amber-600 font-medium">SKU sắp hết hàng (≤ 5)</div>
+          </div>
+        </div>
+
+        <!-- Marketplace Governance Summary -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center">
+                <Store class="w-5 h-5" />
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 font-semibold">Cửa hàng đối tác</div>
+                <div class="text-lg font-black text-slate-900">{{ stats.totalStores ?? 0 }}</div>
+              </div>
+            </div>
+            <RouterLink
+              v-if="auth.canViewStores"
+              to="/admin/stores"
+              class="text-xs font-bold text-indigo-600 hover:text-indigo-700"
+            >
+              Xem →
+            </RouterLink>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                <ClipboardCheck class="w-5 h-5" />
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 font-semibold">Hồ sơ Seller chờ duyệt</div>
+                <div class="text-lg font-black text-amber-600">{{ stats.pendingSellerRequests ?? 0 }}</div>
+              </div>
+            </div>
+            <RouterLink
+              v-if="auth.isSuperAdmin"
+              to="/admin/seller-requests"
+              class="text-xs font-bold text-indigo-600 hover:text-indigo-700"
+            >
+              Xét duyệt →
+            </RouterLink>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
+                <Users class="w-5 h-5" />
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 font-semibold">Tài khoản Người mua</div>
+                <div class="text-lg font-black text-slate-900">{{ stats.totalCustomers || 0 }}</div>
+              </div>
+            </div>
+            <RouterLink
+              v-if="auth.isSuperAdmin"
+              to="/admin/users"
+              class="text-xs font-bold text-indigo-600 hover:text-indigo-700"
+            >
+              Quản lý →
+            </RouterLink>
           </div>
         </div>
 
         <!-- Recent Orders Table -->
-        <div class="bg-white rounded-3xl border border-slate-100 shadow-xs overflow-hidden">
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
           <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <h3 class="font-bold text-sm text-slate-900">Đơn hàng mới nhất</h3>
-            <RouterLink to="/admin/orders" class="text-xs font-bold text-indigo-600 hover:text-indigo-700">
-              Xem tất cả đơn
+            <h3 class="font-bold text-sm text-slate-900">Đơn hàng mới nhất trên sàn</h3>
+            <RouterLink
+              v-if="auth.canManageOrders"
+              to="/admin/orders"
+              class="text-xs font-bold text-indigo-600 hover:text-indigo-700"
+            >
+              Xem tất cả đơn →
             </RouterLink>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-50/70 text-slate-500 uppercase text-[10px] font-bold">
+          <div
+            tabindex="0"
+            role="region"
+            aria-label="Đơn hàng mới nhất trên sàn"
+            class="ec-table-region"
+          >
+            <table class="w-full text-left text-xs ec-stacked-table">
+              <thead class="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold">
                 <tr>
                   <th class="px-5 py-3">Mã đơn</th>
                   <th class="px-5 py-3">Khách hàng</th>
@@ -178,13 +255,18 @@ onMounted(() => {
                   :key="order.id"
                   class="hover:bg-slate-50/50 transition"
                 >
-                  <td class="px-5 py-3.5 font-bold font-mono text-slate-900">#{{ order.orderNumber }}</td>
-                  <td class="px-5 py-3.5">{{ order.shippingName }}</td>
-                  <td class="px-5 py-3.5 text-slate-400">{{ formatDate(order.createdAt) }}</td>
-                  <td class="px-5 py-3.5 font-bold text-slate-900">{{ formatVND(order.totalAmount) }}</td>
-                  <td class="px-5 py-3.5">
-                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
-                      {{ order.shippingStatus }}
+                  <th scope="row" class="px-5 py-3.5 font-bold font-mono text-slate-900 text-left">
+                    #{{ order.orderNumber }}
+                  </th>
+                  <td data-label="Khách hàng" class="px-5 py-3.5">{{ order.shippingName }}</td>
+                  <td data-label="Ngày đặt" class="px-5 py-3.5 text-slate-400">{{ formatDateTime(order.createdAt) }}</td>
+                  <td data-label="Tổng tiền" class="px-5 py-3.5 font-bold text-slate-900">{{ formatVND(order.totalAmount) }}</td>
+                  <td data-label="Trạng thái" class="px-5 py-3.5">
+                    <span
+                      class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border"
+                      :class="getOrderStatusMeta(order.shippingStatus).badgeClass"
+                    >
+                      {{ getOrderStatusMeta(order.shippingStatus).label }}
                     </span>
                   </td>
                 </tr>

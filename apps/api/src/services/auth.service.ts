@@ -1,14 +1,31 @@
 import { UserRepository } from '../repositories/user.repo.js';
 import { hashPassword, verifyPassword } from '../utils/crypto.js';
-import { signJwt, verifyJwt } from '../utils/jwt.js';
+import { signJwt } from '../utils/jwt.js';
 import type { Env } from '../types/env.js';
-import type { RegisterInput, LoginInput, User } from '@edgecart/shared';
+import type { RegisterInput, LoginInput, User, UserRole, UserStatus } from '@edgecart/shared';
+
+const REFRESH_SESSION_TTL_SECONDS = 604800; // 7 days
+const MAX_LEGACY_SESSION_SCAN_PAGES = 50; // Safe upper bound when scanning legacy unindexed sessions
 
 export class AuthService {
   private userRepo: UserRepository;
 
   constructor(private env: Env) {
     this.userRepo = new UserRepository(env.DB);
+  }
+
+  private async persistRefreshSession(userId: string, email: string, refreshToken: string): Promise<void> {
+    if (!this.env.KV) return;
+    await Promise.all([
+      // Primary session record partitioned by userId so Admin account lock can revoke all user sessions by prefix
+      this.env.KV.put(`session:${userId}:${refreshToken}`, JSON.stringify({ userId, email }), {
+        expirationTtl: REFRESH_SESSION_TTL_SECONDS,
+      }),
+      // O(1) reverse index avoiding Cloudflare KV's 1,000-key single-page list limit
+      this.env.KV.put(`refresh_idx:${refreshToken}`, userId, {
+        expirationTtl: REFRESH_SESSION_TTL_SECONDS,
+      }),
+    ]);
   }
 
   async register(input: RegisterInput): Promise<{ user: User; accessToken: string; refreshToken: string }> {
@@ -36,20 +53,16 @@ export class AuthService {
     );
 
     const refreshToken = crypto.randomUUID();
-    // Save session in KV with 7 days TTL (604800s)
-    if (this.env.KV) {
-      await this.env.KV.put(`session:${dbUser.id}:${refreshToken}`, JSON.stringify({ userId: dbUser.id, email: dbUser.email }), {
-        expirationTtl: 604800,
-      });
-    }
+    await this.persistRefreshSession(dbUser.id, dbUser.email, refreshToken);
 
     const user: User = {
       id: dbUser.id,
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
-      role: dbUser.role as any,
-      status: dbUser.status as any,
+      role: dbUser.role as UserRole,
+      isSeller: dbUser.is_seller === 1,
+      status: dbUser.status as UserStatus,
       createdAt: dbUser.created_at,
       updatedAt: dbUser.updated_at,
     };
@@ -79,19 +92,16 @@ export class AuthService {
     );
 
     const refreshToken = crypto.randomUUID();
-    if (this.env.KV) {
-      await this.env.KV.put(`session:${dbUser.id}:${refreshToken}`, JSON.stringify({ userId: dbUser.id, email: dbUser.email }), {
-        expirationTtl: 604800,
-      });
-    }
+    await this.persistRefreshSession(dbUser.id, dbUser.email, refreshToken);
 
     const user: User = {
       id: dbUser.id,
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
-      role: dbUser.role as any,
-      status: dbUser.status as any,
+      role: dbUser.role as UserRole,
+      isSeller: dbUser.is_seller === 1,
+      status: dbUser.status as UserStatus,
       createdAt: dbUser.created_at,
       updatedAt: dbUser.updated_at,
     };
@@ -104,18 +114,51 @@ export class AuthService {
       throw new Error('Hệ thống phiên không khả dụng');
     }
 
-    // In local tests or production, KV can be used to validate refresh token
-    // Search session key
-    // For fast verification, we can prefix or decode
+    const normalizedToken = refreshToken.trim();
+    if (!normalizedToken || normalizedToken.includes(':')) {
+      throw new Error('Phiên đăng nhập đã hết hạn');
+    }
+
     let sessionData: { userId: string; email: string } | null = null;
-    const list = await this.env.KV.list({ prefix: 'session:' });
-    for (const key of list.keys) {
-      if (key.name.endsWith(`:${refreshToken}`)) {
-        const val = await this.env.KV.get(key.name);
-        if (val) {
-          sessionData = JSON.parse(val);
+
+    // 1. Fast path: O(1) lookup via refresh_idx:<token> verified against primary session:<userId>:<token>
+    const indexedUserId = await this.env.KV.get(`refresh_idx:${normalizedToken}`);
+    if (indexedUserId) {
+      const primaryVal = await this.env.KV.get(`session:${indexedUserId}:${normalizedToken}`);
+      if (primaryVal) {
+        sessionData = JSON.parse(primaryVal);
+      } else {
+        // Primary session was expired or revoked by Admin; purge stale index
+        await this.env.KV.delete(`refresh_idx:${normalizedToken}`);
+      }
+    } else {
+      // 2. Backward-compatible fallback: cursor-paginated KV.list for pre-existing sessions without refresh_idx:
+      let cursor: string | undefined = undefined;
+      const suffix = `:${normalizedToken}`;
+
+      for (let page = 0; page < MAX_LEGACY_SESSION_SCAN_PAGES; page++) {
+        const listResult: KVNamespaceListResult<unknown, string> = await this.env.KV.list({
+          prefix: 'session:',
+          cursor,
+        });
+        const matched = listResult.keys.find((k) => k.name.endsWith(suffix));
+        if (matched) {
+          const val = await this.env.KV.get(matched.name);
+          if (val) {
+            sessionData = JSON.parse(val);
+            if (sessionData?.userId) {
+              // Backfill O(1) index so future refreshes skip KV.list
+              await this.env.KV.put(`refresh_idx:${normalizedToken}`, sessionData.userId, {
+                expirationTtl: REFRESH_SESSION_TTL_SECONDS,
+              });
+            }
+          }
           break;
         }
+        if (listResult.list_complete) {
+          break;
+        }
+        cursor = listResult.cursor;
       }
     }
 
@@ -139,7 +182,11 @@ export class AuthService {
 
   async logout(userId: string, refreshToken?: string): Promise<void> {
     if (this.env.KV && refreshToken) {
-      await this.env.KV.delete(`session:${userId}:${refreshToken}`);
+      const normalizedToken = refreshToken.trim();
+      await Promise.all([
+        this.env.KV.delete(`session:${userId}:${normalizedToken}`),
+        this.env.KV.delete(`refresh_idx:${normalizedToken}`),
+      ]);
     }
   }
 
@@ -154,8 +201,9 @@ export class AuthService {
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
-      role: dbUser.role as any,
-      status: dbUser.status as any,
+      role: dbUser.role as UserRole,
+      isSeller: dbUser.is_seller === 1,
+      status: dbUser.status as UserStatus,
       createdAt: dbUser.created_at,
       updatedAt: dbUser.updated_at,
     };

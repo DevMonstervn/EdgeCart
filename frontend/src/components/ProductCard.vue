@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import type { Product } from '@edgecart/shared';
 import { useCartStore } from '../stores/cart.js';
-import { ShoppingBag, Eye } from 'lucide-vue-next';
+import { ShoppingBag, Store, BadgeCheck } from 'lucide-vue-next';
 
 const props = defineProps<{
   product: Product;
@@ -98,10 +98,29 @@ function handleQuickAdd(e: Event) {
 
       <RouterLink
         :to="`/products/${product.slug}`"
-        class="text-sm font-semibold text-slate-800 hover:text-brand-600 line-clamp-2 leading-snug mb-2 transition"
+        class="text-sm font-semibold text-slate-800 hover:text-brand-600 line-clamp-2 leading-snug mb-1.5 transition"
       >
         {{ product.name }}
       </RouterLink>
+
+      <!-- Store Attribution -->
+      <div class="mb-2">
+        <RouterLink
+          v-if="product.store?.slug"
+          :to="`/stores/${product.store.slug}`"
+          class="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 hover:text-brand-700 max-w-full truncate transition"
+        >
+          <Store class="w-3 h-3 text-brand-600 shrink-0" />
+          <span class="truncate">{{ product.store.name }}</span>
+        </RouterLink>
+        <span
+          v-else-if="!product.storeId"
+          class="inline-flex items-center gap-1 text-[11px] font-medium text-indigo-600"
+        >
+          <BadgeCheck class="w-3 h-3 shrink-0" />
+          <span>EdgeCart Official</span>
+        </span>
+      </div>
 
       <!-- Price & Action Section -->
       <div class="mt-auto pt-2 border-t border-slate-50 flex items-center justify-between gap-2">

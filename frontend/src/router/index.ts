@@ -1,7 +1,24 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  type RouterHistory,
+  type RouteRecordRaw,
+} from 'vue-router';
+import type { UserRole } from '@edgecart/shared';
 import { useAuthStore } from '../stores/auth.js';
 
-const routes: RouteRecordRaw[] = [
+declare module 'vue-router' {
+  interface RouteMeta {
+    guestOnly?: boolean;
+    requiresAuth?: boolean;
+    requiresCustomer?: boolean;
+    requiresSeller?: boolean;
+    requiresAdmin?: boolean;
+    allowedRoles?: UserRole[];
+  }
+}
+
+export const routes: RouteRecordRaw[] = [
   // Storefront Public Routes
   {
     path: '/',
@@ -17,6 +34,11 @@ const routes: RouteRecordRaw[] = [
     path: '/products/:slug',
     name: 'product-detail',
     component: () => import('../pages/ProductDetailPage.vue'),
+  },
+  {
+    path: '/stores/:slug',
+    name: 'store-detail',
+    component: () => import('../pages/StoreDetailPage.vue'),
   },
   {
     path: '/cart',
@@ -56,31 +78,115 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../pages/OrdersPage.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/become-seller',
+    name: 'become-seller',
+    component: () => import('../pages/BecomeSellerPage.vue'),
+    meta: { requiresAuth: true, requiresCustomer: true },
+  },
 
-  // Admin Protected Routes
+  // Approved Seller Portal Routes
+  {
+    path: '/seller',
+    name: 'seller-dashboard',
+    component: () => import('../pages/SellerDashboardPage.vue'),
+    meta: { requiresAuth: true, requiresSeller: true },
+  },
+  {
+    path: '/seller/store',
+    name: 'seller-store',
+    component: () => import('../pages/SellerStorePage.vue'),
+    meta: { requiresAuth: true, requiresSeller: true },
+  },
+  {
+    path: '/seller/products',
+    name: 'seller-products',
+    component: () => import('../pages/SellerProductsPage.vue'),
+    meta: { requiresAuth: true, requiresSeller: true },
+  },
+  {
+    path: '/seller/inventory',
+    name: 'seller-inventory',
+    component: () => import('../pages/SellerInventoryPage.vue'),
+    meta: { requiresAuth: true, requiresSeller: true },
+  },
+  {
+    path: '/seller/orders',
+    name: 'seller-orders',
+    component: () => import('../pages/SellerOrdersPage.vue'),
+    meta: { requiresAuth: true, requiresSeller: true },
+  },
+
+  // Admin Protected Routes (Role-Scoped)
   {
     path: '/admin',
     name: 'admin-dashboard',
     component: () => import('../pages/AdminDashboardPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'PRODUCT_MANAGER', 'ORDER_OPERATOR'],
+    },
   },
   {
     path: '/admin/products',
     name: 'admin-products',
     component: () => import('../pages/AdminProductsPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
-  },
-  {
-    path: '/admin/orders',
-    name: 'admin-orders',
-    component: () => import('../pages/AdminOrdersPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'PRODUCT_MANAGER'],
+    },
   },
   {
     path: '/admin/inventory',
     name: 'admin-inventory',
     component: () => import('../pages/AdminInventoryPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'PRODUCT_MANAGER'],
+    },
+  },
+  {
+    path: '/admin/orders',
+    name: 'admin-orders',
+    component: () => import('../pages/AdminOrdersPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'ORDER_OPERATOR'],
+    },
+  },
+  {
+    path: '/admin/stores',
+    name: 'admin-stores',
+    component: () => import('../pages/AdminStoresPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'PRODUCT_MANAGER'],
+    },
+  },
+  {
+    path: '/admin/seller-requests',
+    name: 'admin-seller-requests',
+    component: () => import('../pages/AdminSellerRequestsPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN'],
+    },
+  },
+  {
+    path: '/admin/users',
+    name: 'admin-users',
+    component: () => import('../pages/AdminUsersPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN'],
+    },
   },
 
   // 404 Catch-All
@@ -91,42 +197,57 @@ const routes: RouteRecordRaw[] = [
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior(_to, _from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
+export function createAppRouter(history: RouterHistory = createWebHistory()) {
+  const instance = createRouter({
+    history,
+    routes,
+    scrollBehavior(_to, _from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      }
+      return { top: 0, behavior: 'smooth' };
+    },
+  });
+
+  // UX Navigation Guards (Authoritative enforcement remains on Backend API + D1)
+  instance.beforeEach(async (to) => {
+    const auth = useAuthStore();
+
+    if (auth.accessToken && !auth.user) {
+      await auth.fetchProfile();
     }
-    return { top: 0, behavior: 'smooth' };
-  },
-});
 
-// Navigation Guards
-router.beforeEach(async (to, _from, next) => {
-  const auth = useAuthStore();
+    if (to.meta.guestOnly && auth.isAuthenticated) {
+      return { path: '/' };
+    }
 
-  // If token exists but user profile isn't loaded, load it once
-  if (auth.accessToken && !auth.user) {
-    await auth.fetchProfile();
-  }
+    if (to.meta.requiresAuth && !auth.isAuthenticated) {
+      return { path: '/login', query: { redirect: to.fullPath } };
+    }
 
-  // Check guestOnly routes (e.g. login, register)
-  if (to.meta.guestOnly && auth.isAuthenticated) {
-    return next('/');
-  }
+    if (to.meta.requiresCustomer && !auth.isCustomer) {
+      return auth.canAccessAdmin ? { path: '/admin' } : { path: '/' };
+    }
 
-  // Check requiresAuth routes
-  if (to.meta.requiresAuth && !auth.isAuthenticated) {
-    return next({ path: '/login', query: { redirect: to.fullPath } });
-  }
+    if (to.meta.requiresSeller && !auth.isSeller) {
+      return auth.canAccessAdmin ? { path: '/admin' } : { path: '/become-seller' };
+    }
 
-  // Check requiresAdmin routes
-  if (to.meta.requiresAdmin && !auth.isAdmin) {
-    return next('/');
-  }
+    if (to.meta.requiresAdmin) {
+      if (!auth.canAccessAdmin) {
+        return { path: '/' };
+      }
+      if (to.meta.allowedRoles && (!auth.user || !to.meta.allowedRoles.includes(auth.user.role))) {
+        return { path: '/admin' };
+      }
+    }
 
-  next();
-});
+    return true;
+  });
+
+  return instance;
+}
+
+const router = createAppRouter();
 
 export default router;

@@ -5,7 +5,7 @@ import type { Order } from '@edgecart/shared';
 export class OrderService {
   private orderRepo: OrderRepository;
 
-  constructor(env: Env) {
+  constructor(private env: Env) {
     this.orderRepo = new OrderRepository(env.DB);
   }
 
@@ -39,12 +39,14 @@ export class OrderService {
           orderId: i.order_id,
           productId: i.product_id,
           variantId: i.variant_id,
+          storeId: i.store_id,
           productName: i.product_name,
           variantTitle: i.variant_title,
           sku: i.sku,
           unitPrice: i.unit_price,
           quantity: i.quantity,
           totalPrice: i.total_price,
+          fulfillmentStatus: i.fulfillment_status as any,
         })),
         createdAt: o.created_at,
         updatedAt: o.updated_at,
@@ -89,12 +91,14 @@ export class OrderService {
         orderId: i.order_id,
         productId: i.product_id,
         variantId: i.variant_id,
+        storeId: i.store_id,
         productName: i.product_name,
         variantTitle: i.variant_title,
         sku: i.sku,
         unitPrice: i.unit_price,
         quantity: i.quantity,
         totalPrice: i.total_price,
+        fulfillmentStatus: i.fulfillment_status as any,
       })),
       createdAt: o.created_at,
       updatedAt: o.updated_at,
@@ -107,5 +111,16 @@ export class OrderService {
     if (o.user_id !== userId) throw new Error('Bạn không có quyền thao tác đơn hàng này');
 
     await this.orderRepo.cancelOrderAndRestock(orderId, reason, userId);
+
+    if (this.env.KV) {
+      const { results } = await this.env.DB.prepare(
+        `SELECT DISTINCT p.slug FROM order_items oi JOIN products p ON oi.product_id = p.id WHERE oi.order_id = ?`
+      )
+        .bind(orderId)
+        .all<{ slug: string }>();
+      if (results && results.length > 0) {
+        await Promise.all(results.map((r) => this.env.KV.delete(`cache:product:${r.slug}`)));
+      }
+    }
   }
 }

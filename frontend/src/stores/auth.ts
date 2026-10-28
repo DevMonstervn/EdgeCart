@@ -2,7 +2,14 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import type { User, LoginInput, RegisterInput } from '@edgecart/shared';
 import { authService } from '../services/auth.service.js';
-import { extractErrorMessage } from '../services/api.js';
+import {
+  apiClient,
+  extractErrorMessage,
+  resetGuestSessionId,
+  AUTH_EXPIRED_EVENT,
+  AUTH_CLEARED_EVENT,
+} from '../services/api.js';
+import { getRoleDisplayLabel } from '../utils/format.js';
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null);
@@ -11,10 +18,56 @@ export const useAuthStore = defineStore('auth', () => {
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
 
+  function clearClientSessionState() {
+    user.value = null;
+    accessToken.value = null;
+    refreshToken.value = null;
+    localStorage.removeItem('ec_access_token');
+    localStorage.removeItem('ec_refresh_token');
+    localStorage.removeItem('ec_cart_items');
+    resetGuestSessionId();
+    delete apiClient.defaults.headers.common.Authorization;
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent(AUTH_CLEARED_EVENT));
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener(AUTH_EXPIRED_EVENT, () => {
+      clearClientSessionState();
+    });
+  }
+
   const isAuthenticated = computed(() => !!accessToken.value);
-  const isAdmin = computed(() => {
-    return user.value?.role === 'SUPER_ADMIN' || user.value?.role === 'PRODUCT_MANAGER';
+
+  // Internal staff roles (SUPER_ADMIN, PRODUCT_MANAGER, ORDER_OPERATOR)
+  const canAccessAdmin = computed(() => {
+    const role = user.value?.role;
+    return role === 'SUPER_ADMIN' || role === 'PRODUCT_MANAGER' || role === 'ORDER_OPERATOR';
   });
+
+  // Alias preserved for backward compatibility across existing components
+  const isAdmin = computed(() => canAccessAdmin.value);
+
+  const isSuperAdmin = computed(() => user.value?.role === 'SUPER_ADMIN');
+  const isProductManager = computed(() => user.value?.role === 'PRODUCT_MANAGER');
+  const isOrderOperator = computed(() => user.value?.role === 'ORDER_OPERATOR');
+
+  const canManageProducts = computed(
+    () => user.value?.role === 'SUPER_ADMIN' || user.value?.role === 'PRODUCT_MANAGER'
+  );
+  const canManageOrders = computed(
+    () => user.value?.role === 'SUPER_ADMIN' || user.value?.role === 'ORDER_OPERATOR'
+  );
+  const canViewStores = computed(
+    () => user.value?.role === 'SUPER_ADMIN' || user.value?.role === 'PRODUCT_MANAGER'
+  );
+
+  // Buyer & Seller capabilities (DB role for buyer remains CUSTOMER)
+  const isCustomer = computed(() => user.value?.role === 'CUSTOMER');
+  const isSeller = computed(() => Boolean(user.value?.isSeller));
+
+  const roleLabel = computed(() => getRoleDisplayLabel(user.value?.role, user.value?.isSeller));
 
   function setTokens(access: string, refresh: string) {
     accessToken.value = access;
@@ -64,22 +117,19 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = profile;
       return profile;
     } catch {
-      logout();
+      await logout();
       return null;
     }
   }
 
   async function logout() {
+    const currentRefresh = refreshToken.value;
     try {
-      await authService.logout();
+      await authService.logout(currentRefresh);
     } catch {
       // Ignore logout errors
     } finally {
-      user.value = null;
-      accessToken.value = null;
-      refreshToken.value = null;
-      localStorage.removeItem('ec_access_token');
-      localStorage.removeItem('ec_refresh_token');
+      clearClientSessionState();
     }
   }
 
@@ -90,7 +140,17 @@ export const useAuthStore = defineStore('auth', () => {
     isLoading,
     error,
     isAuthenticated,
+    canAccessAdmin,
     isAdmin,
+    isSuperAdmin,
+    isProductManager,
+    isOrderOperator,
+    canManageProducts,
+    canManageOrders,
+    canViewStores,
+    isCustomer,
+    isSeller,
+    roleLabel,
     login,
     register,
     fetchProfile,

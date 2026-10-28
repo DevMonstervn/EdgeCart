@@ -11,6 +11,8 @@ import { checkoutRouter } from './controllers/checkout.controller.js';
 import { orderRouter } from './controllers/order.controller.js';
 import { uploadRouter } from './controllers/upload.controller.js';
 import { adminRouter } from './controllers/admin.controller.js';
+import { storeRouter } from './controllers/store.controller.js';
+import { sellerRouter } from './controllers/seller.controller.js';
 import type { Env } from './types/env.js';
 
 const app = new Hono<{ Bindings: Env }>();
@@ -45,10 +47,12 @@ apiV1.get('/', (c) => {
 // Mount Resource Sub-routers
 apiV1.route('/auth', authRouter);
 apiV1.route('/', catalogRouter);
+apiV1.route('/', storeRouter);
 apiV1.route('/cart', cartRouter);
 apiV1.route('/checkout', checkoutRouter);
 apiV1.route('/orders', orderRouter);
 apiV1.route('/uploads', uploadRouter);
+apiV1.route('/seller', sellerRouter);
 apiV1.route('/admin', adminRouter);
 
 // Mount /api/v1

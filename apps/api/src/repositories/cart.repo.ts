@@ -12,6 +12,11 @@ export interface DbCartItemDetail {
   cart_id: string;
   variant_id: string;
   product_id: string;
+  product_slug: string;
+  store_id: string | null;
+  store_name: string | null;
+  store_status: string | null;
+  product_is_active: number;
   product_name: string;
   variant_title: string;
   sku: string;
@@ -62,6 +67,11 @@ export class CartRepository {
         ci.quantity,
         ci.price_at_addition as unit_price,
         pv.product_id,
+        p.slug as product_slug,
+        p.store_id,
+        s.name as store_name,
+        s.status as store_status,
+        p.is_active as product_is_active,
         p.name as product_name,
         pv.title as variant_title,
         pv.sku,
@@ -70,6 +80,7 @@ export class CartRepository {
       FROM cart_items ci
       JOIN product_variants pv ON ci.variant_id = pv.id
       JOIN products p ON pv.product_id = p.id
+      LEFT JOIN stores s ON p.store_id = s.id
       LEFT JOIN product_images pi ON p.id = pi.product_id AND pi.sort_order = 0
       WHERE ci.cart_id = ?
       ORDER BY ci.created_at ASC
@@ -99,9 +110,14 @@ export class CartRepository {
     }
   }
 
-  async updateItemQuantity(itemId: string, quantity: number): Promise<void> {
+  async updateItemQuantity(itemId: string, quantity: number, cartId?: string): Promise<void> {
     if (quantity <= 0) {
-      await this.removeItem(itemId);
+      await this.removeItem(itemId, cartId);
+    } else if (cartId) {
+      await this.db
+        .prepare('UPDATE cart_items SET quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND cart_id = ?')
+        .bind(quantity, itemId, cartId)
+        .run();
     } else {
       await this.db
         .prepare('UPDATE cart_items SET quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
@@ -110,8 +126,12 @@ export class CartRepository {
     }
   }
 
-  async removeItem(itemId: string): Promise<void> {
-    await this.db.prepare('DELETE FROM cart_items WHERE id = ?').bind(itemId).run();
+  async removeItem(itemId: string, cartId?: string): Promise<void> {
+    if (cartId) {
+      await this.db.prepare('DELETE FROM cart_items WHERE id = ? AND cart_id = ?').bind(itemId, cartId).run();
+    } else {
+      await this.db.prepare('DELETE FROM cart_items WHERE id = ?').bind(itemId).run();
+    }
   }
 
   async clearCart(cartId: string): Promise<void> {

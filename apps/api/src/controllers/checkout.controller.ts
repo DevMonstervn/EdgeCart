@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { validateJson } from '../middlewares/validate.js';
 import { CheckoutService } from '../services/checkout.service.js';
 import { created, fail } from '../utils/response.js';
-import { verifyJwt } from '../utils/jwt.js';
+import { resolveOptionalAuthUser } from '../middlewares/auth.js';
 import { CheckoutSchema, ERROR_CODES } from '@edgecart/shared';
 import type { Env } from '../types/env.js';
 
@@ -11,23 +11,21 @@ export const checkoutRouter = new Hono<{ Bindings: Env }>();
 checkoutRouter.post('/', validateJson(CheckoutSchema), async (c) => {
   const input = c.req.valid('json');
   const idempotencyKey = c.req.header('Idempotency-Key') || null;
+  const sessionId = c.req.header('X-Session-Id') || null;
 
-  let userId: string | null = null;
-  let userEmail = 'guest@edgecart.com';
-
-  const authHeader = c.req.header('Authorization');
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    const token = authHeader.substring(7).trim();
-    const payload = await verifyJwt(token, c.env.JWT_SECRET);
-    if (payload) {
-      userId = payload.sub;
-      userEmail = payload.email;
-    }
+  const { userId, email, locked, invalidToken } = await resolveOptionalAuthUser(c);
+  if (invalidToken) {
+    return fail(c, 401, ERROR_CODES.AUTH_TOKEN_EXPIRED, 'Phiên đăng nhập không hợp lệ hoặc đã hết hạn');
   }
+  if (locked) {
+    return fail(c, 403, ERROR_CODES.ACCOUNT_LOCKED, 'Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa');
+  }
+
+  const userEmail = email || 'guest@edgecart.com';
 
   const service = new CheckoutService(c.env);
   try {
-    const result = await service.processCheckout(userId, userEmail, input, idempotencyKey);
+    const result = await service.processCheckout(userId, userEmail, input, idempotencyKey, sessionId);
     return created(c, result);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Đặt hàng không thành công';
