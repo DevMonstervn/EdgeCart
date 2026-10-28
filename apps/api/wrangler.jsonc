@@ -1,0 +1,60 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "edgecart-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "edgecart-d1-prod",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "prod_kv_namespace_id"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "edgecart-media-prod"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "APP_URL": "https://edgecart.com"
+  },
+  "env": {
+    "staging": {
+      "name": "edgecart-api-staging",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "edgecart-d1-staging",
+          "database_id": "62aac31a-eb53-44a9-a3e9-b52c9d81b88a",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "KV",
+          "id": "571a061048f44385b9c6e23d13c24b32"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2",
+          "bucket_name": "edgecart-media-staging"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "staging",
+        "APP_URL": "https://staging.edgecart.com"
+      }
+    }
+  }
+}

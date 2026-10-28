@@ -1,0 +1,31 @@
+{
+  "name": "@edgecart/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migrate:local": "wrangler d1 migrations apply edgecart-d1-prod --local",
+    "db:migrate:staging": "wrangler d1 migrations apply edgecart-d1-staging --env staging --remote",
+    "db:migrate:prod": "wrangler d1 migrations apply edgecart-d1-prod --remote"
+  },
+  "dependencies": {
+    "@edgecart/shared": "workspace:*",
+    "@hono/zod-validator": "^0.4.3",
+    "hono": "^4.7.4",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.2",
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "@edgecart/tsconfig": "workspace:*",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7",
+    "wrangler": "^3.114.0"
+  }
+}

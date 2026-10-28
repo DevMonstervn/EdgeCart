@@ -1,0 +1,23 @@
+{
+  "name": "edgecart-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "High-Performance Edge-Native E-commerce on Cloudflare",
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @edgecart/api --filter @edgecart/frontend dev",
+    "dev:api": "pnpm --filter @edgecart/api dev",
+    "dev:frontend": "pnpm --filter @edgecart/frontend dev",
+    "dev:web": "pnpm --filter @edgecart/web dev",
+    "build": "pnpm --filter @edgecart/shared build && pnpm --filter @edgecart/frontend build",
+    "build:all": "pnpm --filter @edgecart/shared build && pnpm --filter @edgecart/frontend build && pnpm --filter @edgecart/web build",
+    "deploy:staging": "pnpm --filter @edgecart/api deploy:staging && pnpm --filter @edgecart/frontend deploy:staging",
+    "deploy:prod": "pnpm --filter @edgecart/api deploy && pnpm --filter @edgecart/frontend deploy:prod",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
