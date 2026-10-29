@@ -62,8 +62,15 @@ onMounted(() => {
 
           <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
             Mua Sắm Trực Tuyến <br class="hidden sm:block" />
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600">
-              Tốc Độ Siêu Tốc Tại Biên
+            <span class="inline-flex items-center flex-wrap justify-center gap-2.5 sm:gap-4 mt-2">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600">
+                Tốc Độ Siêu Tốc Tại Mua Rồng
+              </span>
+              <img
+                src="/logo-dragon.jpg"
+                alt="Mua Rồng Logo"
+                class="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full ring-4 ring-emerald-200/80 shadow-md object-cover inline-block align-middle transition hover:scale-105"
+              />
             </span>
           </h1>
 

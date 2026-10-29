@@ -10,11 +10,13 @@ import { Zap, ShieldCheck } from 'lucide-vue-next';
     <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-indigo-200/40 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10 px-4">
-      <RouterLink to="/" class="inline-flex items-center gap-2.5 mb-6">
-        <div class="w-11 h-11 rounded-2xl bg-brand-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-600/30">
-          EC
-        </div>
-        <span class="text-2xl font-black tracking-tight text-slate-900">EdgeCart</span>
+      <RouterLink to="/" class="inline-flex items-center gap-2.5 mb-6 group">
+        <img
+          src="/logo-dragon.jpg"
+          alt="Mua Rồng Logo"
+          class="w-12 h-12 rounded-2xl object-cover ring-2 ring-emerald-200 shadow-md group-hover:scale-105 transition"
+        />
+        <span class="text-2xl font-black tracking-tight text-slate-900 group-hover:text-brand-600 transition">Mua Rồng</span>
       </RouterLink>
 
       <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">

@@ -50,13 +50,15 @@ async function handleLogout() {
             <X v-else class="w-6 h-6" />
           </button>
 
-          <RouterLink to="/" class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-brand-600/20">
-              EC
-            </div>
+          <RouterLink to="/" class="flex items-center gap-2.5 group">
+            <img
+              src="/logo-dragon.jpg"
+              alt="Mua Rồng Logo"
+              class="w-9 h-9 rounded-xl object-cover ring-1 ring-slate-200 shadow-sm group-hover:scale-105 transition"
+            />
             <div class="flex flex-col">
-              <span class="text-lg font-black tracking-tight text-slate-900 leading-tight">EdgeCart</span>
-              <span class="text-[10px] font-semibold text-brand-600 tracking-wider uppercase -mt-0.5">Cloudflare Edge</span>
+              <span class="text-lg font-black tracking-tight text-slate-900 leading-tight group-hover:text-brand-600 transition">Mua Rồng</span>
+              <span class="text-[10px] font-semibold text-brand-600 tracking-wider uppercase -mt-0.5">Edge Marketplace</span>
             </div>
           </RouterLink>
         </div>

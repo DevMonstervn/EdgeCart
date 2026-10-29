@@ -20,10 +20,12 @@ import { Zap, ShieldCheck, Heart } from 'lucide-vue-next';
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div class="space-y-3">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-lg bg-brand-600 text-white font-black flex items-center justify-center text-sm">
-                EC
-              </div>
-              <span class="text-base font-bold text-slate-900">EdgeCart</span>
+              <img
+                src="/logo-dragon.jpg"
+                alt="Mua Rồng Logo"
+                class="w-8 h-8 rounded-lg object-cover ring-1 ring-slate-200"
+              />
+              <span class="text-base font-bold text-slate-900">Mua Rồng</span>
             </div>
             <p class="text-xs text-slate-500 leading-relaxed">
               Nền tảng thương mại điện tử Edge-Native hiệu năng cao, vận hành 100% trên mạng lưới Cloudflare Workers, D1, KV và R2.
