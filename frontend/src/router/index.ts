@@ -34,6 +34,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/products/:slug',
     name: 'product-detail',
     component: () => import('../pages/ProductDetailPage.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/stores/:slug',
@@ -49,6 +50,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/checkout',
     name: 'checkout',
     component: () => import('../pages/CheckoutPage.vue'),
+    meta: { requiresAuth: true },
   },
 
   // Auth Routes

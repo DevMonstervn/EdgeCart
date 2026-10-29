@@ -93,12 +93,12 @@ describe('Phase 3 Frontend RBAC, Router Guards & Menu Visibility', () => {
     it('allows unauthenticated Guest on public shopping & storefront routes, but redirects protected routes to /login', async () => {
       const router = createAppRouter(createMemoryHistory());
 
-      for (const publicPath of ['/', '/products', '/products/ao-polo', '/stores/techzone', '/cart', '/checkout']) {
+      for (const publicPath of ['/', '/products', '/stores/techzone', '/cart']) {
         await router.push(publicPath);
         expect(router.currentRoute.value.path).toBe(publicPath);
       }
 
-      for (const protectedPath of ['/profile', '/orders', '/become-seller', '/seller', '/admin']) {
+      for (const protectedPath of ['/products/ao-polo', '/checkout', '/profile', '/orders', '/become-seller', '/seller', '/admin']) {
         await router.push(protectedPath);
         expect(router.currentRoute.value.path).toBe('/login');
         expect(router.currentRoute.value.query.redirect).toBe(protectedPath);

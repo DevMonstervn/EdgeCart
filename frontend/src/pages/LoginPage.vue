@@ -131,7 +131,7 @@ async function handleLogin() {
       <!-- Bottom Switch to Register -->
       <div class="pt-4 border-t border-slate-100 text-center text-xs text-slate-500">
         Chưa có tài khoản?
-        <RouterLink to="/register" class="font-bold text-brand-600 hover:text-brand-700 ml-1">
+        <RouterLink :to="{ path: '/register', query: route.query.redirect ? { redirect: route.query.redirect } : {} }" class="font-bold text-brand-600 hover:text-brand-700 ml-1">
           Đăng ký tài khoản mới
         </RouterLink>
       </div>

@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { productService } from '../services/product.service.js';
 import { useCartStore } from '../stores/cart.js';
+import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
 import type { Product, ProductVariant } from '@edgecart/shared';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
@@ -24,6 +25,7 @@ import {
 
 const route = useRoute();
 const router = useRouter();
+const auth = useAuthStore();
 const cart = useCartStore();
 const toast = useToastStore();
 
@@ -82,6 +84,12 @@ function handleQuantityChange(delta: number) {
 }
 
 async function handleAddToCart() {
+  if (!auth.isAuthenticated) {
+    toast.info('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
+    router.push({ path: '/login', query: { redirect: route.fullPath } });
+    return;
+  }
+
   if (!product.value || !selectedVariant.value || isOutOfStock.value) return;
 
   const success = await cart.addItem({

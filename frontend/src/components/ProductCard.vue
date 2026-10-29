@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import type { Product } from '@edgecart/shared';
 import { useCartStore } from '../stores/cart.js';
+import { useAuthStore } from '../stores/auth.js';
+import { useToastStore } from '../stores/toast.js';
 import { ShoppingBag, Store, BadgeCheck } from 'lucide-vue-next';
 
 const props = defineProps<{
   product: Product;
 }>();
 
+const router = useRouter();
 const cart = useCartStore();
+const auth = useAuthStore();
+const toast = useToastStore();
 
 const primaryImage = computed(() => {
   if (props.product.images && props.product.images.length > 0) {
@@ -46,6 +52,12 @@ function handleQuickAdd(e: Event) {
   e.preventDefault();
   e.stopPropagation();
   if (!defaultVariant.value || isOutOfStock.value) return;
+
+  if (!auth.isAuthenticated) {
+    toast.info('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
+    router.push({ path: '/login', query: { redirect: `/products/${props.product.slug}` } });
+    return;
+  }
 
   cart.addItem({
     variantId: defaultVariant.value.id,

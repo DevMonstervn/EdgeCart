@@ -658,7 +658,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
       .first<{ user_id: string | null }>();
     expect(orderRow?.user_id).toBe(buyerId);
 
-    // Meanwhile, a true Guest (NO Authorization header, only X-Session-Id) can add & checkout cleanly
+    // Meanwhile, an unauthenticated Guest checkout without login is strictly rejected with 401
     const guestSessionId = 'guest_sess_phase4';
     const guestAddRes = await app.request(
       '/api/v1/cart/items',
@@ -690,7 +690,8 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
       },
       env
     );
-    expect(guestCheckoutRes.status).toBe(201);
+    expect(guestCheckoutRes.status).toBe(401);
+    expect(((await guestCheckoutRes.json()) as any).error.message).toContain('đăng nhập');
   });
 
   it('verifies upload presigned-url RBAC across all 5 personas & suspended store restriction', async () => {

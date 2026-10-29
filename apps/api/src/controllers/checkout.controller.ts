@@ -20,8 +20,11 @@ checkoutRouter.post('/', validateJson(CheckoutSchema), async (c) => {
   if (locked) {
     return fail(c, 403, ERROR_CODES.ACCOUNT_LOCKED, 'Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa');
   }
+  if (!userId || !email) {
+    return fail(c, 401, ERROR_CODES.AUTH_UNAUTHORIZED, 'Vui lòng đăng nhập tài khoản để đặt hàng');
+  }
 
-  const userEmail = email || 'guest@edgecart.com';
+  const userEmail = email;
 
   const service = new CheckoutService(c.env);
   try {

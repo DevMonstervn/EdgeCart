@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
 import { useCartStore } from '../stores/cart.js';
 import { useToastStore } from '../stores/toast.js';
@@ -8,6 +8,7 @@ import AuthLayout from '../layouts/AuthLayout.vue';
 import { User, Mail, Phone, Lock, Loader2, AlertCircle } from 'lucide-vue-next';
 
 const router = useRouter();
+const route = useRoute();
 const auth = useAuthStore();
 const cart = useCartStore();
 const toast = useToastStore();
@@ -55,7 +56,8 @@ async function handleRegister() {
 
     toast.success('Đăng ký tài khoản thành công!');
     await cart.mergeGuestCart();
-    router.push('/');
+    const redirectUrl = (route.query.redirect as string) || '/';
+    router.push(redirectUrl);
   } catch (err: unknown) {
     localError.value = err instanceof Error ? err.message : 'Đăng ký không thành công';
   } finally {
@@ -174,7 +176,7 @@ async function handleRegister() {
       <!-- Bottom Switch to Login -->
       <div class="pt-4 border-t border-slate-100 text-center text-xs text-slate-500">
         Đã có tài khoản?
-        <RouterLink to="/login" class="font-bold text-brand-600 hover:text-brand-700 ml-1">
+        <RouterLink :to="{ path: '/login', query: route.query.redirect ? { redirect: route.query.redirect } : {} }" class="font-bold text-brand-600 hover:text-brand-700 ml-1">
           Đăng nhập ngay
         </RouterLink>
       </div>
