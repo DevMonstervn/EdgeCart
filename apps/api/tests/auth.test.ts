@@ -175,6 +175,62 @@ describe('Authentication & Authorization API Integration Tests', () => {
     expect(body.data.email).toBe('profile@edgecart.com');
   });
 
+  it('should update user profile information and avatar', async () => {
+    const regRes = await app.request(
+      '/api/v1/auth/register',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: 'update-profile@edgecart.com',
+          password: 'Password123!',
+          fullName: 'Original Name',
+        }),
+      },
+      env
+    );
+    const regData = (await regRes.json()) as any;
+    const token = regData.data.accessToken;
+
+    const updateRes = await app.request(
+      '/api/v1/auth/profile',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          fullName: 'Updated Name',
+          phone: '0987654321',
+          avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200',
+        }),
+      },
+      env
+    );
+
+    expect(updateRes.status).toBe(200);
+    const updateBody = (await updateRes.json()) as any;
+    expect(updateBody.success).toBe(true);
+    expect(updateBody.data.fullName).toBe('Updated Name');
+    expect(updateBody.data.phone).toBe('0987654321');
+    expect(updateBody.data.avatarUrl).toBe('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200');
+
+    // Verify GET /me reflects updated data
+    const meRes = await app.request(
+      '/api/v1/auth/me',
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      },
+      env
+    );
+    const meBody = (await meRes.json()) as any;
+    expect(meBody.data.fullName).toBe('Updated Name');
+    expect(meBody.data.phone).toBe('0987654321');
+    expect(meBody.data.avatarUrl).toBe('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200');
+  });
+
   it('should reject access to protected routes without Authorization header', async () => {
     const res = await app.request('/api/v1/auth/me', { method: 'GET' }, env);
     expect(res.status).toBe(401);

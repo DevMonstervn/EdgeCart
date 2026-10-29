@@ -5,6 +5,7 @@ import { useToastStore } from '../stores/toast.js';
 import type { Store as StoreModel } from '@edgecart/shared';
 import SellerLayout from '../layouts/SellerLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
+import SingleImageUploader from '../components/SingleImageUploader.vue';
 import { getStoreStatusMeta, syncUserInvalidAria } from '../utils/format.js';
 import { Store, ExternalLink, Save, Loader2, AlertCircle } from 'lucide-vue-next';
 
@@ -183,85 +184,71 @@ onMounted(() => {
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="ec-field">
-              <label for="seller-logo-url" class="block text-xs font-bold text-slate-700 mb-1">URL Ảnh đại diện (Logo)</label>
-              <span id="seller-logo-hint" class="block text-[11px] text-slate-400 mb-1.5">
-                Đường dẫn đầy đủ bắt đầu bằng https://...
-              </span>
-              <input
-                id="seller-logo-url"
+          <!-- Store Media (Logo & Banner) -->
+          <div class="border-t border-slate-100 pt-5 space-y-6">
+            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Hình ảnh gian hàng</h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Store Logo -->
+              <SingleImageUploader
                 v-model="form.logoUrl"
-                type="url"
-                aria-describedby="seller-logo-hint"
-                placeholder="https://images.unsplash.com/..."
-                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
+                folder="stores"
+                shape="square"
+                label="Logo đại diện gian hàng"
+                hint="Khuyến nghị tỷ lệ vuông 1:1, tối thiểu 200x200px"
               />
-              <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
-                <AlertCircle class="w-3.5 h-3.5 shrink-0" />
-                <span>Vui lòng nhập URL hợp lệ (https://...).</span>
+
+              <!-- Store Phone & Support -->
+              <div class="space-y-4">
+                <div class="ec-field">
+                  <label for="seller-phone" class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại CSKH</label>
+                  <span id="seller-phone-hint" class="block text-[11px] text-slate-400 mb-1.5">
+                    Định dạng: 09xxxxxxxx hoặc +849xxxxxxxx
+                  </span>
+                  <input
+                    id="seller-phone"
+                    v-model="form.phone"
+                    type="tel"
+                    pattern="(0|\+84)[35789][0-9]{8}"
+                    aria-describedby="seller-phone-hint"
+                    placeholder="0912345678"
+                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
+                  />
+                  <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
+                    <AlertCircle class="w-3.5 h-3.5 shrink-0" />
+                    <span>Số điện thoại không hợp lệ.</span>
+                  </div>
+                </div>
+
+                <div class="ec-field">
+                  <label for="seller-email" class="block text-xs font-bold text-slate-700 mb-1">Email liên hệ công khai</label>
+                  <span id="seller-email-hint" class="block text-[11px] text-slate-400 mb-1.5">
+                    Hiển thị trên trang gian hàng cho khách mua.
+                  </span>
+                  <input
+                    id="seller-email"
+                    v-model="form.email"
+                    type="email"
+                    aria-describedby="seller-email-hint"
+                    placeholder="cskh@shop.vn"
+                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
+                  />
+                  <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
+                    <AlertCircle class="w-3.5 h-3.5 shrink-0" />
+                    <span>Địa chỉ email không đúng định dạng.</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="ec-field">
-              <label for="seller-banner-url" class="block text-xs font-bold text-slate-700 mb-1">URL Ảnh bìa (Banner)</label>
-              <span id="seller-banner-hint" class="block text-[11px] text-slate-400 mb-1.5">
-                Khuyến nghị ảnh ngang tỷ lệ 16:5 (https://...).
-              </span>
-              <input
-                id="seller-banner-url"
-                v-model="form.bannerUrl"
-                type="url"
-                aria-describedby="seller-banner-hint"
-                placeholder="https://images.unsplash.com/..."
-                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
-              />
-              <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
-                <AlertCircle class="w-3.5 h-3.5 shrink-0" />
-                <span>Vui lòng nhập URL hợp lệ (https://...).</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div class="ec-field">
-              <label for="seller-phone" class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại CSKH</label>
-              <span id="seller-phone-hint" class="block text-[11px] text-slate-400 mb-1.5">
-                Định dạng: 09xxxxxxxx hoặc +849xxxxxxxx
-              </span>
-              <input
-                id="seller-phone"
-                v-model="form.phone"
-                type="tel"
-                pattern="(0|\+84)[35789][0-9]{8}"
-                aria-describedby="seller-phone-hint"
-                placeholder="0912345678"
-                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
-              />
-              <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
-                <AlertCircle class="w-3.5 h-3.5 shrink-0" />
-                <span>Số điện thoại không hợp lệ.</span>
-              </div>
-            </div>
-
-            <div class="ec-field">
-              <label for="seller-email" class="block text-xs font-bold text-slate-700 mb-1">Email liên hệ công khai</label>
-              <span id="seller-email-hint" class="block text-[11px] text-slate-400 mb-1.5">
-                Hiển thị trên trang gian hàng cho khách mua.
-              </span>
-              <input
-                id="seller-email"
-                v-model="form.email"
-                type="email"
-                aria-describedby="seller-email-hint"
-                placeholder="cskh@shop.vn"
-                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:border-brand-500"
-              />
-              <div class="ec-error-msg items-center gap-1 text-[11px] text-rose-600 font-semibold mt-1">
-                <AlertCircle class="w-3.5 h-3.5 shrink-0" />
-                <span>Địa chỉ email không đúng định dạng.</span>
-              </div>
-            </div>
+            <!-- Store Banner -->
+            <SingleImageUploader
+              v-model="form.bannerUrl"
+              folder="stores"
+              shape="banner"
+              label="Ảnh bìa gian hàng (Banner)"
+              hint="Ảnh nền hiển thị trên đầu trang gian hàng công khai (khuyến nghị tỷ lệ 16:5)"
+            />
           </div>
 
           <div>

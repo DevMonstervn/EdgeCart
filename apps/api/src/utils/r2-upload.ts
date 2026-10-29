@@ -16,7 +16,7 @@ export const EXTENSION_TO_MIME: Record<string, AllowedImageMimeType> = {
   avif: 'image/avif',
 };
 
-const VALID_R2_KEY_REGEX = /^(products|stores\/[a-zA-Z0-9_-]+)\/[a-zA-Z0-9_-]+\.(webp|png|jpg|jpeg|avif)$/;
+const VALID_R2_KEY_REGEX = /^(products|stores\/[a-zA-Z0-9_-]+|avatars\/[a-zA-Z0-9_-]+)\/[a-zA-Z0-9_-]+\.(webp|png|jpg|jpeg|avif)$/;
 
 export interface SignedUploadTokenPayload {
   purpose: 'r2_upload';

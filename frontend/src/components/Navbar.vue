@@ -129,8 +129,9 @@ async function handleLogout() {
               to="/profile"
               class="flex items-center gap-2 p-1.5 pr-3 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-sm font-medium text-slate-700"
             >
-              <div class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
-                {{ auth.user?.fullName?.charAt(0) || 'U' }}
+              <div class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs overflow-hidden shrink-0">
+                <img v-if="auth.user?.avatarUrl" :src="auth.user.avatarUrl" :alt="auth.user.fullName" class="w-full h-full object-cover" />
+                <span v-else>{{ auth.user?.fullName?.charAt(0) || 'U' }}</span>
               </div>
               <div class="flex flex-col text-left leading-tight">
                 <span class="max-w-[110px] truncate text-xs font-bold text-slate-800">{{ auth.user?.fullName }}</span>

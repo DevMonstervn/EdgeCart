@@ -39,10 +39,23 @@ function extractRouteKey(path: string, marker: string): string {
 uploadRouter.post('/presigned-url', requireAuth(), async (c) => {
   const user = c.get('user');
 
+  let body: Record<string, unknown>;
+  try {
+    const parsed = await c.req.json();
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return fail(c, 400, ERROR_CODES.BAD_REQUEST, 'Dữ liệu yêu cầu tải ảnh không hợp lệ');
+    }
+    body = parsed as Record<string, unknown>;
+  } catch {
+    return fail(c, 400, ERROR_CODES.BAD_REQUEST, 'Dữ liệu JSON yêu cầu tải ảnh không hợp lệ');
+  }
+
   let r2KeyPrefix: string;
   let storeId: string | null = null;
 
-  if (user.role === 'SUPER_ADMIN' || user.role === 'PRODUCT_MANAGER') {
+  if (body.folder === 'avatars') {
+    r2KeyPrefix = `avatars/${user.sub}`;
+  } else if (user.role === 'SUPER_ADMIN' || user.role === 'PRODUCT_MANAGER') {
     r2KeyPrefix = 'products';
   } else if (user.isSeller) {
     const storeRepo = new StoreRepository(c.env.DB);
@@ -60,17 +73,6 @@ uploadRouter.post('/presigned-url', requireAuth(), async (c) => {
     r2KeyPrefix = `stores/${store.id}`;
   } else {
     return fail(c, 403, ERROR_CODES.FORBIDDEN_ACCESS, 'Bạn không có quyền tải tệp lên hệ thống');
-  }
-
-  let body: Record<string, unknown>;
-  try {
-    const parsed = await c.req.json();
-    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-      return fail(c, 400, ERROR_CODES.BAD_REQUEST, 'Dữ liệu yêu cầu tải ảnh không hợp lệ');
-    }
-    body = parsed as Record<string, unknown>;
-  } catch {
-    return fail(c, 400, ERROR_CODES.BAD_REQUEST, 'Dữ liệu JSON yêu cầu tải ảnh không hợp lệ');
   }
 
   if (typeof body.fileName !== 'string' || body.fileName.trim().length === 0 || body.fileName.length > 255) {

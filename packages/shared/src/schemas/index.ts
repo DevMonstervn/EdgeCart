@@ -36,6 +36,16 @@ export const RefreshTokenSchema = z.object({
   refreshToken: z.string().min(1, 'Refresh token không được để trống'),
 });
 
+export const UpdateProfileSchema = z
+  .object({
+    fullName: z.string().trim().min(2, 'Họ và tên tối thiểu 2 ký tự').max(100, 'Họ và tên tối đa 100 ký tự').optional(),
+    phone: z.string().regex(VIETNAM_PHONE_REGEX, 'Số điện thoại không hợp lệ').nullable().optional().or(z.literal('')),
+    avatarUrl: z.string().url('URL ảnh đại diện không hợp lệ').nullable().optional().or(z.literal('')),
+  })
+  .strict();
+
+export type UpdateProfileInput = z.infer<typeof UpdateProfileSchema>;
+
 export const AddressSchema = z.object({
   recipientName: z.string().min(2, 'Tên người nhận không được để trống'),
   phone: z.string().regex(/^(0|\+84)[3|5|7|8|9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
@@ -193,6 +203,7 @@ export const PresignedUploadRequestSchema = z
       .positive('Dung lượng tệp phải lớn hơn 0 byte')
       .max(MAX_IMAGE_UPLOAD_BYTES, 'Dung lượng ảnh tối đa là 5 MB')
       .optional(),
+    folder: z.enum(['products', 'stores', 'avatars']).optional(),
   })
   .strict();
 

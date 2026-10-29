@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import type { User, LoginInput, RegisterInput } from '@edgecart/shared';
+import type { User, LoginInput, RegisterInput, UpdateProfileInput } from '@edgecart/shared';
 import { authService } from '../services/auth.service.js';
 import {
   apiClient,
@@ -145,6 +145,23 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function updateProfile(input: UpdateProfileInput) {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      const updated = await authService.updateProfile(input);
+      user.value = updated;
+      safeStorage.setItem('ec_user', JSON.stringify(updated));
+      return updated;
+    } catch (err) {
+      const msg = extractErrorMessage(err);
+      error.value = msg;
+      throw new Error(msg);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   async function logout() {
     const currentRefresh = refreshToken.value;
     try {
@@ -177,6 +194,7 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     register,
     fetchProfile,
+    updateProfile,
     logout,
   };
 });

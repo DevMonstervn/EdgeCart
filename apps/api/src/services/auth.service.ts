@@ -61,6 +61,7 @@ export class AuthService {
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
+      avatarUrl: dbUser.avatar_url || null,
       role: dbUser.role as UserRole,
       isSeller: dbUser.is_seller === 1,
       status: dbUser.status as UserStatus,
@@ -100,6 +101,7 @@ export class AuthService {
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
+      avatarUrl: dbUser.avatar_url || null,
       role: dbUser.role as UserRole,
       isSeller: dbUser.is_seller === 1,
       status: dbUser.status as UserStatus,
@@ -202,6 +204,23 @@ export class AuthService {
       email: dbUser.email,
       fullName: dbUser.full_name,
       phone: dbUser.phone,
+      avatarUrl: dbUser.avatar_url || null,
+      role: dbUser.role as UserRole,
+      isSeller: dbUser.is_seller === 1,
+      status: dbUser.status as UserStatus,
+      createdAt: dbUser.created_at,
+      updatedAt: dbUser.updated_at,
+    };
+  }
+
+  async updateProfile(userId: string, input: { fullName?: string; phone?: string | null; avatarUrl?: string | null }): Promise<User> {
+    const dbUser = await this.userRepo.updateProfile(userId, input);
+    return {
+      id: dbUser.id,
+      email: dbUser.email,
+      fullName: dbUser.full_name,
+      phone: dbUser.phone,
+      avatarUrl: dbUser.avatar_url || null,
       role: dbUser.role as UserRole,
       isSeller: dbUser.is_seller === 1,
       status: dbUser.status as UserStatus,

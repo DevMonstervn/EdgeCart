@@ -49,7 +49,7 @@ export function validateImageFileClient(file: Pick<File, 'name' | 'type' | 'size
 }
 
 export const uploadService = {
-  async uploadImage(file: File): Promise<UploadedMediaObject> {
+  async uploadImage(file: File, folder?: 'products' | 'stores' | 'avatars'): Promise<UploadedMediaObject> {
     const validationError = validateImageFileClient(file);
     if (validationError) {
       throw new Error(validationError);
@@ -65,6 +65,7 @@ export const uploadService = {
         fileName: file.name,
         contentType,
         fileSize: file.size,
+        folder,
       });
       if (!res.data.success || !res.data.data) {
         throw new Error(res.data.error?.message || 'Không thể khởi tạo phiên tải ảnh lên R2');

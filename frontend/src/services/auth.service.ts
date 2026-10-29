@@ -1,5 +1,5 @@
 import { apiClient } from './api.js';
-import type { ApiResponse, User, LoginInput, RegisterInput } from '@edgecart/shared';
+import type { ApiResponse, User, LoginInput, RegisterInput, UpdateProfileInput } from '@edgecart/shared';
 import { safeStorage } from '../utils/storage.js';
 
 export interface AuthResponseData {
@@ -29,6 +29,14 @@ export const authService = {
     const res = await apiClient.get<ApiResponse<User>>('/auth/me');
     if (!res.data.success || !res.data.data) {
       throw new Error(res.data.error?.message || 'Không thể lấy thông tin người dùng');
+    }
+    return res.data.data;
+  },
+
+  async updateProfile(input: UpdateProfileInput): Promise<User> {
+    const res = await apiClient.put<ApiResponse<User>>('/auth/profile', input);
+    if (!res.data.success || !res.data.data) {
+      throw new Error(res.data.error?.message || 'Không thể cập nhật thông tin cá nhân');
     }
     return res.data.data;
   },

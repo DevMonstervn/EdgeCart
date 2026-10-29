@@ -165,8 +165,9 @@ onMounted(async () => {
             Về Storefront
           </RouterLink>
           <div class="flex items-center gap-2 text-sm font-semibold text-slate-700 pl-2 border-l border-slate-200">
-            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
-              {{ auth.user?.fullName?.charAt(0) || 'S' }}
+            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs overflow-hidden shrink-0">
+              <img v-if="auth.user?.avatarUrl" :src="auth.user.avatarUrl" :alt="auth.user.fullName" class="w-full h-full object-cover" />
+              <span v-else>{{ auth.user?.fullName?.charAt(0) || 'S' }}</span>
             </div>
             <div class="leading-tight">
               <div class="text-xs font-bold text-slate-900">{{ auth.user?.fullName }}</div>

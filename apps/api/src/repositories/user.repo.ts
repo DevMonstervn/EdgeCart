@@ -7,6 +7,7 @@ export interface DbUser {
   password_hash: string;
   full_name: string;
   phone: string | null;
+  avatar_url?: string | null;
   role: string;
   is_seller: number;
   status: string;
@@ -166,5 +167,37 @@ export class UserRepository {
     ];
 
     await this.db.batch(statements);
+  }
+
+  async updateProfile(userId: string, data: { fullName?: string; phone?: string | null; avatarUrl?: string | null }): Promise<DbUser> {
+    const fields: string[] = [];
+    const bindings: unknown[] = [];
+
+    if (data.fullName !== undefined) {
+      fields.push('full_name = ?');
+      bindings.push(data.fullName.trim());
+    }
+    if (data.phone !== undefined) {
+      fields.push('phone = ?');
+      bindings.push(data.phone && data.phone.trim() ? data.phone.trim() : null);
+    }
+    if (data.avatarUrl !== undefined) {
+      fields.push('avatar_url = ?');
+      bindings.push(data.avatarUrl && data.avatarUrl.trim() ? data.avatarUrl.trim() : null);
+    }
+
+    if (fields.length === 0) {
+      const user = await this.findById(userId);
+      if (!user) throw new Error('Không tìm thấy người dùng');
+      return user;
+    }
+
+    fields.push('updated_at = CURRENT_TIMESTAMP');
+    bindings.push(userId);
+
+    const query = `UPDATE users SET ${fields.join(', ')} WHERE id = ? RETURNING *;`;
+    const res = await this.db.prepare(query).bind(...bindings).first<DbUser>();
+    if (!res) throw new Error('Cập nhật thông tin thất bại');
+    return res;
   }
 }
