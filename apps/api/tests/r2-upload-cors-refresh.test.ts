@@ -501,6 +501,87 @@ describe('Post-Phase-4 Hardening: Cloudflare R2 Upload, Staging CORS & KV Pagina
       const failGetRes = await app.request(publicUrl, { method: 'GET' }, env);
       expect(failGetRes.status).toBe(500);
     });
+
+    it('allows normal CUSTOMER and SELLER to upload avatars under avatars/<userId> without 403 error', async () => {
+      // 1. Buyer customer requests presigned URL for avatar
+      const presignRes = await app.request(
+        'http://localhost:8787/api/v1/uploads/presigned-url',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${buyerToken}`,
+          },
+          body: JSON.stringify({
+            fileName: 'my-avatar.png',
+            contentType: 'image/png',
+            fileSize: VALID_PNG_BYTES.byteLength,
+            folder: 'avatars',
+          }),
+        },
+        env
+      );
+      expect(presignRes.status).toBe(200);
+      const presignData = ((await presignRes.json()) as any).data;
+      expect(presignData.r2Key).toMatch(/^avatars\/usr_buyer\/\d+_[a-f0-9]+\.png$/);
+
+      // 2. Buyer uploads binary data to /direct/avatars/usr_buyer/... -> 201 Created
+      const putRes = await app.request(
+        presignData.uploadUrl,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'image/png' },
+          body: VALID_PNG_BYTES,
+        },
+        env
+      );
+      expect(putRes.status).toBe(201);
+      const putData = ((await putRes.json()) as any).data;
+      expect(putData.imageUrl).toBe(presignData.publicUrl);
+
+      // 3. Buyer updates profile with newly uploaded avatar URL
+      const updateProfileRes = await app.request(
+        'http://localhost:8787/api/v1/auth/profile',
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${buyerToken}`,
+          },
+          body: JSON.stringify({
+            avatarUrl: putData.imageUrl,
+          }),
+        },
+        env
+      );
+      expect(updateProfileRes.status).toBe(200);
+      const profileData = ((await updateProfileRes.json()) as any).data;
+      expect(profileData.avatarUrl).toBe(putData.imageUrl);
+
+      // 4. Verification: User cannot upload to another user's avatar path
+      const forgedToken = await signUploadToken(
+        {
+          sub: 'usr_buyer',
+          storeId: null,
+          r2Key: 'avatars/usr_seller_a/hacked.png',
+          contentType: 'image/png',
+          maxBytes: VALID_PNG_BYTES.byteLength,
+          expectedSize: VALID_PNG_BYTES.byteLength,
+        },
+        env.JWT_SECRET,
+        300
+      );
+      const forgedPutRes = await app.request(
+        `http://localhost:8787/api/v1/uploads/direct/avatars/usr_seller_a/hacked.png?token=${encodeURIComponent(forgedToken)}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'image/png' },
+          body: VALID_PNG_BYTES,
+        },
+        env
+      );
+      expect(forgedPutRes.status).toBe(403);
+    });
   });
 
   describe('2. Staging & Production Explicit CORS Origins (No Arbitrary Wildcards)', () => {

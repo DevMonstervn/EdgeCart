@@ -198,6 +198,8 @@ uploadRouter.put('/direct/*', async (c) => {
     if (store.status !== 'ACTIVE') {
       return fail(c, 403, ERROR_CODES.FORBIDDEN_ACCESS, 'Cửa hàng hiện không ở trạng thái hoạt động');
     }
+  } else if (r2Key.startsWith(`avatars/${dbUser.id}/`)) {
+    // Valid avatar upload for the user's own profile - permitted for any active user
   } else if (dbUser.role !== 'SUPER_ADMIN' && dbUser.role !== 'PRODUCT_MANAGER') {
     return fail(c, 403, ERROR_CODES.FORBIDDEN_ACCESS, 'Bạn không có quyền tải ảnh sản phẩm hệ thống');
   }

@@ -7,6 +7,7 @@ import { getRoleBadgeClass } from '../utils/format.js';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import Modal from '../components/Modal.vue';
 import SingleImageUploader from '../components/SingleImageUploader.vue';
+import { uploadService } from '../services/upload.service.js';
 import {
   Mail,
   Phone,
@@ -38,11 +39,36 @@ const newAddress = ref({
 
 const isEditProfileOpen = ref(false);
 const isSavingProfile = ref(false);
+const isUploadingAvatar = ref(false);
+const avatarFileInput = ref<HTMLInputElement | null>(null);
 const profileForm = ref({
   fullName: '',
   phone: '',
   avatarUrl: '',
 });
+
+function triggerDirectAvatarPick() {
+  if (isUploadingAvatar.value) return;
+  avatarFileInput.value?.click();
+}
+
+async function handleDirectAvatarChange(e: Event) {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
+  target.value = '';
+  if (!file) return;
+
+  isUploadingAvatar.value = true;
+  try {
+    const uploaded = await uploadService.uploadImage(file, 'avatars');
+    await auth.updateProfile({ avatarUrl: uploaded.imageUrl });
+    toast.success('Cập nhật ảnh đại diện thành công!');
+  } catch (err: unknown) {
+    toast.error(err instanceof Error ? err.message : 'Tải ảnh đại diện thất bại');
+  } finally {
+    isUploadingAvatar.value = false;
+  }
+}
 
 function openEditProfile() {
   profileForm.value = {
@@ -105,23 +131,54 @@ onMounted(async () => {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- User Info Card (1 col) -->
         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-          <!-- Avatar with Edit Overlay -->
-          <div
-            @click="openEditProfile"
-            class="relative w-24 h-24 rounded-full overflow-hidden mb-4 ring-4 ring-brand-50 shadow-xs flex items-center justify-center bg-brand-100 text-brand-700 font-black text-2xl group cursor-pointer"
-            title="Bấm để đổi ảnh đại diện"
-          >
-            <img
-              v-if="auth.user?.avatarUrl"
-              :src="auth.user.avatarUrl"
-              :alt="auth.user.fullName"
-              class="w-full h-full object-cover"
-            />
-            <span v-else>{{ auth.user?.fullName?.charAt(0) || 'U' }}</span>
+          <!-- Hidden Native File Input for 1-Click Avatar Upload -->
+          <input
+            ref="avatarFileInput"
+            type="file"
+            accept="image/webp,image/png,image/jpeg,image/avif"
+            class="hidden"
+            @change="handleDirectAvatarChange"
+          />
 
-            <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white">
-              <Camera class="w-6 h-6" />
+          <!-- Avatar with Click-to-Upload & Camera Button -->
+          <div class="relative mb-3">
+            <div
+              @click="triggerDirectAvatarPick"
+              class="relative w-24 h-24 rounded-full overflow-hidden ring-4 ring-brand-50 shadow-sm flex items-center justify-center bg-brand-100 text-brand-700 font-black text-2xl group cursor-pointer transition active:scale-95"
+              title="Nhấn để đổi ảnh đại diện"
+            >
+              <img
+                v-if="auth.user?.avatarUrl"
+                :src="auth.user.avatarUrl"
+                :alt="auth.user.fullName"
+                class="w-full h-full object-cover"
+              />
+              <span v-else>{{ auth.user?.fullName?.charAt(0) || 'U' }}</span>
+
+              <!-- Hover / Uploading Overlay -->
+              <div
+                class="absolute inset-0 bg-slate-900/50 flex flex-col items-center justify-center text-white transition"
+                :class="isUploadingAvatar ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'"
+              >
+                <Loader2 v-if="isUploadingAvatar" class="w-6 h-6 animate-spin" />
+                <template v-else>
+                  <Camera class="w-5 h-5 mb-0.5" />
+                  <span class="text-[10px] font-semibold">Đổi ảnh</span>
+                </template>
+              </div>
             </div>
+
+            <!-- Floating Camera Button Badge for Mobile / Touch Accessibility -->
+            <button
+              type="button"
+              @click.stop="triggerDirectAvatarPick"
+              :disabled="isUploadingAvatar"
+              class="absolute -bottom-1 -right-1 p-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-md transition active:scale-90 cursor-pointer disabled:bg-slate-300"
+              title="Đổi ảnh đại diện"
+            >
+              <Loader2 v-if="isUploadingAvatar" class="w-3.5 h-3.5 animate-spin" />
+              <Camera v-else class="w-3.5 h-3.5" />
+            </button>
           </div>
 
           <h2 class="text-lg font-bold text-slate-900">{{ auth.user?.fullName }}</h2>
@@ -134,14 +191,27 @@ onMounted(async () => {
             <span>{{ auth.roleLabel }}</span>
           </span>
 
-          <!-- Quick Edit Profile Button -->
-          <button
-            @click="openEditProfile"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-4 transition cursor-pointer"
-          >
-            <Edit2 class="w-3.5 h-3.5" />
-            <span>Sửa hồ sơ & avatar</span>
-          </button>
+          <!-- Quick Action Buttons: Change Avatar & Edit Info -->
+          <div class="flex items-center gap-2 mb-4">
+            <button
+              type="button"
+              @click="triggerDirectAvatarPick"
+              :disabled="isUploadingAvatar"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 text-xs font-bold transition cursor-pointer disabled:opacity-50"
+            >
+              <Camera class="w-3.5 h-3.5" />
+              <span>Đổi ảnh</span>
+            </button>
+
+            <button
+              type="button"
+              @click="openEditProfile"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold transition cursor-pointer"
+            >
+              <Edit2 class="w-3.5 h-3.5" />
+              <span>Sửa hồ sơ</span>
+            </button>
+          </div>
 
           <div class="w-full border-t border-slate-100 pt-4 space-y-3 text-xs text-left">
             <div class="flex items-center gap-2.5 text-slate-600">
