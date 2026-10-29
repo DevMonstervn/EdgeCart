@@ -41,7 +41,7 @@ const createForm = ref({
   categoryId: '',
   name: '',
   slug: '',
-  basePrice: 250000,
+  basePrice: '' as string | number,
   salePrice: '' as string | number,
   description: '',
   images: [] as ProductImageInput[],
@@ -49,7 +49,7 @@ const createForm = ref({
     {
       sku: 'SHOP-SKU-01',
       title: 'Tiêu chuẩn',
-      price: 250000,
+      price: '' as string | number,
       stockQuantity: 20,
     },
   ] as VariantDraft[],
@@ -72,12 +72,20 @@ function handleNameInput() {
   }
 }
 
+function syncSingleVariantPrice() {
+  if (createForm.value.variants.length === 1) {
+    const effective = Number(createForm.value.salePrice) || Number(createForm.value.basePrice) || '';
+    createForm.value.variants[0].price = effective as any;
+  }
+}
+
 function addVariantRow() {
   const idx = createForm.value.variants.length + 1;
+  const defaultPrice = Number(createForm.value.salePrice) || Number(createForm.value.basePrice) || 0;
   createForm.value.variants.push({
     sku: `SHOP-SKU-0${idx}`,
     title: `Phân loại ${idx}`,
-    price: Number(createForm.value.salePrice) || Number(createForm.value.basePrice) || 100000,
+    price: defaultPrice,
     stockQuantity: 10,
   });
 }
@@ -136,7 +144,7 @@ function openCreateModal() {
     categoryId: categories.value[0]?.id || '',
     name: '',
     slug: '',
-    basePrice: 250000,
+    basePrice: '' as any,
     salePrice: '',
     description: '',
     images: [],
@@ -144,7 +152,7 @@ function openCreateModal() {
       {
         sku: `SKU-${Date.now().toString().slice(-5)}`,
         title: 'Tiêu chuẩn',
-        price: 250000,
+        price: '' as any,
         stockQuantity: 20,
       },
     ],
@@ -182,12 +190,16 @@ async function handleCreateProduct() {
         altText: img.altText?.trim() || null,
         sortOrder: idx,
       })),
-      variants: createForm.value.variants.map((v) => ({
-        sku: v.sku.trim(),
-        title: v.title.trim(),
-        price: Math.round(Number(v.price) || basePrice),
-        stockQuantity: Math.max(0, Math.round(Number(v.stockQuantity) || 0)),
-      })),
+      variants: createForm.value.variants.map((v) => {
+        const rawVariantPrice = Number(v.price);
+        const resolvedPrice = rawVariantPrice > 0 ? Math.round(rawVariantPrice) : (salePrice ?? basePrice);
+        return {
+          sku: v.sku.trim(),
+          title: v.title.trim(),
+          price: resolvedPrice,
+          stockQuantity: Math.max(0, Math.round(Number(v.stockQuantity) || 0)),
+        };
+      }),
     });
     toast.success('Đã đăng sản phẩm mới lên gian hàng!');
     isCreateModalOpen.value = false;
@@ -481,6 +493,7 @@ onMounted(() => {
             <label class="block text-xs font-bold text-slate-700 mb-1">Giá niêm yết (VNĐ) *</label>
             <input
               v-model="createForm.basePrice"
+              @input="syncSingleVariantPrice"
               type="number"
               min="0"
               required
@@ -491,6 +504,7 @@ onMounted(() => {
             <label class="block text-xs font-bold text-slate-700 mb-1">Giá khuyến mãi (tùy chọn)</label>
             <input
               v-model="createForm.salePrice"
+              @input="syncSingleVariantPrice"
               type="number"
               min="0"
               placeholder="Để trống nếu không giảm"
