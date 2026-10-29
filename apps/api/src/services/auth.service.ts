@@ -5,6 +5,7 @@ import type { Env } from '../types/env.js';
 import type { RegisterInput, LoginInput, User, UserRole, UserStatus } from '@edgecart/shared';
 
 const REFRESH_SESSION_TTL_SECONDS = 604800; // 7 days
+const ACCESS_TOKEN_TTL_SECONDS = 86400; // 24 hours
 const MAX_LEGACY_SESSION_SCAN_PAGES = 50; // Safe upper bound when scanning legacy unindexed sessions
 
 export class AuthService {
@@ -49,7 +50,7 @@ export class AuthService {
     const accessToken = await signJwt(
       { sub: dbUser.id, email: dbUser.email, role: dbUser.role },
       this.env.JWT_SECRET,
-      900 // 15 mins
+      ACCESS_TOKEN_TTL_SECONDS
     );
 
     const refreshToken = crypto.randomUUID();
@@ -88,7 +89,7 @@ export class AuthService {
     const accessToken = await signJwt(
       { sub: dbUser.id, email: dbUser.email, role: dbUser.role },
       this.env.JWT_SECRET,
-      900 // 15 mins
+      ACCESS_TOKEN_TTL_SECONDS
     );
 
     const refreshToken = crypto.randomUUID();
@@ -174,7 +175,7 @@ export class AuthService {
     const newAccessToken = await signJwt(
       { sub: dbUser.id, email: dbUser.email, role: dbUser.role },
       this.env.JWT_SECRET,
-      900
+      ACCESS_TOKEN_TTL_SECONDS
     );
 
     return { accessToken: newAccessToken };

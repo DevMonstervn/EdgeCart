@@ -11,10 +11,20 @@ import {
 } from '../services/api.js';
 import { getRoleDisplayLabel } from '../utils/format.js';
 
+function getStoredUser(): User | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem('ec_user');
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<User | null>(null);
-  const accessToken = ref<string | null>(localStorage.getItem('ec_access_token'));
-  const refreshToken = ref<string | null>(localStorage.getItem('ec_refresh_token'));
+  const user = ref<User | null>(getStoredUser());
+  const accessToken = ref<string | null>(typeof window !== 'undefined' ? localStorage.getItem('ec_access_token') : null);
+  const refreshToken = ref<string | null>(typeof window !== 'undefined' ? localStorage.getItem('ec_refresh_token') : null);
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
 
@@ -22,6 +32,7 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null;
     accessToken.value = null;
     refreshToken.value = null;
+    localStorage.removeItem('ec_user');
     localStorage.removeItem('ec_access_token');
     localStorage.removeItem('ec_refresh_token');
     localStorage.removeItem('ec_cart_items');
@@ -83,6 +94,7 @@ export const useAuthStore = defineStore('auth', () => {
       const data = await authService.login(input);
       setTokens(data.accessToken, data.refreshToken);
       user.value = data.user;
+      localStorage.setItem('ec_user', JSON.stringify(data.user));
       return data.user;
     } catch (err) {
       const msg = extractErrorMessage(err);
@@ -100,6 +112,7 @@ export const useAuthStore = defineStore('auth', () => {
       const data = await authService.register(input);
       setTokens(data.accessToken, data.refreshToken);
       user.value = data.user;
+      localStorage.setItem('ec_user', JSON.stringify(data.user));
       return data.user;
     } catch (err) {
       const msg = extractErrorMessage(err);
@@ -115,9 +128,18 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const profile = await authService.getProfile();
       user.value = profile;
+      localStorage.setItem('ec_user', JSON.stringify(profile));
       return profile;
-    } catch {
-      await logout();
+    } catch (err: unknown) {
+      const msg = extractErrorMessage(err);
+      if (
+        msg.includes('Phiên đăng nhập') ||
+        msg.includes('hết hạn') ||
+        msg.includes('không hợp lệ') ||
+        msg.includes('khóa')
+      ) {
+        await logout();
+      }
       return null;
     }
   }

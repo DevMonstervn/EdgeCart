@@ -65,7 +65,7 @@ export class CartRepository {
         ci.cart_id,
         ci.variant_id,
         ci.quantity,
-        ci.price_at_addition as unit_price,
+        pv.price as unit_price,
         pv.product_id,
         p.slug as product_slug,
         p.store_id,

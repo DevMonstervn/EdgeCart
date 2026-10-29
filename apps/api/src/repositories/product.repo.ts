@@ -432,6 +432,42 @@ export class ProductRepository {
         .bind(...bindings, id),
     ];
 
+    if (data.salePrice !== undefined || data.basePrice !== undefined) {
+      const effectivePrice =
+        data.salePrice !== undefined && data.salePrice !== null && Number(data.salePrice) > 0
+          ? Number(data.salePrice)
+          : Number(data.basePrice);
+
+      if (effectivePrice && !isNaN(effectivePrice)) {
+        // Automatically sync variant price for products with a single variant
+        statements.push(
+          this.db
+            .prepare(`
+              UPDATE product_variants 
+              SET price = ?, updated_at = CURRENT_TIMESTAMP 
+              WHERE product_id = ? 
+                AND (SELECT COUNT(*) FROM product_variants WHERE product_id = ?) = 1
+            `)
+            .bind(effectivePrice, id, id)
+        );
+
+        // Also sync any active cart items for this single-variant product
+        statements.push(
+          this.db
+            .prepare(`
+              UPDATE cart_items
+              SET price_at_addition = ?, updated_at = CURRENT_TIMESTAMP
+              WHERE variant_id IN (
+                SELECT id FROM product_variants 
+                WHERE product_id = ? 
+                  AND (SELECT COUNT(*) FROM product_variants WHERE product_id = ?) = 1
+              )
+            `)
+            .bind(effectivePrice, id, id)
+        );
+      }
+    }
+
     if (data.images !== undefined) {
       statements.push(this.db.prepare('DELETE FROM product_images WHERE product_id = ?').bind(id));
       data.images.forEach((img, idx) => {

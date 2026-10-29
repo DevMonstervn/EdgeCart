@@ -372,8 +372,8 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
     expect(addOfficialItemRes.status).toBe(200);
     const mixedCart = ((await addOfficialItemRes.json()) as any).data;
     expect(mixedCart.items.length).toBe(2);
-    // 2 * 2,500,000 (variant price) + 1 * 390,000 = 5,390,000 (>= 500k -> shippingFee = 0)
-    expect(mixedCart.subtotal).toBe(5390000);
+    // 2 * 2,400,000 (synced variant price) + 1 * 390,000 = 5,190,000 (>= 500k -> shippingFee = 0)
+    expect(mixedCart.subtotal).toBe(5190000);
 
     // 9. Buyer submits mixed checkout + replays same Idempotency-Key
     const idemKey = `e2e-idem-${crypto.randomUUID()}`;
@@ -405,7 +405,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
     );
     expect(checkoutRes1.status).toBe(201);
     const checkoutData1 = ((await checkoutRes1.json()) as any).data;
-    expect(checkoutData1.totalAmount).toBe(5390000);
+    expect(checkoutData1.totalAmount).toBe(5190000);
 
     // Replay with identical Idempotency-Key -> no double stock deduction
     const checkoutRes2 = await app.request(
@@ -444,7 +444,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
     const sellerStats = ((await sellerStatsRes.json()) as any).data;
     expect(sellerStats.totalOrders).toBe(1);
     expect(sellerStats.totalRevenue).toBe(0); // COD order not yet DELIVERED/PAID
-    expect(sellerStats.recentOrders[0].storeSubtotal).toBe(5000000); // Only Seller's 2 * 2,500,000, NOT Official's 390,000!
+    expect(sellerStats.recentOrders[0].storeSubtotal).toBe(4800000); // Only Seller's 2 * 2,400,000, NOT Official's 390,000!
 
     const sellerOrdersRes = await app.request(
       '/api/v1/seller/orders',
@@ -456,7 +456,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
     expect(sellerOrders.length).toBe(1);
     expect(sellerOrders[0].items.length).toBe(1);
     expect(sellerOrders[0].items[0].storeId).toBe(storeId);
-    expect(sellerOrders[0].storeSubtotal).toBe(5000000);
+    expect(sellerOrders[0].storeSubtotal).toBe(4800000);
 
     // Seller cannot cancel order (400), but can advance fulfillment CONFIRMED -> SHIPPING -> DELIVERED
     const illegalSellerCancel = await app.request(
@@ -515,7 +515,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
     );
     expect(deliverRes.status).toBe(200);
 
-    // Once DELIVERED, Seller's realized revenue is 5,000,000 (strictly excluding Official item's 390,000)
+    // Once DELIVERED, Seller's realized revenue is 4,800,000 (strictly excluding Official item's 390,000)
     const sellerStatsDelivered = (
       (await (
         await app.request(
@@ -525,7 +525,7 @@ describe('Phase 4: Complete End-to-End Marketplace Flow, Optional-Auth Token Exp
         )
       ).json()) as any
     ).data;
-    expect(sellerStatsDelivered.totalRevenue).toBe(5000000);
+    expect(sellerStatsDelivered.totalRevenue).toBe(4800000);
 
     // Buyer sees both items and updated Seller fulfillmentStatus on GET /api/v1/orders
     const buyerOrdersRes = await app.request(
