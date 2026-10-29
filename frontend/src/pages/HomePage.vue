@@ -53,20 +53,27 @@ onMounted(() => {
     <!-- Hero Banner -->
     <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-slate-50 to-slate-50 pt-8 pb-12 sm:pt-16 sm:pb-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto">
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-            Mua Sắm Trực Tuyến <br class="hidden sm:block" />
-            <span class="inline-flex items-center flex-wrap justify-center gap-2.5 sm:gap-4 mt-2">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600">
-                Tốc Độ Siêu Tốc Tại Mua Rồng
-              </span>
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Main Hero Title & Mascot Header -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 mb-6">
+            <div class="relative shrink-0 group">
+              <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500 rounded-full blur-md opacity-35 group-hover:opacity-60 transition duration-300"></div>
               <img
                 src="/logo-dragon.jpg"
                 alt="Mua Rồng Logo"
-                class="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full ring-4 ring-emerald-200/80 shadow-md object-cover inline-block align-middle transition hover:scale-105"
+                class="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full ring-4 ring-white shadow-xl object-cover transform transition duration-300 group-hover:scale-105"
               />
-            </span>
-          </h1>
+            </div>
+
+            <div class="text-center sm:text-left">
+              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.25]">
+                Mua Sắm Trực Tuyến <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 block mt-1">
+                  Tốc Độ Siêu Tốc Tại Mua Rồng
+                </span>
+              </h1>
+            </div>
+          </div>
 
           <p class="mt-4 sm:mt-6 text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Nền tảng thương mại điện tử Edge-Native thế hệ mới: Giỏ hàng tức thì, không gián đoạn kết nối, và đảm bảo trừ tồn kho chuẩn xác tuyệt đối trong các đợt flash-sale.
