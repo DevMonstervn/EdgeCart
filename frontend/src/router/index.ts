@@ -129,6 +129,16 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/admin/categories',
+    name: 'admin-categories',
+    component: () => import('../pages/AdminCategoriesPage.vue'),
+    meta: {
+      requiresAuth: true,
+      requiresAdmin: true,
+      allowedRoles: ['SUPER_ADMIN', 'PRODUCT_MANAGER'],
+    },
+  },
+  {
     path: '/admin/products',
     name: 'admin-products',
     component: () => import('../pages/AdminProductsPage.vue'),

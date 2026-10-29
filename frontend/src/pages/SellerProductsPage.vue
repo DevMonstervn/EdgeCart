@@ -431,12 +431,16 @@ onMounted(() => {
     <!-- Create Product Modal -->
     <Modal :isOpen="isCreateModalOpen" title="Đăng Sản Phẩm Mới" @close="isCreateModalOpen = false">
       <form @submit.prevent="handleCreateProduct" class="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
-        <div>
+        <div v-if="categories.length === 0" class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800">
+          <p class="font-bold text-amber-900 mb-0.5">Sàn chưa có danh mục sản phẩm</p>
+          <p class="text-amber-700">Vui lòng liên hệ ban quản trị sàn EdgeCart để thiết lập danh mục ngành hàng trước khi đăng bán sản phẩm.</p>
+        </div>
+        <div v-else>
           <label class="block text-xs font-bold text-slate-700 mb-1">Danh mục ngành hàng *</label>
           <select
             v-model="createForm.categoryId"
             required
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold"
+            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-indigo-500"
           >
             <option value="" disabled>-- Chọn danh mục --</option>
             <option v-for="c in categories" :key="c.id" :value="c.id">
@@ -589,7 +593,7 @@ onMounted(() => {
           </button>
           <button
             type="submit"
-            :disabled="isSubmitting"
+            :disabled="isSubmitting || categories.length === 0"
             class="inline-flex items-center gap-1.5 px-5 py-2 bg-brand-600 hover:bg-brand-700 disabled:bg-slate-300 text-white rounded-xl text-xs font-bold"
           >
             <Loader2 v-if="isSubmitting" class="w-3.5 h-3.5 animate-spin" />

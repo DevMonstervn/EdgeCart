@@ -6,6 +6,7 @@ import { getRoleBadgeClass } from '../utils/format.js';
 import Toast from '../components/Toast.vue';
 import {
   LayoutDashboard,
+  FolderTree,
   Package,
   Boxes,
   ShoppingBag,
@@ -27,6 +28,7 @@ const isSidebarOpen = ref(false);
 const navItems = computed(() => {
   const items = [
     { label: 'Tổng quan', path: '/admin', icon: LayoutDashboard, visible: auth.canAccessAdmin },
+    { label: 'Danh mục', path: '/admin/categories', icon: FolderTree, visible: auth.canManageProducts },
     { label: 'Sản phẩm', path: '/admin/products', icon: Package, visible: auth.canManageProducts },
     { label: 'Quản lý Kho', path: '/admin/inventory', icon: Boxes, visible: auth.canManageProducts },
     { label: 'Đơn hàng', path: '/admin/orders', icon: ShoppingBag, visible: auth.canManageOrders },

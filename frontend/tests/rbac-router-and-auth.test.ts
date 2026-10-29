@@ -148,7 +148,7 @@ describe('Phase 3 Frontend RBAC, Router Guards & Menu Visibility', () => {
       seedAuthenticatedSession(auth, buildUser({ role: 'PRODUCT_MANAGER' }));
       const router = createAppRouter(createMemoryHistory());
 
-      for (const allowed of ['/admin', '/admin/products', '/admin/inventory', '/admin/stores']) {
+      for (const allowed of ['/admin', '/admin/categories', '/admin/products', '/admin/inventory', '/admin/stores']) {
         await router.push(allowed);
         expect(router.currentRoute.value.path).toBe(allowed);
       }
@@ -241,9 +241,11 @@ describe('Phase 3 Frontend RBAC, Router Guards & Menu Visibility', () => {
       expect(operatorSidebar.text()).not.toContain('Duyệt Seller');
       expect(operatorSidebar.text()).not.toContain('Người dùng');
       expect(operatorSidebar.text()).not.toContain('Quản lý Kho');
+      expect(operatorSidebar.text()).not.toContain('Danh mục');
 
       seedAuthenticatedSession(auth, buildUser({ role: 'PRODUCT_MANAGER' }));
       const pmSidebar = mount(AdminLayout, { global: { plugins: [router] } });
+      expect(pmSidebar.text()).toContain('Danh mục');
       expect(pmSidebar.text()).toContain('Sản phẩm');
       expect(pmSidebar.text()).toContain('Quản lý Kho');
       expect(pmSidebar.text()).toContain('Cửa hàng');

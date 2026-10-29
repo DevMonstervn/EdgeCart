@@ -11,7 +11,17 @@ import Pagination from '../components/Pagination.vue';
 import Modal from '../components/Modal.vue';
 import ProductImageUploader from '../components/ProductImageUploader.vue';
 import { formatVND, slugifyVietnamese } from '../utils/format.js';
-import { Plus, Search, Trash2, Edit, BadgeCheck, Store, Loader2 } from 'lucide-vue-next';
+import {
+  Plus,
+  Search,
+  Trash2,
+  Edit,
+  BadgeCheck,
+  Store,
+  Loader2,
+  FolderTree,
+  AlertCircle,
+} from 'lucide-vue-next';
 
 const auth = useAuthStore();
 const toast = useToastStore();
@@ -82,7 +92,7 @@ function openCreateModal() {
   newProduct.value = {
     name: '',
     slug: '',
-    categoryId: categories.value[0]?.id || 'cat_01',
+    categoryId: categories.value[0]?.id || '',
     basePrice: 199000,
     salePrice: 149000,
     description: '',
@@ -95,6 +105,10 @@ function openCreateModal() {
 
 async function handleCreateProduct() {
   if (isSubmitting.value) return;
+  if (!newProduct.value.categoryId) {
+    toast.error('Vui lòng chọn danh mục hợp lệ. Nếu sàn chưa có danh mục, hãy tạo danh mục trước.');
+    return;
+  }
   if (isImageUploading.value) {
     toast.error('Vui lòng đợi tải ảnh sản phẩm lên R2 hoàn tất trước khi lưu');
     return;
@@ -237,6 +251,27 @@ onMounted(async () => {
           <Plus class="w-4 h-4" />
           <span>Thêm sản phẩm Official</span>
         </button>
+      </div>
+
+      <!-- Categories Missing Notice Banner -->
+      <div
+        v-if="!isLoading && categories.length === 0"
+        class="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-amber-800"
+      >
+        <div class="flex items-center gap-3">
+          <AlertCircle class="w-5 h-5 text-amber-600 shrink-0" />
+          <div class="text-xs">
+            <span class="font-bold text-amber-900">Chưa có danh mục sản phẩm trên hệ thống:</span>
+            <span class="text-amber-700 ml-1">Cần có ít nhất một danh mục để phân loại và thêm sản phẩm.</span>
+          </div>
+        </div>
+        <router-link
+          to="/admin/categories"
+          class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shadow-sm transition shrink-0"
+        >
+          <FolderTree class="w-3.5 h-3.5" />
+          <span>Quản lý Danh mục</span>
+        </router-link>
       </div>
 
       <!-- Search & Scope Filters -->
@@ -387,13 +422,35 @@ onMounted(async () => {
     <!-- Create Product Modal -->
     <Modal :isOpen="isCreateModalOpen" title="Thêm Sản Phẩm EdgeCart Official" @close="isCreateModalOpen = false">
       <form @submit.prevent="handleCreateProduct" class="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
-        <div v-if="categories.length > 0">
-          <label class="block text-xs font-bold text-slate-700 mb-1">Danh mục sản phẩm</label>
+        <!-- Category Selection -->
+        <div v-if="categories.length === 0" class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-800">
+          <div class="flex items-start gap-3">
+            <AlertCircle class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <div class="flex-1 text-xs">
+              <p class="font-bold text-amber-900 mb-1">Chưa có danh mục sản phẩm nào trên sàn</p>
+              <p class="text-amber-700 leading-relaxed mb-2.5">
+                Sản phẩm bắt buộc phải liên kết với một danh mục ngành hàng. Vui lòng tạo danh mục trước khi thêm sản phẩm.
+              </p>
+              <router-link
+                to="/admin/categories"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg shadow-sm transition"
+              >
+                <FolderTree class="w-3.5 h-3.5" />
+                <span>Đến trang Quản lý Danh mục</span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <label class="block text-xs font-bold text-slate-700 mb-1">
+            Danh mục sản phẩm <span class="text-rose-500">*</span>
+          </label>
           <select
             v-model="newProduct.categoryId"
             required
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold"
+            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-indigo-500"
           >
+            <option value="" disabled>-- Chọn danh mục --</option>
             <option v-for="c in categories" :key="c.id" :value="c.id">{{ c.name }}</option>
           </select>
         </div>
@@ -492,8 +549,8 @@ onMounted(async () => {
           </button>
           <button
             type="submit"
-            :disabled="isSubmitting"
-            class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700"
+            :disabled="isSubmitting || categories.length === 0"
+            class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 disabled:opacity-50"
           >
             <Loader2 v-if="isSubmitting" class="w-3.5 h-3.5 animate-spin" />
             <span>Lưu sản phẩm</span>
@@ -505,12 +562,17 @@ onMounted(async () => {
     <!-- Edit Product Modal -->
     <Modal :isOpen="isEditModalOpen" title="Cập Nhật Sản Phẩm" @close="isEditModalOpen = false">
       <form @submit.prevent="handleUpdateProduct" class="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
-        <div v-if="categories.length > 0">
-          <label class="block text-xs font-bold text-slate-700 mb-1">Danh mục sản phẩm</label>
+        <div v-if="categories.length === 0" class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800">
+          Chưa có danh mục nào trên sàn. Vui lòng tạo danh mục trong trang Quản lý Danh mục.
+        </div>
+        <div v-else>
+          <label class="block text-xs font-bold text-slate-700 mb-1">
+            Danh mục sản phẩm <span class="text-rose-500">*</span>
+          </label>
           <select
             v-model="editForm.categoryId"
             required
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold"
+            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:bg-white focus:outline-none focus:border-indigo-500"
           >
             <option v-for="c in categories" :key="c.id" :value="c.id">{{ c.name }}</option>
           </select>

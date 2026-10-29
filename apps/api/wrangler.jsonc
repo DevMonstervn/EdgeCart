@@ -8,14 +8,14 @@
     {
       "binding": "DB",
       "database_name": "edgecart-d1-prod",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "55a5e5dd-7009-4ed1-8625-1e082d62b482",
       "migrations_dir": "migrations"
     }
   ],
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "prod_kv_namespace_id"
+      "id": "edc2025511f74dedbb886ad8a0dc3b58"
     }
   ],
   "r2_buckets": [

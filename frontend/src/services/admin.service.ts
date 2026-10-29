@@ -109,7 +109,14 @@ export const adminService = {
     }
   },
 
-  async createCategory(data: { name: string; slug: string; description?: string }): Promise<Category> {
+  async createCategory(data: {
+    name: string;
+    slug: string;
+    parentId?: string | null;
+    description?: string | null;
+    imageUrl?: string | null;
+    sortOrder?: number;
+  }): Promise<Category> {
     try {
       const res = await apiClient.post<ApiResponse<Category>>('/admin/categories', data);
       if (!res.data.success || !res.data.data) {
@@ -315,6 +322,69 @@ export const adminService = {
         throw new Error(res.data.error?.message || 'Không thể tải nhật ký kiểm toán');
       }
       return { logs: res.data.data, meta: res.data.meta };
+    } catch (err) {
+      throw new Error(extractErrorMessage(err));
+    }
+  },
+
+  async getCategories(): Promise<Category[]> {
+    try {
+      const res = await apiClient.get<ApiResponse<Category[]>>('/admin/categories');
+      if (!res.data.success || !res.data.data) {
+        throw new Error(res.data.error?.message || 'Không thể tải danh sách danh mục');
+      }
+      return res.data.data;
+    } catch (err) {
+      throw new Error(extractErrorMessage(err));
+    }
+  },
+
+  async updateCategory(
+    id: string,
+    data: {
+      name?: string;
+      slug?: string;
+      parentId?: string | null;
+      description?: string | null;
+      imageUrl?: string | null;
+      sortOrder?: number;
+      isActive?: boolean;
+    }
+  ): Promise<Category> {
+    try {
+      const res = await apiClient.put<ApiResponse<Category>>(`/admin/categories/${encodeURIComponent(id)}`, data);
+      if (!res.data.success || !res.data.data) {
+        throw new Error(res.data.error?.message || 'Không thể cập nhật danh mục');
+      }
+      return res.data.data;
+    } catch (err) {
+      throw new Error(extractErrorMessage(err));
+    }
+  },
+
+  async toggleCategoryStatus(id: string, isActive: boolean): Promise<Category> {
+    try {
+      const res = await apiClient.patch<ApiResponse<Category>>(
+        `/admin/categories/${encodeURIComponent(id)}/status`,
+        { isActive }
+      );
+      if (!res.data.success || !res.data.data) {
+        throw new Error(res.data.error?.message || 'Không thể đổi trạng thái danh mục');
+      }
+      return res.data.data;
+    } catch (err) {
+      throw new Error(extractErrorMessage(err));
+    }
+  },
+
+  async deleteCategory(id: string): Promise<void> {
+    try {
+      const res = await apiClient.delete<ApiResponse<{ message: string }>>(
+        `/admin/categories/${encodeURIComponent(id)}`
+      );
+      if (!res.data.success) {
+        throw new Error(res.data.error?.message || 'Không thể xóa danh mục');
+      }
     } catch (err) {
       throw new Error(extractErrorMessage(err));
     }

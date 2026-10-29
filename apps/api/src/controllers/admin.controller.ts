@@ -96,6 +96,16 @@ adminRouter.delete('/products/:id', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER
   }
 });
 
+adminRouter.get('/categories', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']), async (c) => {
+  const service = new AdminService(c.env);
+  try {
+    const categories = await service.getCategories(true);
+    return ok(c, categories);
+  } catch (err: unknown) {
+    return handleServiceError(c, err, 'Không thể tải danh sách danh mục');
+  }
+});
+
 adminRouter.post('/categories', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']), async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const service = new AdminService(c.env);
@@ -104,6 +114,41 @@ adminRouter.post('/categories', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']),
     return created(c, category);
   } catch (err: unknown) {
     return handleServiceError(c, err, 'Không thể tạo danh mục');
+  }
+});
+
+adminRouter.put('/categories/:id', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']), async (c) => {
+  const id = c.req.param('id');
+  const body = await c.req.json().catch(() => ({}));
+  const service = new AdminService(c.env);
+  try {
+    const category = await service.updateCategory(id, body);
+    return ok(c, category);
+  } catch (err: unknown) {
+    return handleServiceError(c, err, 'Không thể cập nhật danh mục');
+  }
+});
+
+adminRouter.patch('/categories/:id/status', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']), async (c) => {
+  const id = c.req.param('id');
+  const body = await c.req.json().catch(() => ({}));
+  const service = new AdminService(c.env);
+  try {
+    const category = await service.toggleCategoryActive(id, body.isActive === true || body.isActive === 1);
+    return ok(c, category);
+  } catch (err: unknown) {
+    return handleServiceError(c, err, 'Không thể thay đổi trạng thái danh mục');
+  }
+});
+
+adminRouter.delete('/categories/:id', requireAuth(['SUPER_ADMIN', 'PRODUCT_MANAGER']), async (c) => {
+  const id = c.req.param('id');
+  const service = new AdminService(c.env);
+  try {
+    await service.deleteCategory(id);
+    return ok(c, { message: 'Đã xóa danh mục thành công' });
+  } catch (err: unknown) {
+    return handleServiceError(c, err, 'Không thể xóa danh mục');
   }
 });
 

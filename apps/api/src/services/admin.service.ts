@@ -334,6 +334,22 @@ export class AdminService {
     await this.catalogService.invalidateCatalogCache(p.slug);
   }
 
+  async getCategories(includeInactive: boolean = true): Promise<Category[]> {
+    const dbCategories = await this.categoryRepo.findAll(includeInactive);
+    return dbCategories.map((c) => ({
+      id: c.id,
+      parentId: c.parent_id,
+      name: c.name,
+      slug: c.slug,
+      description: c.description,
+      imageUrl: c.image_url,
+      sortOrder: c.sort_order,
+      isActive: c.is_active === 1,
+      createdAt: c.created_at,
+      updatedAt: c.updated_at,
+    }));
+  }
+
   async createCategory(data: {
     name: string;
     slug: string;
@@ -375,6 +391,102 @@ export class AdminService {
       createdAt: created.created_at,
       updatedAt: created.updated_at,
     };
+  }
+
+  async updateCategory(
+    id: string,
+    data: {
+      name?: string;
+      slug?: string;
+      parentId?: string | null;
+      description?: string | null;
+      imageUrl?: string | null;
+      sortOrder?: number;
+      isActive?: boolean;
+    }
+  ): Promise<Category> {
+    const existing = await this.categoryRepo.findById(id);
+    if (!existing) {
+      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+    }
+
+    if (data.slug) {
+      const normalizedSlug = data.slug.trim().toLowerCase();
+      if (normalizedSlug !== existing.slug) {
+        const slugExists = await this.categoryRepo.findBySlug(normalizedSlug);
+        if (slugExists && slugExists.id !== id) {
+          throw new AppError(409, ERROR_CODES.CONFLICT_RESOURCE_EXISTS, 'Slug danh mục đã tồn tại');
+        }
+      }
+    }
+
+    const updated = await this.categoryRepo.update(id, {
+      name: data.name,
+      slug: data.slug,
+      parentId: data.parentId,
+      description: data.description,
+      imageUrl: data.imageUrl,
+      sortOrder: data.sortOrder,
+      isActive: data.isActive !== undefined ? (data.isActive ? 1 : 0) : undefined,
+    });
+
+    await this.catalogService.invalidateCatalogCache();
+    return {
+      id: updated.id,
+      parentId: updated.parent_id,
+      name: updated.name,
+      slug: updated.slug,
+      description: updated.description,
+      imageUrl: updated.image_url,
+      sortOrder: updated.sort_order,
+      isActive: updated.is_active === 1,
+      createdAt: updated.created_at,
+      updatedAt: updated.updated_at,
+    };
+  }
+
+  async toggleCategoryActive(id: string, isActive: boolean): Promise<Category> {
+    const existing = await this.categoryRepo.findById(id);
+    if (!existing) {
+      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+    }
+
+    const updated = await this.categoryRepo.update(id, {
+      isActive: isActive ? 1 : 0,
+    });
+
+    await this.catalogService.invalidateCatalogCache();
+    return {
+      id: updated.id,
+      parentId: updated.parent_id,
+      name: updated.name,
+      slug: updated.slug,
+      description: updated.description,
+      imageUrl: updated.image_url,
+      sortOrder: updated.sort_order,
+      isActive: updated.is_active === 1,
+      createdAt: updated.created_at,
+      updatedAt: updated.updated_at,
+    };
+  }
+
+  async deleteCategory(id: string): Promise<void> {
+    const existing = await this.categoryRepo.findById(id);
+    if (!existing) {
+      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+    }
+
+    const productCount = await this.categoryRepo.countProductsByCategoryId(id);
+    if (productCount > 0) {
+      throw new AppError(
+        400,
+        ERROR_CODES.BAD_REQUEST,
+        `Không thể xóa danh mục đang gắn với ${productCount} sản phẩm. Hãy ẩn danh mục thay vì xóa.`
+      );
+    }
+
+    await this.categoryRepo.delete(id);
+    await this.catalogService.invalidateCatalogCache();
   }
 
   async getOrders(params?: { status?: string; page?: number; limit?: number }) {

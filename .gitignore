@@ -36,3 +36,9 @@ pnpm-debug.log*
 *.sw?
 .DS_Store
 Thumbs.db
+
+# Backups
+backups/
+*.bak
+*.backup
+*.sql
