@@ -66,9 +66,9 @@ onMounted(() => {
             </div>
 
             <div class="text-center sm:text-left">
-              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.25]">
+              <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.3] pb-1">
                 Mua Sắm Trực Tuyến <br class="hidden sm:block" />
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 block mt-1">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 block mt-1 pb-2 sm:pb-2.5">
                   Tốc Độ Siêu Tốc Tại Mua Rồng
                 </span>
               </h1>
