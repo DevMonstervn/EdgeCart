@@ -7,7 +7,6 @@ import ProductCard from '../components/ProductCard.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
 import EmptyState from '../components/EmptyState.vue';
 import {
-  Zap,
   ShieldCheck,
   Truck,
   RotateCcw,
@@ -55,11 +54,6 @@ onMounted(() => {
     <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-slate-50 to-slate-50 pt-8 pb-12 sm:pt-16 sm:pb-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-emerald-200 text-emerald-800 text-xs font-bold mb-6 shadow-xs">
-            <Zap class="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-            Độ trễ phản hồi &lt; 50ms trên Cloudflare 330+ PoPs
-          </div>
-
           <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
             Mua Sắm Trực Tuyến <br class="hidden sm:block" />
             <span class="inline-flex items-center flex-wrap justify-center gap-2.5 sm:gap-4 mt-2">
