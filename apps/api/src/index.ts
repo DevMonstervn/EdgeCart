@@ -19,7 +19,13 @@ const app = new Hono<{ Bindings: Env }>();
 
 // Global Middlewares
 app.use('*', logger());
-app.use('*', secureHeaders({ xFrameOptions: 'DENY' }));
+app.use(
+  '*',
+  secureHeaders({
+    xFrameOptions: 'DENY',
+    crossOriginResourcePolicy: 'cross-origin',
+  })
+);
 app.use('*', corsMiddleware());
 app.onError(errorHandler);
 

@@ -309,6 +309,7 @@ uploadRouter.get('/files/*', async (c) => {
     headers.set('Cache-Control', object.httpMetadata?.cacheControl || 'public, max-age=31536000, immutable');
     headers.set('X-Content-Type-Options', 'nosniff');
     headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
+    headers.set('Access-Control-Allow-Origin', '*');
     if (object.httpEtag) {
       headers.set('ETag', object.httpEtag);
     }

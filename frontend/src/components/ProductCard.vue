@@ -58,6 +58,15 @@ function handleQuickAdd(e: Event) {
     imageUrl: primaryImage.value,
   });
 }
+
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60';
+
+function handleImageError(e: Event) {
+  const target = e.target as HTMLImageElement;
+  if (target && target.src !== FALLBACK_IMAGE) {
+    target.src = FALLBACK_IMAGE;
+  }
+}
 </script>
 
 <template>
@@ -68,6 +77,7 @@ function handleQuickAdd(e: Event) {
         :src="primaryImage"
         :alt="product.name"
         loading="lazy"
+        @error="handleImageError"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
       />
 

@@ -66,6 +66,13 @@ function formatVND(amount: number) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
 }
 
+function handleImageError(e: Event) {
+  const target = e.target as HTMLImageElement;
+  if (target && target.src !== 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80') {
+    target.src = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80';
+  }
+}
+
 function handleQuantityChange(delta: number) {
   const newQty = quantity.value + delta;
   const maxStock = selectedVariant.value?.stockQuantity || 1;
@@ -154,6 +161,7 @@ onMounted(() => {
             <img
               :src="images[selectedImageIndex] || images[0]"
               :alt="product.name"
+              @error="handleImageError"
               class="w-full h-full object-cover transition-all duration-300"
             />
             <div
