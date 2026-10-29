@@ -6,6 +6,7 @@ import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
 import { orderService } from '../services/order.service.js';
 import { extractErrorMessage } from '../services/api.js';
+import { safeRandomUUID } from '../utils/uuid.js';
 import { PAYMENT_METHOD, type PaymentMethod } from '@edgecart/shared';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import {
@@ -94,7 +95,7 @@ async function handlePlaceOrder() {
 
   isSubmitting.value = true;
   try {
-    const idempotencyKey = crypto.randomUUID();
+    const idempotencyKey = safeRandomUUID();
     const result = await orderService.checkout(
       {
         shippingAddress: {

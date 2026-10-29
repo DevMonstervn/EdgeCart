@@ -11,10 +11,11 @@ import {
 } from '../services/api.js';
 import { getRoleDisplayLabel } from '../utils/format.js';
 
+import { safeStorage } from '../utils/storage.js';
+
 function getStoredUser(): User | null {
-  if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem('ec_user');
+    const raw = safeStorage.getItem('ec_user');
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -23,8 +24,8 @@ function getStoredUser(): User | null {
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(getStoredUser());
-  const accessToken = ref<string | null>(typeof window !== 'undefined' ? localStorage.getItem('ec_access_token') : null);
-  const refreshToken = ref<string | null>(typeof window !== 'undefined' ? localStorage.getItem('ec_refresh_token') : null);
+  const accessToken = ref<string | null>(safeStorage.getItem('ec_access_token'));
+  const refreshToken = ref<string | null>(safeStorage.getItem('ec_refresh_token'));
   const isLoading = ref<boolean>(false);
   const error = ref<string | null>(null);
 
@@ -32,10 +33,10 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null;
     accessToken.value = null;
     refreshToken.value = null;
-    localStorage.removeItem('ec_user');
-    localStorage.removeItem('ec_access_token');
-    localStorage.removeItem('ec_refresh_token');
-    localStorage.removeItem('ec_cart_items');
+    safeStorage.removeItem('ec_user');
+    safeStorage.removeItem('ec_access_token');
+    safeStorage.removeItem('ec_refresh_token');
+    safeStorage.removeItem('ec_cart_items');
     resetGuestSessionId();
     delete apiClient.defaults.headers.common.Authorization;
     if (typeof window !== 'undefined') {
@@ -83,8 +84,8 @@ export const useAuthStore = defineStore('auth', () => {
   function setTokens(access: string, refresh: string) {
     accessToken.value = access;
     refreshToken.value = refresh;
-    localStorage.setItem('ec_access_token', access);
-    localStorage.setItem('ec_refresh_token', refresh);
+    safeStorage.setItem('ec_access_token', access);
+    safeStorage.setItem('ec_refresh_token', refresh);
   }
 
   async function login(input: LoginInput) {
@@ -94,7 +95,7 @@ export const useAuthStore = defineStore('auth', () => {
       const data = await authService.login(input);
       setTokens(data.accessToken, data.refreshToken);
       user.value = data.user;
-      localStorage.setItem('ec_user', JSON.stringify(data.user));
+      safeStorage.setItem('ec_user', JSON.stringify(data.user));
       return data.user;
     } catch (err) {
       const msg = extractErrorMessage(err);
@@ -112,7 +113,7 @@ export const useAuthStore = defineStore('auth', () => {
       const data = await authService.register(input);
       setTokens(data.accessToken, data.refreshToken);
       user.value = data.user;
-      localStorage.setItem('ec_user', JSON.stringify(data.user));
+      safeStorage.setItem('ec_user', JSON.stringify(data.user));
       return data.user;
     } catch (err) {
       const msg = extractErrorMessage(err);
@@ -128,7 +129,7 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const profile = await authService.getProfile();
       user.value = profile;
-      localStorage.setItem('ec_user', JSON.stringify(profile));
+      safeStorage.setItem('ec_user', JSON.stringify(profile));
       return profile;
     } catch (err: unknown) {
       const msg = extractErrorMessage(err);

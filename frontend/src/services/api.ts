@@ -1,5 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import type { ApiResponse } from '@edgecart/shared';
+import { safeRandomUUID } from '../utils/uuid.js';
+import { safeStorage } from '../utils/storage.js';
 
 // Do NOT hardcode secrets or backend URLs without env support
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
@@ -9,16 +11,16 @@ export const AUTH_EXPIRED_EVENT = 'ec:auth-expired';
 export const AUTH_CLEARED_EVENT = 'ec:auth-cleared';
 
 export function getOrCreateGuestSessionId(): string {
-  let sessionId = localStorage.getItem(GUEST_SESSION_KEY);
+  let sessionId = safeStorage.getItem(GUEST_SESSION_KEY);
   if (!sessionId) {
-    sessionId = `guest_${crypto.randomUUID()}`;
-    localStorage.setItem(GUEST_SESSION_KEY, sessionId);
+    sessionId = `guest_${safeRandomUUID()}`;
+    safeStorage.setItem(GUEST_SESSION_KEY, sessionId);
   }
   return sessionId;
 }
 
 export function resetGuestSessionId(): void {
-  localStorage.removeItem(GUEST_SESSION_KEY);
+  safeStorage.removeItem(GUEST_SESSION_KEY);
 }
 
 export const apiClient = axios.create({
@@ -30,8 +32,9 @@ export const apiClient = axios.create({
 });
 
 function notifySessionExpired(): void {
-  localStorage.removeItem('ec_access_token');
-  localStorage.removeItem('ec_refresh_token');
+  safeStorage.removeItem('ec_access_token');
+  safeStorage.removeItem('ec_refresh_token');
+  safeStorage.removeItem('ec_user');
   delete apiClient.defaults.headers.common.Authorization;
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent(AUTH_EXPIRED_EVENT));
@@ -42,7 +45,7 @@ function notifySessionExpired(): void {
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     if (config.headers) {
-      const token = localStorage.getItem('ec_access_token');
+      const token = safeStorage.getItem('ec_access_token');
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       } else {
@@ -55,7 +58,7 @@ apiClient.interceptors.request.use(
 
       // Attach X-Request-Id for edge tracing
       if (!config.headers['X-Request-Id']) {
-        config.headers['X-Request-Id'] = crypto.randomUUID();
+        config.headers['X-Request-Id'] = safeRandomUUID();
       }
     }
 
@@ -114,7 +117,7 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
       isRefreshing = true;
 
-      const refreshToken = localStorage.getItem('ec_refresh_token');
+      const refreshToken = safeStorage.getItem('ec_refresh_token');
       if (!refreshToken) {
         notifySessionExpired();
         isRefreshing = false;
@@ -130,7 +133,7 @@ apiClient.interceptors.response.use(
 
         if (data.success && data.data?.accessToken) {
           const newAccessToken = data.data.accessToken;
-          localStorage.setItem('ec_access_token', newAccessToken);
+          safeStorage.setItem('ec_access_token', newAccessToken);
           apiClient.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
           processQueue(null, newAccessToken);
 

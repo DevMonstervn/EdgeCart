@@ -1,5 +1,6 @@
 import { apiClient } from './api.js';
 import type { ApiResponse, User, LoginInput, RegisterInput } from '@edgecart/shared';
+import { safeStorage } from '../utils/storage.js';
 
 export interface AuthResponseData {
   user: User;
@@ -36,8 +37,9 @@ export const authService = {
     try {
       await apiClient.post('/auth/logout', refreshToken ? { refreshToken } : {});
     } finally {
-      localStorage.removeItem('ec_access_token');
-      localStorage.removeItem('ec_refresh_token');
+      safeStorage.removeItem('ec_access_token');
+      safeStorage.removeItem('ec_refresh_token');
+      safeStorage.removeItem('ec_user');
     }
   },
 };

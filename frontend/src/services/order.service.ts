@@ -1,5 +1,7 @@
 import { apiClient, resetGuestSessionId } from './api.js';
 import type { ApiResponse, Order, CheckoutInput, Cart, CartItem } from '@edgecart/shared';
+import { safeStorage } from '../utils/storage.js';
+import { safeRandomUUID } from '../utils/uuid.js';
 
 export interface CheckoutResult {
   orderId: string;
@@ -12,9 +14,9 @@ export interface CheckoutResult {
 export const orderService = {
   async checkout(input: CheckoutInput, idempotencyKey?: string): Promise<CheckoutResult> {
     // Sync local guest cart items to backend guest session cart before submitting checkout
-    if (!localStorage.getItem('ec_access_token')) {
+    if (!safeStorage.getItem('ec_access_token')) {
       try {
-        const rawCart = localStorage.getItem('ec_cart_items');
+        const rawCart = safeStorage.getItem('ec_cart_items');
         const parsedItems: CartItem[] = rawCart ? JSON.parse(rawCart) : [];
         const unsyncedGuestItems = parsedItems.filter(
           (i) => i.cartId === 'local_cart' || (typeof i.id === 'string' && i.id.startsWith('temp_'))
@@ -33,7 +35,7 @@ export const orderService = {
             }
           }
           if (latestItems) {
-            localStorage.setItem('ec_cart_items', JSON.stringify(latestItems));
+            safeStorage.setItem('ec_cart_items', JSON.stringify(latestItems));
           }
         }
       } catch (err) {
@@ -41,7 +43,7 @@ export const orderService = {
       }
     }
 
-    const key = idempotencyKey || crypto.randomUUID();
+    const key = idempotencyKey || safeRandomUUID();
     const res = await apiClient.post<ApiResponse<CheckoutResult>>('/checkout', input, {
       headers: {
         'Idempotency-Key': key,

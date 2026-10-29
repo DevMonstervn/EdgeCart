@@ -5,9 +5,19 @@ import { cartService } from '../services/cart.service.js';
 import { useAuthStore } from './auth.js';
 import { useToastStore } from './toast.js';
 import { extractErrorMessage, AUTH_CLEARED_EVENT } from '../services/api.js';
+import { safeStorage } from '../utils/storage.js';
+
+function getInitialCartItems(): CartItem[] {
+  try {
+    const raw = safeStorage.getItem('ec_cart_items');
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
 
 export const useCartStore = defineStore('cart', () => {
-  const items = ref<CartItem[]>(JSON.parse(localStorage.getItem('ec_cart_items') || '[]'));
+  const items = ref<CartItem[]>(getInitialCartItems());
   const isLoading = ref<boolean>(false);
   const isSyncing = ref<boolean>(false);
 
@@ -35,7 +45,7 @@ export const useCartStore = defineStore('cart', () => {
   });
 
   function saveToLocal() {
-    localStorage.setItem('ec_cart_items', JSON.stringify(items.value));
+    safeStorage.setItem('ec_cart_items', JSON.stringify(items.value));
   }
 
   async function fetchBackendCart() {
@@ -238,7 +248,7 @@ export const useCartStore = defineStore('cart', () => {
 
   function clearCart() {
     items.value = [];
-    localStorage.removeItem('ec_cart_items');
+    safeStorage.removeItem('ec_cart_items');
   }
 
   return {
