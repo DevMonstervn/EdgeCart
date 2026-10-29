@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { sellerService } from '../services/seller.service.js';
 import { productService } from '../services/product.service.js';
 import { useToastStore } from '../stores/toast.js';
+import { useConfirmStore } from '../stores/confirm.js';
 import type { Category, Product, ProductImageInput } from '@edgecart/shared';
 import SellerLayout from '../layouts/SellerLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
@@ -14,6 +15,7 @@ import { formatVND, slugifyVietnamese } from '../utils/format.js';
 import { Plus, Search, Edit, EyeOff, Package, Trash2, Loader2 } from 'lucide-vue-next';
 
 const toast = useToastStore();
+const confirmModal = useConfirmStore();
 
 const products = ref<Product[]>([]);
 const categories = ref<Category[]>([]);
@@ -267,7 +269,15 @@ async function handleUpdateProduct() {
 }
 
 async function handleHideProduct(p: Product) {
-  if (!confirm(`Bạn muốn ẩn sản phẩm "${p.name}" khỏi gian hàng công khai?`)) return;
+  const confirmed = await confirmModal.ask({
+    title: 'Ẩn sản phẩm',
+    message: `Bạn muốn ẩn sản phẩm "${p.name}" khỏi gian hàng công khai?`,
+    description: 'Khách hàng sẽ không thể xem hoặc đặt mua sản phẩm này cho đến khi bạn mở bán lại.',
+    confirmText: 'Ẩn sản phẩm',
+    cancelText: 'Hủy bỏ',
+    variant: 'warning',
+  });
+  if (!confirmed) return;
   try {
     await sellerService.deleteProduct(p.id);
     toast.success('Đã ẩn sản phẩm khỏi gian hàng');

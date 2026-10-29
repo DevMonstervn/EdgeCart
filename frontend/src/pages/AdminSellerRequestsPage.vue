@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { adminService } from '../services/admin.service.js';
 import { useToastStore } from '../stores/toast.js';
+import { useConfirmStore } from '../stores/confirm.js';
 import type { SellerRequest } from '@edgecart/shared';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
@@ -12,6 +13,7 @@ import { formatDateTime, getSellerRequestStatusMeta } from '../utils/format.js';
 import { ClipboardCheck, CheckCircle2, XCircle, Loader2 } from 'lucide-vue-next';
 
 const toast = useToastStore();
+const confirmModal = useConfirmStore();
 
 const requests = ref<SellerRequest[]>([]);
 const filterStatus = ref('PENDING');
@@ -45,7 +47,15 @@ async function loadRequests() {
 
 async function handleApprove(req: SellerRequest) {
   if (isSubmitting.value) return;
-  if (!confirm(`Xác nhận phê duyệt hồ sơ mở cửa hàng "${req.storeName}" (@${req.storeSlug})?`)) return;
+  const confirmed = await confirmModal.ask({
+    title: 'Xác nhận phê duyệt hồ sơ',
+    message: `Bạn có chắc muốn phê duyệt và kích hoạt gian hàng "${req.storeName}" (@${req.storeSlug})?`,
+    description: `Người gửi: ${req.userFullName || 'Người mua'} (${req.userEmail}). Cửa hàng sẽ được cấp quyền Người bán và mở bán công khai ngay lập tức.`,
+    confirmText: 'Phê duyệt ngay',
+    cancelText: 'Hủy bỏ',
+    variant: 'success',
+  });
+  if (!confirmed) return;
 
   isSubmitting.value = true;
   try {
@@ -198,25 +208,25 @@ onMounted(() => {
                     {{ getSellerRequestStatusMeta(req.status).label }}
                   </span>
                 </td>
-                <td data-label="Xét duyệt" class="px-5 py-3.5 text-right space-x-1.5">
-                  <template v-if="req.status === 'PENDING'">
+                <td data-label="Xét duyệt" class="px-5 py-3.5 text-right">
+                  <div v-if="req.status === 'PENDING'" class="inline-flex items-center gap-2 justify-end flex-wrap">
                     <button
                       @click="handleApprove(req)"
                       :disabled="isSubmitting"
-                      class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 text-white font-bold transition"
+                      class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-300 text-white font-bold text-xs shadow-xs min-h-[38px] active:scale-95 transition cursor-pointer"
                     >
-                      <CheckCircle2 class="w-3.5 h-3.5" />
+                      <CheckCircle2 class="w-4 h-4" />
                       <span>Duyệt</span>
                     </button>
                     <button
                       @click="openRejectModal(req)"
                       :disabled="isSubmitting"
-                      class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 font-bold transition"
+                      class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-rose-200 text-rose-600 hover:bg-rose-50 font-bold text-xs min-h-[38px] active:scale-95 transition cursor-pointer"
                     >
-                      <XCircle class="w-3.5 h-3.5" />
+                      <XCircle class="w-4 h-4" />
                       <span>Từ chối</span>
                     </button>
-                  </template>
+                  </div>
                   <span v-else class="text-[11px] text-slate-400">
                     Đã xử lý {{ formatDateTime(req.reviewedAt) }}
                   </span>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { productService } from '../services/product.service.js';
 import { useCartStore } from '../stores/cart.js';
@@ -21,6 +21,11 @@ import {
   Store,
   BadgeCheck,
   ExternalLink,
+  ZoomIn,
+  ZoomOut,
+  ChevronLeft,
+  ChevronRight,
+  X,
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -32,6 +37,8 @@ const toast = useToastStore();
 const product = ref<Product | null>(null);
 const selectedVariant = ref<ProductVariant | null>(null);
 const selectedImageIndex = ref(0);
+const isLightboxOpen = ref(false);
+const zoomScale = ref(1);
 const quantity = ref(1);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
@@ -127,8 +134,57 @@ async function loadProduct() {
   }
 }
 
+function openLightbox(idx?: number) {
+  if (typeof idx === 'number') {
+    selectedImageIndex.value = idx;
+  }
+  zoomScale.value = 1;
+  isLightboxOpen.value = true;
+}
+
+function closeLightbox() {
+  isLightboxOpen.value = false;
+  zoomScale.value = 1;
+}
+
+function prevImage() {
+  if (images.value.length <= 1) return;
+  selectedImageIndex.value = (selectedImageIndex.value - 1 + images.value.length) % images.value.length;
+}
+
+function nextImage() {
+  if (images.value.length <= 1) return;
+  selectedImageIndex.value = (selectedImageIndex.value + 1) % images.value.length;
+}
+
+function toggleZoom() {
+  if (zoomScale.value === 1) {
+    zoomScale.value = 1.75;
+  } else if (zoomScale.value === 1.75) {
+    zoomScale.value = 2.5;
+  } else {
+    zoomScale.value = 1;
+  }
+}
+
+function handleKeydown(e: KeyboardEvent) {
+  if (!isLightboxOpen.value) return;
+  if (e.key === 'Escape') {
+    closeLightbox();
+  } else if (e.key === 'ArrowLeft') {
+    prevImage();
+  } else if (e.key === 'ArrowRight') {
+    nextImage();
+  }
+}
+
 onMounted(() => {
   loadProduct();
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown);
 });
 </script>
 
@@ -163,35 +219,78 @@ onMounted(() => {
       <!-- Main Product Details -->
       <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         <!-- Image Gallery Area -->
-        <div class="space-y-4">
-          <!-- Main Display Image -->
-          <div class="aspect-square rounded-3xl overflow-hidden bg-slate-100 border border-slate-100 shadow-sm relative">
+        <div class="space-y-3.5">
+          <!-- Main Display Image Container -->
+          <div
+            @click="openLightbox()"
+            class="aspect-4/3 sm:aspect-square max-h-[500px] w-full rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-xs relative flex items-center justify-center group cursor-zoom-in select-none"
+            role="button"
+            tabindex="0"
+            aria-label="Nhấn để phóng to ảnh chi tiết"
+          >
             <img
               :src="images[selectedImageIndex] || images[0]"
               :alt="product.name"
               @error="handleImageError"
-              class="w-full h-full object-cover transition-all duration-300"
+              class="w-full h-full object-contain p-2 sm:p-4 transition-transform duration-300 group-hover:scale-102"
             />
+
+            <!-- Out of Stock Overlay -->
             <div
               v-if="isOutOfStock"
-              class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center"
+              class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-10"
             >
               <span class="bg-slate-900 text-white text-sm font-bold px-4 py-2 rounded-xl border border-slate-700">
                 Tạm hết hàng
               </span>
             </div>
+
+            <!-- Image Navigation Arrows on Hover/Touch -->
+            <button
+              v-if="images.length > 1"
+              @click.stop="prevImage"
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 flex items-center justify-center shadow-md transition opacity-80 sm:opacity-0 group-hover:opacity-100 z-10 cursor-pointer"
+              aria-label="Ảnh trước"
+            >
+              <ChevronLeft class="w-5 h-5" />
+            </button>
+            <button
+              v-if="images.length > 1"
+              @click.stop="nextImage"
+              class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 flex items-center justify-center shadow-md transition opacity-80 sm:opacity-0 group-hover:opacity-100 z-10 cursor-pointer"
+              aria-label="Ảnh kế tiếp"
+            >
+              <ChevronRight class="w-5 h-5" />
+            </button>
+
+            <!-- Zoom Badge Indicator -->
+            <div
+              class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 text-white text-xs font-bold backdrop-blur-md flex items-center gap-1.5 shadow-md transition z-10 pointer-events-none"
+            >
+              <ZoomIn class="w-3.5 h-3.5" />
+              <span>Phóng to</span>
+            </div>
+
+            <!-- Image Counter Pill -->
+            <div
+              v-if="images.length > 1"
+              class="absolute bottom-3 left-3 px-2.5 py-1 rounded-xl bg-slate-900/60 text-white text-[11px] font-bold backdrop-blur-md z-10 pointer-events-none"
+            >
+              {{ selectedImageIndex + 1 }} / {{ images.length }}
+            </div>
           </div>
 
-          <!-- Thumbnails Carousel / Row -->
-          <div v-if="images.length > 1" class="flex gap-3 overflow-x-auto pb-2">
+          <!-- Thumbnails Strip -->
+          <div v-if="images.length > 1" class="flex gap-2.5 overflow-x-auto pb-1.5 pt-0.5">
             <button
               v-for="(img, idx) in images"
               :key="idx"
               @click="selectedImageIndex = idx"
-              class="w-18 h-18 rounded-2xl overflow-hidden border-2 transition shrink-0"
-              :class="selectedImageIndex === idx ? 'border-brand-600 shadow-xs' : 'border-slate-200 opacity-60 hover:opacity-100'"
+              class="w-16 h-16 sm:w-20 sm:h-20 aspect-square rounded-2xl overflow-hidden border-2 transition shrink-0 bg-slate-50 p-1 cursor-pointer"
+              :class="selectedImageIndex === idx ? 'border-brand-600 ring-2 ring-brand-500/20 shadow-xs scale-102' : 'border-slate-200 opacity-60 hover:opacity-100'"
+              :aria-label="'Xem ảnh ' + (idx + 1)"
             >
-              <img :src="img" :alt="`Thumbnail ${idx}`" class="w-full h-full object-cover" />
+              <img :src="img" :alt="`Thumbnail ${idx}`" class="w-full h-full object-cover rounded-xl" />
             </button>
           </div>
         </div>
@@ -357,5 +456,103 @@ onMounted(() => {
         </div>
       </div>
     </div>
+
+    <!-- Image Zoom / Lightbox Fullscreen Modal -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="isLightboxOpen && product"
+          class="fixed inset-0 z-[9998] bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 select-none"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Phóng to ảnh sản phẩm"
+          @click.self="closeLightbox"
+        >
+          <!-- Top Toolbar -->
+          <div class="flex items-center justify-between z-20 pb-2 border-b border-white/10">
+            <div class="text-white min-w-0 pr-4">
+              <h4 class="text-xs sm:text-sm font-bold truncate text-slate-200">{{ product.name }}</h4>
+              <p class="text-[11px] text-slate-400">Ảnh {{ selectedImageIndex + 1 }} / {{ images.length }}</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <!-- Zoom Toggle Button -->
+              <button
+                @click="toggleZoom"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition cursor-pointer"
+                :title="'Độ phóng đại: ' + zoomScale + 'x'"
+              >
+                <ZoomIn v-if="zoomScale === 1" class="w-4 h-4" />
+                <ZoomOut v-else class="w-4 h-4" />
+                <span class="hidden sm:inline">{{ zoomScale }}x</span>
+              </button>
+
+              <!-- Close Button -->
+              <button
+                @click="closeLightbox"
+                class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer"
+                aria-label="Đóng phóng to"
+              >
+                <X class="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Zoomable Image Canvas -->
+          <div class="relative flex-1 flex items-center justify-center overflow-hidden my-3">
+            <!-- Left Arrow -->
+            <button
+              v-if="images.length > 1"
+              @click="prevImage"
+              class="absolute left-2 sm:left-6 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition shadow-lg cursor-pointer"
+              aria-label="Ảnh trước"
+            >
+              <ChevronLeft class="w-6 h-6" />
+            </button>
+
+            <!-- Image with Zoom Scale -->
+            <div class="max-w-full max-h-full flex items-center justify-center overflow-auto p-2">
+              <img
+                :src="images[selectedImageIndex]"
+                :alt="product.name"
+                class="max-h-[75vh] max-w-[90vw] object-contain transition-transform duration-200 cursor-zoom-in"
+                :style="{ transform: `scale(${zoomScale})` }"
+                @click="toggleZoom"
+              />
+            </div>
+
+            <!-- Right Arrow -->
+            <button
+              v-if="images.length > 1"
+              @click="nextImage"
+              class="absolute right-2 sm:right-6 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition shadow-lg cursor-pointer"
+              aria-label="Ảnh tiếp theo"
+            >
+              <ChevronRight class="w-6 h-6" />
+            </button>
+          </div>
+
+          <!-- Bottom Thumbnails Strip -->
+          <div v-if="images.length > 1" class="flex justify-center gap-2 overflow-x-auto pt-2 border-t border-white/10 z-20">
+            <button
+              v-for="(img, idx) in images"
+              :key="idx"
+              @click="selectedImageIndex = idx; zoomScale = 1"
+              class="w-12 h-12 sm:w-14 sm:h-14 aspect-square rounded-xl overflow-hidden border-2 transition shrink-0 bg-white/5 p-0.5 cursor-pointer"
+              :class="selectedImageIndex === idx ? 'border-brand-500 ring-2 ring-brand-500/40 scale-105' : 'border-white/20 opacity-50 hover:opacity-100'"
+            >
+              <img :src="img" :alt="`Thumbnail ${idx}`" class="w-full h-full object-cover rounded-lg" />
+            </button>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </DefaultLayout>
 </template>

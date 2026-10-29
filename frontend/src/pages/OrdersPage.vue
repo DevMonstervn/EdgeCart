@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
+import { useConfirmStore } from '../stores/confirm.js';
 import { orderService } from '../services/order.service.js';
 import type { Order } from '@edgecart/shared';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
@@ -22,6 +23,7 @@ import {
 const router = useRouter();
 const auth = useAuthStore();
 const toast = useToastStore();
+const confirmModal = useConfirmStore();
 
 const orders = ref<Order[]>([]);
 const isLoading = ref(true);
@@ -85,7 +87,15 @@ async function loadOrders() {
 }
 
 async function handleCancelOrder(orderId: string) {
-  if (!confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) return;
+  const confirmed = await confirmModal.ask({
+    title: 'Hủy đơn hàng',
+    message: 'Bạn có chắc chắn muốn hủy đơn hàng này không?',
+    description: 'Đơn hàng sẽ chuyển sang trạng thái Đã hủy và hoàn lại số lượng tồn kho cho gian hàng.',
+    confirmText: 'Xác nhận hủy đơn',
+    cancelText: 'Giữ lại đơn',
+    variant: 'danger',
+  });
+  if (!confirmed) return;
 
   try {
     await orderService.cancelOrder(orderId, 'Khách hàng yêu cầu hủy đơn');

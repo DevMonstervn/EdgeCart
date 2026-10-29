@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { adminService } from '../services/admin.service.js';
 import { useToastStore } from '../stores/toast.js';
+import { useConfirmStore } from '../stores/confirm.js';
 import type { Category } from '@edgecart/shared';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
@@ -21,6 +22,7 @@ import {
 } from 'lucide-vue-next';
 
 const toast = useToastStore();
+const confirmModal = useConfirmStore();
 
 const categories = ref<Category[]>([]);
 const isLoading = ref(true);
@@ -166,9 +168,15 @@ async function handleToggleStatus(category: Category) {
 }
 
 async function handleDeleteCategory(category: Category) {
-  if (!confirm(`Bạn có chắc muốn xóa danh mục "${category.name}"? Thao tác này không thể hoàn tác.`)) {
-    return;
-  }
+  const confirmed = await confirmModal.ask({
+    title: 'Xóa danh mục',
+    message: `Bạn có chắc muốn xóa danh mục "${category.name}"?`,
+    description: 'Thao tác này không thể hoàn tác. Các sản phẩm thuộc danh mục này có thể cần được phân loại lại.',
+    confirmText: 'Xác nhận xóa',
+    cancelText: 'Hủy bỏ',
+    variant: 'danger',
+  });
+  if (!confirmed) return;
 
   try {
     await adminService.deleteCategory(category.id);

@@ -4,6 +4,7 @@ import { adminService } from '../services/admin.service.js';
 import { productService } from '../services/product.service.js';
 import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
+import { useConfirmStore } from '../stores/confirm.js';
 import type { Category, Product, ProductImageInput } from '@edgecart/shared';
 import AdminLayout from '../layouts/AdminLayout.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
@@ -25,6 +26,7 @@ import {
 
 const auth = useAuthStore();
 const toast = useToastStore();
+const confirmModal = useConfirmStore();
 
 const products = ref<Product[]>([]);
 const categories = ref<Category[]>([]);
@@ -207,7 +209,15 @@ async function handleUpdateProduct() {
 }
 
 async function handleDeleteProduct(p: Product) {
-  if (!confirm(`Bạn có chắc chắn muốn ẩn/xóa sản phẩm "${p.name}"?`)) return;
+  const confirmed = await confirmModal.ask({
+    title: 'Xóa / Ẩn sản phẩm',
+    message: `Bạn có chắc chắn muốn ẩn/xóa sản phẩm "${p.name}"?`,
+    description: 'Sản phẩm sẽ được đánh dấu không hoạt động và ẩn khỏi Storefront.',
+    confirmText: 'Xác nhận xóa',
+    cancelText: 'Hủy bỏ',
+    variant: 'danger',
+  });
+  if (!confirmed) return;
   try {
     await adminService.deleteProduct(p.id);
     toast.success('Đã ẩn/xóa sản phẩm thành công');
