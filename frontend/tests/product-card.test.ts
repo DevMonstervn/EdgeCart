@@ -82,4 +82,24 @@ describe('ProductCard Component', () => {
     // 240.000 ₫
     expect(wrapper.text()).toMatch(/240\.000/);
   });
+
+  it('should render Quick Add to Cart and Quick Buy Now buttons', () => {
+    const wrapper = mount(ProductCard, {
+      props: {
+        product: mockProduct,
+      },
+      global: {
+        stubs: {
+          RouterLink: {
+            template: '<a><slot /></a>',
+          },
+        },
+      },
+    });
+
+    const buttons = wrapper.findAll('button');
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
+    expect(wrapper.find('button[title="Mua ngay"]').exists()).toBe(true);
+    expect(wrapper.find('button[title="Thêm vào giỏ"]').exists()).toBe(true);
+  });
 });

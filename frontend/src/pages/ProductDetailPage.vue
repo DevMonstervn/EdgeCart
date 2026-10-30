@@ -26,6 +26,8 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  Zap,
+  Loader2,
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -40,6 +42,8 @@ const selectedImageIndex = ref(0);
 const isLightboxOpen = ref(false);
 const zoomScale = ref(1);
 const quantity = ref(1);
+const isAddingToCart = ref(false);
+const isBuyingNow = ref(false);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 
@@ -97,21 +101,71 @@ async function handleAddToCart() {
     return;
   }
 
-  if (!product.value || !selectedVariant.value || isOutOfStock.value) return;
+  if (!product.value || !selectedVariant.value || isOutOfStock.value || isAddingToCart.value) return;
 
-  const success = await cart.addItem({
-    variantId: selectedVariant.value.id,
-    productName: product.value.name,
-    variantTitle: selectedVariant.value.title,
-    sku: selectedVariant.value.sku,
-    unitPrice: currentPrice.value,
-    quantity: quantity.value,
-    currentStock: selectedVariant.value.stockQuantity,
-    imageUrl: images.value[0],
-  });
+  isAddingToCart.value = true;
+  try {
+    const success = await cart.addItem({
+      variantId: selectedVariant.value.id,
+      productName: product.value.name,
+      variantTitle: selectedVariant.value.title,
+      sku: selectedVariant.value.sku,
+      unitPrice: currentPrice.value,
+      quantity: quantity.value,
+      currentStock: selectedVariant.value.stockQuantity,
+      imageUrl: images.value[0],
+    });
 
-  if (success) {
-    quantity.value = 1;
+    if (success) {
+      quantity.value = 1;
+    }
+  } catch (err: unknown) {
+    toast.error(err instanceof Error ? err.message : 'Không thể thêm vào giỏ hàng');
+  } finally {
+    isAddingToCart.value = false;
+  }
+}
+
+async function handleBuyNow() {
+  if (!product.value || !selectedVariant.value || isOutOfStock.value || isBuyingNow.value) return;
+
+  if (!auth.isAuthenticated) {
+    // Save to guest cart so it automatically transfers after login
+    await cart.addItem({
+      variantId: selectedVariant.value.id,
+      productName: product.value.name,
+      variantTitle: selectedVariant.value.title,
+      sku: selectedVariant.value.sku,
+      unitPrice: currentPrice.value,
+      quantity: quantity.value,
+      currentStock: selectedVariant.value.stockQuantity,
+      imageUrl: images.value[0],
+    });
+    toast.info('Vui lòng đăng nhập để tiến hành thanh toán');
+    router.push({ path: '/login', query: { redirect: '/checkout' } });
+    return;
+  }
+
+  isBuyingNow.value = true;
+  try {
+    const success = await cart.addItem({
+      variantId: selectedVariant.value.id,
+      productName: product.value.name,
+      variantTitle: selectedVariant.value.title,
+      sku: selectedVariant.value.sku,
+      unitPrice: currentPrice.value,
+      quantity: quantity.value,
+      currentStock: selectedVariant.value.stockQuantity,
+      imageUrl: images.value[0],
+    });
+
+    if (success) {
+      await router.push('/checkout');
+    }
+  } catch (err: unknown) {
+    toast.error(err instanceof Error ? err.message : 'Không thể chuyển đến trang thanh toán');
+  } finally {
+    isBuyingNow.value = false;
   }
 }
 
@@ -386,7 +440,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Quantity & Stock Status -->
-          <div class="mb-8 space-y-3">
+          <div class="mb-8 space-y-4">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Số lượng:</span>
               <span class="text-xs font-semibold" :class="isOutOfStock ? 'text-rose-600' : 'text-emerald-700'">
@@ -394,36 +448,54 @@ onUnmounted(() => {
               </span>
             </div>
 
-            <div class="flex items-center gap-4">
-              <div class="inline-flex items-center bg-white border border-slate-200 rounded-xl p-1 shadow-2xs">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <!-- Quantity Controls -->
+              <div class="inline-flex items-center justify-between sm:justify-start bg-white border border-slate-200 rounded-2xl p-1 shadow-2xs self-start">
                 <button
                   @click="handleQuantityChange(-1)"
                   :disabled="quantity <= 1 || isOutOfStock"
-                  class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 disabled:opacity-40 transition"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 hover:bg-slate-100 disabled:opacity-40 transition cursor-pointer"
                   aria-label="Giảm"
                 >
                   <Minus class="w-3.5 h-3.5" />
                 </button>
-                <span class="w-10 text-center font-bold text-sm text-slate-800">{{ quantity }}</span>
+                <span class="w-12 text-center font-bold text-sm text-slate-800">{{ quantity }}</span>
                 <button
                   @click="handleQuantityChange(1)"
                   :disabled="isOutOfStock || quantity >= (selectedVariant?.stockQuantity || 1)"
-                  class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 disabled:opacity-40 transition"
+                  class="w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 hover:bg-slate-100 disabled:opacity-40 transition cursor-pointer"
                   aria-label="Tăng"
                 >
                   <Plus class="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <!-- Add to Cart CTA -->
-              <button
-                @click="handleAddToCart"
-                :disabled="isOutOfStock || !selectedVariant"
-                class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold text-sm shadow-md shadow-brand-600/20 active:scale-98 transition"
-              >
-                <ShoppingBag class="w-4 h-4" />
-                <span>{{ isOutOfStock ? 'Hết hàng' : 'Thêm vào giỏ hàng' }}</span>
-              </button>
+              <!-- Action Buttons: Thêm vào giỏ & Mua ngay -->
+              <div class="flex-1 grid grid-cols-2 gap-2.5 sm:gap-3">
+                <!-- Add to Cart CTA -->
+                <button
+                  type="button"
+                  @click="handleAddToCart"
+                  :disabled="isOutOfStock || !selectedVariant || isAddingToCart"
+                  class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl bg-brand-50 hover:bg-brand-100 border-2 border-brand-200 hover:border-brand-300 text-brand-700 font-bold text-xs sm:text-sm shadow-xs active:scale-98 transition disabled:bg-slate-100 disabled:border-slate-200 disabled:text-slate-400 cursor-pointer"
+                >
+                  <Loader2 v-if="isAddingToCart" class="w-4 h-4 animate-spin text-brand-600" />
+                  <ShoppingBag v-else class="w-4 h-4 text-brand-600" />
+                  <span>{{ isOutOfStock ? 'Hết hàng' : 'Thêm vào giỏ' }}</span>
+                </button>
+
+                <!-- Buy Now CTA -->
+                <button
+                  type="button"
+                  @click="handleBuyNow"
+                  :disabled="isOutOfStock || !selectedVariant || isBuyingNow"
+                  class="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-brand-600/25 active:scale-98 transition disabled:bg-slate-200 disabled:text-slate-400 cursor-pointer"
+                >
+                  <Loader2 v-if="isBuyingNow" class="w-4 h-4 animate-spin text-white" />
+                  <Zap v-else class="w-4 h-4 fill-current text-amber-300" />
+                  <span>{{ isOutOfStock ? 'Hết hàng' : (isBuyingNow ? 'Đang chuyển...' : 'Mua ngay') }}</span>
+                </button>
+              </div>
             </div>
           </div>
 
