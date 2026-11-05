@@ -165,6 +165,8 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
 
         if (toolExec.productCards && toolExec.productCards.length > 0) {
           metadata.products = toolExec.productCards;
+        } else if (tc.name === 'search_products') {
+          metadata.products = [];
         }
         if (toolExec.comparison) {
           metadata.comparison = toolExec.comparison;
@@ -291,6 +293,8 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
             type: 'product_cards',
             products: toolExec.productCards,
           };
+        } else if (tc.name === 'search_products') {
+          metadata.products = [];
         }
         if (toolExec.comparison) {
           metadata.comparison = toolExec.comparison;

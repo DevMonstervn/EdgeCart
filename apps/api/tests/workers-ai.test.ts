@@ -5,6 +5,8 @@ import { signJwt } from '../src/utils/jwt.js';
 import { hashPassword } from '../src/utils/crypto.js';
 import { WorkersAIProvider, WORKERS_AI_MODELS } from '../src/ai/providers/workers-ai.provider.js';
 import { GeminiProvider } from '../src/ai/providers/gemini.provider.js';
+import { executeBusinessTool, BUSINESS_TOOLS } from '../src/ai/tools/business-tools.js';
+import { CatalogService } from '../src/services/catalog.service.js';
 import type { Env } from '../src/types/env.js';
 
 function createMockAiBinding(options?: {
@@ -569,5 +571,237 @@ describe('Cloudflare Workers AI Provider & Integration Tests', () => {
     expect(res.providerUsed).toBe('mock-fallback');
     expect(res.message.content).toBeDefined();
     expect(res.message.content.length).toBeGreaterThan(0);
+  });
+
+  // --- P1 Search Accuracy Regression Tests (Tests 16 - 25) ---
+
+  it('16. [P1 Search Accuracy 1] Search with only query returns authentic matched products and productCards', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      { query: 'ProMouse' },
+      { env }
+    );
+
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(1);
+    expect(data.products).toHaveLength(1);
+    expect(data.products[0].name).toBe('Chuột Không Dây ProMouse');
+    expect(result.productCards).toHaveLength(1);
+    expect(result.productCards![0].name).toBe('Chuột Không Dây ProMouse');
+    expect(result.productCards![0].salePrice).toBe(450000);
+  });
+
+  it('17. [P1 Search Accuracy 2] Search with query, category, and gender strips extraneous LLM keys without validation failure', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      {
+        query: 'áo polo',
+        category: 'thời trang nam',
+        gender: 'nam',
+        style: 'regular-fit',
+      },
+      { env }
+    );
+
+    // Schema validation succeeds (no throw), extraneous keys stripped, and zero matches found
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(0);
+    expect(data.products).toHaveLength(0);
+    expect(result.productCards).toHaveLength(0);
+    expect(data.message).toContain('Không tìm thấy sản phẩm nào phù hợp với từ khóa "áo polo"');
+  });
+
+  it('18. [P1 Search Accuracy 3] Search using alias "q" resolves to query parameter', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      { q: 'DeskPad' },
+      { env }
+    );
+
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(1);
+    expect(data.products[0].name).toBe('Lót Chuột Gaming DeskPad');
+    expect(result.productCards![0].name).toBe('Lót Chuột Gaming DeskPad');
+  });
+
+  it('19. [P1 Search Accuracy 4] Search using alias "keyword" resolves to query parameter', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      { keyword: 'DeskPad' },
+      { env }
+    );
+
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(1);
+    expect(data.products[0].name).toBe('Lót Chuột Gaming DeskPad');
+  });
+
+  it('20. [P1 Search Accuracy 5] Invalid search parameters safely handled without dumping catalog', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      { minPrice: -50000 },
+      { env }
+    );
+
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(0);
+    expect(data.products).toEqual([]);
+    expect(result.productCards).toEqual([]);
+    expect(data.error).toContain('Tham số tìm kiếm không hợp lệ');
+  });
+
+  it('21. [P1 Search Accuracy 6] Empty search results returns totalFound 0, empty productCards, and Vietnamese explanatory message', async () => {
+    const result = await executeBusinessTool(
+      'search_products',
+      { query: 'Áo Polo Nam Cotton' },
+      { env }
+    );
+
+    expect(result.toolName).toBe('search_products');
+    const data = result.result as any;
+    expect(data.totalFound).toBe(0);
+    expect(data.products).toEqual([]);
+    expect(result.productCards).toEqual([]);
+    expect(data.message).toContain('Không tìm thấy sản phẩm nào phù hợp với từ khóa "Áo Polo Nam Cotton"');
+  });
+
+  it('22. [P1 Search Accuracy 7] Zero-result search never attaches unrelated product cards to assistant message metadata', async () => {
+    let turnCount = 0;
+    env.AI = {
+      run: async (model: string, input: any) => {
+        turnCount++;
+        if (turnCount === 1) {
+          return {
+            response: '',
+            tool_calls: [
+              {
+                id: 'call_search_zero_meta',
+                name: 'search_products',
+                arguments: { query: 'áo polo nam công sở', gender: 'nam' },
+              },
+            ],
+          };
+        }
+        return {
+          response: 'Hiện tại sàn EdgeCart chưa có áo polo nam công sở bạn tìm kiếm.',
+        };
+      },
+    };
+    env.AI_PROVIDER = 'workers-ai';
+
+    const res = await app.request(
+      '/api/v1/ai/chat',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-session-id': 'wai_zero_result_metadata_test',
+        },
+        body: JSON.stringify({
+          message: 'Tìm áo polo nam công sở',
+          stream: false,
+        }),
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+
+    const assistantMsg = body.data.assistantMessage;
+    expect(assistantMsg.content).toContain('chưa có áo polo nam công sở');
+    // Ensure metadata.products is empty or not containing tech products
+    expect(assistantMsg.metadata?.products).toEqual([]);
+  });
+
+  it('23. [P1 Search Accuracy 8] Empty arguments object or whitespace query never triggers unfiltered catalog dump', async () => {
+    // Sub-case A: completely empty arguments object
+    const resultEmpty = await executeBusinessTool(
+      'search_products',
+      {},
+      { env }
+    );
+
+    expect(resultEmpty.toolName).toBe('search_products');
+    const dataEmpty = resultEmpty.result as any;
+    expect(dataEmpty.totalFound).toBe(0);
+    expect(dataEmpty.products).toEqual([]);
+    expect(resultEmpty.productCards).toEqual([]);
+    expect(dataEmpty.message).toContain('Vui lòng cung cấp từ khóa sản phẩm hoặc danh mục');
+
+    // Sub-case B: whitespace-only query
+    const resultWhitespace = await executeBusinessTool(
+      'search_products',
+      { query: '    ' },
+      { env }
+    );
+
+    expect(resultWhitespace.toolName).toBe('search_products');
+    const dataWhitespace = resultWhitespace.result as any;
+    expect(dataWhitespace.totalFound).toBe(0);
+    expect(dataWhitespace.products).toEqual([]);
+    expect(resultWhitespace.productCards).toEqual([]);
+    expect(dataWhitespace.message).toContain('Vui lòng cung cấp từ khóa sản phẩm hoặc danh mục');
+  });
+
+  it('24. [P1 Search Accuracy 9] Existing CatalogService getProducts standard search remains fully compatible', async () => {
+    const catalogService = new CatalogService(env);
+
+    // Standard search by keyword
+    const searchRes = await catalogService.getProducts({ q: 'ProMouse' });
+    expect(searchRes.meta.total).toBe(1);
+    expect(searchRes.products[0].id).toBe('prod_wai_mouse');
+    expect(searchRes.products[0].name).toBe('Chuột Không Dây ProMouse');
+
+    // Standard filter by price range
+    const filterRes = await catalogService.getProducts({ minPrice: 100000, maxPrice: 300000 });
+    expect(filterRes.meta.total).toBe(1);
+    expect(filterRes.products[0].id).toBe('prod_wai_pad');
+    expect(filterRes.products[0].name).toBe('Lót Chuột Gaming DeskPad');
+  });
+
+  it('25. [P1 Search Accuracy 10] Existing Gemini tool calling and BUSINESS_TOOLS declarations remain compatible', async () => {
+    const searchTool = BUSINESS_TOOLS.find((t) => t.name === 'search_products');
+    expect(searchTool).toBeDefined();
+    expect(searchTool?.parameters.type).toBe('object');
+    const properties = (searchTool?.parameters as any)?.properties;
+    expect(properties?.query).toBeDefined();
+    expect(properties?.categorySlug).toBeDefined();
+
+    // Verify GeminiProvider format messages with search_products tool calls
+    const geminiProvider = new GeminiProvider('fake_gemini_key', 'gemini-3.8-flash');
+    const response = await geminiProvider.generateResponse([
+      { role: 'user', content: 'Tìm chuột máy tính' },
+      {
+        role: 'assistant',
+        content: '',
+        toolCalls: [
+          {
+            id: 'gem_tc_1',
+            name: 'search_products',
+            arguments: { query: 'chuột máy tính' },
+          },
+        ],
+      },
+      {
+        role: 'tool',
+        name: 'search_products',
+        toolCallId: 'gem_tc_1',
+        content: JSON.stringify({
+          totalFound: 1,
+          products: [{ id: 'p1', name: 'Chuột Không Dây ProMouse' }],
+          productCards: [{ id: 'p1', name: 'Chuột Không Dây ProMouse', price: 450000 }],
+        }),
+      },
+    ]);
+
+    expect(response.providerUsed).toBe('mock-fallback');
+    expect(response.message.content).toBeDefined();
   });
 });

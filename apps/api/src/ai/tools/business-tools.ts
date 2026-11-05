@@ -46,7 +46,7 @@ export const BUSINESS_TOOLS: AIToolDefinition[] = [
         },
         categorySlug: {
           type: 'string',
-          description: 'Slug danh mục sản phẩm nếu người dùng nêu rõ (ví dụ: thoi-trang, cong-nghe, my-pham)',
+          description: 'Slug danh mục sản phẩm nếu người dùng nêu rõ (ví dụ: thoi-trang-phu-kien, dien-tu-cong-nghe, phu-kien-may-tinh, gia-dung-tien-ich)',
         },
         minPrice: {
           type: 'number',
@@ -156,22 +156,70 @@ export async function executeBusinessTool(
 
   switch (toolName) {
     case 'search_products': {
-      const parsed = AISearchProductsInputSchema.safeParse(args);
-      const params = parsed.success
-        ? parsed.data
-        : { query: undefined, categorySlug: undefined, minPrice: undefined, maxPrice: undefined, limit: 5 };
+      const rawArgs = args && typeof args === 'object' && !Array.isArray(args) ? args : {};
+      const parsed = AISearchProductsInputSchema.safeParse(rawArgs);
+
+      if (!parsed.success) {
+        // Validation failed (e.g. invalid type, negative prices).
+        // NEVER turn an invalid search request into an unfiltered catalog query!
+        return {
+          toolName,
+          result: {
+            totalFound: 0,
+            products: [],
+            error: 'Tham số tìm kiếm không hợp lệ. Vui lòng cung cấp từ khóa tìm kiếm hợp lệ.',
+          },
+          productCards: [],
+        };
+      }
+
+      const params = parsed.data;
       const limit = params.limit || 5;
       const safeQ = params.query ? params.query.trim().slice(0, 50) : undefined;
+      const safeCategory = params.categorySlug ? params.categorySlug.trim().slice(0, 50) : undefined;
+
+      // Safeguard: If neither a valid query nor a category was supplied:
+      // NEVER trigger an unfiltered catalog dump!
+      if (!safeQ && !safeCategory) {
+        return {
+          toolName,
+          result: {
+            totalFound: 0,
+            products: [],
+            message: 'Vui lòng cung cấp từ khóa sản phẩm hoặc danh mục bạn muốn tìm kiếm.',
+          },
+          productCards: [],
+        };
+      }
 
       const result = await catalogService.getProducts({
         q: safeQ,
-        category: params.categorySlug,
+        category: safeCategory,
         minPrice: params.minPrice,
         maxPrice: params.maxPrice,
         limit,
       });
 
-      const productCards: AIProductCardData[] = (result.products || []).map((p) => {
+      const matchedProducts = result.products || [];
+
+      // When zero products match: return explicit empty result and empty productCards
+      if (matchedProducts.length === 0) {
+        return {
+          toolName,
+          result: {
+            totalFound: 0,
+            products: [],
+            query: safeQ,
+            category: safeCategory,
+            message: safeQ
+              ? `Không tìm thấy sản phẩm nào phù hợp với từ khóa "${safeQ}".`
+              : `Không tìm thấy sản phẩm nào trong danh mục "${safeCategory}".`,
+          },
+          productCards: [],
+        };
+      }
+
+      const productCards: AIProductCardData[] = matchedProducts.map((p) => {
         let defaultImage: string | null = null;
         if (p.images && p.images.length > 0) {
           defaultImage = p.images[0].imageUrl;
