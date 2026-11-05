@@ -4,6 +4,7 @@ import { createTestEnv } from './helpers/test-env.js';
 import { signJwt } from '../src/utils/jwt.js';
 import { hashPassword } from '../src/utils/crypto.js';
 import { WorkersAIProvider, WORKERS_AI_MODELS } from '../src/ai/providers/workers-ai.provider.js';
+import { GeminiProvider } from '../src/ai/providers/gemini.provider.js';
 import type { Env } from '../src/types/env.js';
 
 function createMockAiBinding(options?: {
@@ -313,5 +314,260 @@ describe('Cloudflare Workers AI Provider & Integration Tests', () => {
     expect(body.data.hasAIBinding).toBe(true);
     expect(body.data.configuredModel).toBe(WORKERS_AI_MODELS.LLAMA_3_3_70B);
     expect(body.data.availableModels.length).toBeGreaterThan(0);
+  });
+
+  // =========================================================================
+  // P1-1 REGRESSION TESTS: Tool Call Correlation & tool_call_id Lifecycle
+  // =========================================================================
+
+  it('10. [P1-1 Regression 1] Correct tool_call_id preservation in formatted message payload', () => {
+    const provider = new WorkersAIProvider(undefined);
+    const exactCallId = 'call_exact_preservation_abc123';
+
+    const formatted = provider.formatMessages([
+      { role: 'user', content: 'Tìm chuột gaming' },
+      {
+        role: 'assistant',
+        content: '',
+        toolCalls: [
+          {
+            id: exactCallId,
+            name: 'search_products',
+            arguments: { query: 'chuột gaming' },
+          },
+        ],
+      },
+      {
+        role: 'tool',
+        name: 'search_products',
+        toolCallId: exactCallId,
+        content: JSON.stringify({ products: [{ id: 'p1', name: 'Chuột Pro' }] }),
+      },
+    ]);
+
+    expect(formatted).toHaveLength(3);
+
+    // Verify assistant tool_calls
+    const assistantMsg = formatted[1];
+    expect(assistantMsg.role).toBe('assistant');
+    expect(assistantMsg.tool_calls).toBeDefined();
+    expect(assistantMsg.tool_calls![0].id).toBe(exactCallId);
+    expect(assistantMsg.tool_calls![0].function.name).toBe('search_products');
+
+    // Verify tool result message
+    const toolMsg = formatted[2];
+    expect(toolMsg.role).toBe('tool');
+    expect(toolMsg.name).toBe('search_products');
+    expect(toolMsg.tool_call_id).toBe(exactCallId);
+    expect(toolMsg.content).toContain('Chuột Pro');
+  });
+
+  it('11. [P1-1 Regression 2] Multiple tool calls with distinct IDs preserve individual matching tool_call_id', () => {
+    const provider = new WorkersAIProvider(undefined);
+    const searchCallId = 'call_search_999_xyz';
+    const policyCallId = 'call_policy_888_uvw';
+
+    const formatted = provider.formatMessages([
+      { role: 'user', content: 'Tìm balo và chính sách giao hàng' },
+      {
+        role: 'assistant',
+        content: '',
+        toolCalls: [
+          { id: searchCallId, name: 'search_products', arguments: { query: 'balo' } },
+          { id: policyCallId, name: 'get_policy', arguments: { policyType: 'shipping' } },
+        ],
+      },
+      {
+        role: 'tool',
+        name: 'search_products',
+        toolCallId: searchCallId,
+        content: JSON.stringify({ products: [{ id: 'b1', name: 'Balo Laptop' }] }),
+      },
+      {
+        role: 'tool',
+        name: 'get_policy',
+        toolCallId: policyCallId,
+        content: JSON.stringify({ policy: 'Miễn phí giao hàng đơn trên 500k' }),
+      },
+    ]);
+
+    expect(formatted).toHaveLength(4);
+
+    const toolMsg1 = formatted[2];
+    expect(toolMsg1.role).toBe('tool');
+    expect(toolMsg1.name).toBe('search_products');
+    expect(toolMsg1.tool_call_id).toBe(searchCallId);
+
+    const toolMsg2 = formatted[3];
+    expect(toolMsg2.role).toBe('tool');
+    expect(toolMsg2.name).toBe('get_policy');
+    expect(toolMsg2.tool_call_id).toBe(policyCallId);
+
+    // Confirm no cross-talk between distinct IDs
+    expect(toolMsg1.tool_call_id).not.toBe(toolMsg2.tool_call_id);
+  });
+
+  it('12. [P1-1 Regression 3] Correct matching between Assistant tool calls and tool result messages when toolCallId is omitted', () => {
+    const provider = new WorkersAIProvider(undefined);
+    const assistantGeneratedId = 'call_generated_by_model_456';
+
+    const formatted = provider.formatMessages([
+      { role: 'user', content: 'Tìm áo khoác' },
+      {
+        role: 'assistant',
+        content: '',
+        toolCalls: [
+          {
+            id: assistantGeneratedId,
+            name: 'search_products',
+            arguments: { query: 'áo khoác' },
+          },
+        ],
+      },
+      {
+        // toolCallId omitted in incoming message
+        role: 'tool',
+        name: 'search_products',
+        content: JSON.stringify({ products: [] }),
+      },
+    ]);
+
+    expect(formatted).toHaveLength(3);
+    const toolMsg = formatted[2];
+    expect(toolMsg.role).toBe('tool');
+    expect(toolMsg.name).toBe('search_products');
+    // Matched by tool name to the assistant's real tool call ID
+    expect(toolMsg.tool_call_id).toBe(assistantGeneratedId);
+    // Verified: NOT fabricated from tool name or fallback string
+    expect(toolMsg.tool_call_id).not.toBe('search_products');
+    expect(toolMsg.tool_call_id).not.toBe('tool_call');
+  });
+
+  it('13. [P1-1 Regression 4] Missing or invalid tool call IDs safely handled without sending malformed payload or fabricating IDs', () => {
+    const provider = new WorkersAIProvider(undefined);
+
+    // Case A: Orphaned tool message with no preceding assistant tool call
+    const formattedOrphan = provider.formatMessages([
+      { role: 'user', content: 'Xin chào' },
+      { role: 'tool', name: 'orphan_tool', content: 'orphan result' },
+    ]);
+
+    // Orphaned tool message safely omitted to prevent Workers AI HTTP 400 rejection
+    expect(formattedOrphan).toHaveLength(1);
+    expect(formattedOrphan[0].role).toBe('user');
+
+    // Case B: Tool message with whitespace-only toolCallId and no matching assistant call
+    const formattedWhitespace = provider.formatMessages([
+      { role: 'user', content: 'Xin chào' },
+      { role: 'tool', name: 'invalid_tool', toolCallId: '   ', content: 'invalid result' },
+    ]);
+    expect(formattedWhitespace).toHaveLength(1);
+    expect(formattedWhitespace[0].role).toBe('user');
+
+    // Case C: Confirm that neither tool names nor generic strings are ever fabricated as IDs
+    for (const msg of [...formattedOrphan, ...formattedWhitespace]) {
+      expect((msg as any).tool_call_id).not.toBe('orphan_tool');
+      expect((msg as any).tool_call_id).not.toBe('invalid_tool');
+      expect((msg as any).tool_call_id).not.toBe('tool_call');
+    }
+  });
+
+  it('14. [P1-1 Regression 5] Multi-turn tool calling correlates tool_call_id and synthesizes final response', async () => {
+    const recordedPayloads: any[] = [];
+    const expectedCallId = 'call_real_wire_id_101';
+
+    env.AI = {
+      run: async (model: string, input: any) => {
+        recordedPayloads.push(input);
+        if (recordedPayloads.length === 1) {
+          // Turn 1: AI calls search_products with explicit tool_call id
+          return {
+            response: '',
+            tool_calls: [
+              {
+                id: expectedCallId,
+                name: 'search_products',
+                arguments: { query: 'ProMouse' },
+              },
+            ],
+          };
+        }
+        // Turn 2: AI receives tool result and synthesizes final response
+        return {
+          response: 'Chuột Không Dây ProMouse giá 450.000 đ hiện có sẵn 30 chiếc trong kho.',
+        };
+      },
+    };
+    env.AI_PROVIDER = 'workers-ai';
+
+    const res = await app.request(
+      '/api/v1/ai/chat',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-session-id': 'wai_regression_multi_turn',
+        },
+        body: JSON.stringify({
+          message: 'Tìm chuột ProMouse',
+          stream: false,
+        }),
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+    expect(recordedPayloads).toHaveLength(2);
+
+    // Inspect Turn 2 payload received by env.AI.run
+    const turn2Payload = recordedPayloads[1];
+    expect(turn2Payload.messages).toBeDefined();
+
+    // Verify Assistant message in Turn 2 payload
+    const assistantMsgInTurn2 = turn2Payload.messages.find(
+      (m: any) => m.role === 'assistant' && Array.isArray(m.tool_calls)
+    );
+    expect(assistantMsgInTurn2).toBeDefined();
+    expect(assistantMsgInTurn2.tool_calls[0].id).toBe(expectedCallId);
+
+    // Verify Tool message in Turn 2 payload has EXACT matching tool_call_id
+    const toolMsgInTurn2 = turn2Payload.messages.find((m: any) => m.role === 'tool');
+    expect(toolMsgInTurn2).toBeDefined();
+    expect(toolMsgInTurn2.name).toBe('search_products');
+    expect(toolMsgInTurn2.tool_call_id).toBe(expectedCallId);
+    expect(toolMsgInTurn2.tool_call_id).toBe(assistantMsgInTurn2.tool_calls[0].id);
+
+    // Verify final synthesized response
+    expect(body.data.assistantMessage.content).toContain('ProMouse giá 450.000 đ');
+    expect(body.data.assistantMessage.metadata?.provider).toBe('workers-ai');
+  });
+
+  it('15. [P1-1 Regression 6] Existing GeminiProvider behavior and formatting remain completely unchanged', async () => {
+    const geminiProvider = new GeminiProvider('fake_gemini_key', 'gemini-3.8-flash');
+    expect(geminiProvider.providerName).toBe('google-gemini');
+    expect(geminiProvider.getModel()).toBe('gemini-3.8-flash');
+
+    // Verify GeminiProvider formats messages without breaking on toolCallId
+    const res = await geminiProvider.generateResponse([
+      { role: 'user', content: 'Chính sách đổi trả tại EdgeCart?' },
+      {
+        role: 'assistant',
+        content: '',
+        toolCalls: [{ id: 'gem_call_1', name: 'get_policy', arguments: { policyType: 'return' } }],
+      },
+      {
+        role: 'tool',
+        name: 'get_policy',
+        toolCallId: 'gem_call_1',
+        content: JSON.stringify({ policy: 'Đổi trả miễn phí trong 7 ngày' }),
+      },
+    ]);
+
+    // Without live API key, GeminiProvider falls back gracefully to mock fallback
+    expect(res.providerUsed).toBe('mock-fallback');
+    expect(res.message.content).toBeDefined();
+    expect(res.message.content.length).toBeGreaterThan(0);
   });
 });

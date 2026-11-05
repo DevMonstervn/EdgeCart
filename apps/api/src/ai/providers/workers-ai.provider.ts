@@ -28,11 +28,11 @@ export class WorkersAIProvider implements AIProvider {
     return this.model;
   }
 
-  private formatMessages(
+  public formatMessages(
     messages: ProviderChatMessage[],
     systemInstruction?: string
-  ): Array<{ role: string; content: string; name?: string; tool_calls?: any[] }> {
-    const formatted: Array<{ role: string; content: string; name?: string; tool_calls?: any[] }> = [];
+  ): Array<{ role: string; content: string; name?: string; tool_call_id?: string; tool_calls?: any[] }> {
+    const formatted: Array<{ role: string; content: string; name?: string; tool_call_id?: string; tool_calls?: any[] }> = [];
 
     if (systemInstruction) {
       formatted.push({
@@ -40,6 +40,9 @@ export class WorkersAIProvider implements AIProvider {
         content: systemInstruction,
       });
     }
+
+    // Track active assistant tool calls for matching when toolCallId is omitted
+    const pendingAssistantToolCalls: Array<{ id: string; name: string }> = [];
 
     for (const msg of messages) {
       if (msg.role === 'system') {
@@ -49,28 +52,66 @@ export class WorkersAIProvider implements AIProvider {
         continue;
       }
 
-      if (msg.role === 'tool') {
-        formatted.push({
-          role: 'tool',
-          name: msg.name,
-          content: msg.content,
-        });
-        continue;
-      }
-
       if (msg.role === 'assistant' && msg.toolCalls && msg.toolCalls.length > 0) {
+        const toolCallsFormatted = msg.toolCalls.map((tc) => ({
+          id: tc.id,
+          type: 'function',
+          function: {
+            name: tc.name,
+            arguments: typeof tc.arguments === 'string' ? tc.arguments : JSON.stringify(tc.arguments || {}),
+          },
+        }));
+
         formatted.push({
           role: 'assistant',
           content: msg.content || '',
-          tool_calls: msg.toolCalls.map((tc) => ({
-            id: tc.id,
-            type: 'function',
-            function: {
-              name: tc.name,
-              arguments: JSON.stringify(tc.arguments || {}),
-            },
-          })),
+          tool_calls: toolCallsFormatted,
         });
+
+        // Register assistant tool calls for subsequent correlation
+        for (const tc of msg.toolCalls) {
+          if (tc.id && typeof tc.id === 'string' && tc.id.trim()) {
+            pendingAssistantToolCalls.push({ id: tc.id.trim(), name: tc.name });
+          }
+        }
+        continue;
+      }
+
+      if (msg.role === 'tool') {
+        let matchedId: string | undefined;
+
+        // 1. Check if toolCallId is explicitly provided and non-empty
+        if (msg.toolCallId && typeof msg.toolCallId === 'string' && msg.toolCallId.trim()) {
+          matchedId = msg.toolCallId.trim();
+          // Remove from pending assistant tool calls if present
+          const idx = pendingAssistantToolCalls.findIndex((tc) => tc.id === matchedId);
+          if (idx !== -1) {
+            pendingAssistantToolCalls.splice(idx, 1);
+          }
+        } else if (msg.name) {
+          // 2. If toolCallId is missing, match by tool name from pending assistant tool calls
+          const idx = pendingAssistantToolCalls.findIndex((tc) => tc.name === msg.name);
+          if (idx !== -1) {
+            matchedId = pendingAssistantToolCalls[idx].id;
+            pendingAssistantToolCalls.splice(idx, 1);
+          }
+        }
+
+        // 3. Format role: 'tool' with matching tool_call_id
+        if (matchedId) {
+          formatted.push({
+            role: 'tool',
+            name: msg.name,
+            tool_call_id: matchedId,
+            content: msg.content,
+          });
+        } else {
+          // 4. Safe explicit handling: Never fabricate IDs using tool names or generic fallback strings.
+          // If required ID is missing and cannot be matched, omit to avoid sending malformed payload to Cloudflare Workers AI.
+          console.warn(
+            `[WorkersAIProvider] Omitting tool message "${msg.name || 'unnamed'}": missing required tool_call_id and no matching assistant tool call found.`
+          );
+        }
         continue;
       }
 
@@ -109,8 +150,12 @@ export class WorkersAIProvider implements AIProvider {
           }
         }
         if (name) {
+          const callId =
+            typeof tc.id === 'string' && tc.id.trim()
+              ? tc.id.trim()
+              : `call_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
           calls.push({
-            id: tc.id || `tc_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+            id: callId,
             name,
             arguments: args,
           });
