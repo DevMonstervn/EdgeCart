@@ -275,13 +275,32 @@ export async function executeBusinessTool(
         try {
           p = await catalogService.getProductBySlug(idOrSlug);
         } catch {
-          // If slug lookup fails, fall back to search by product name/keyword
+          // 1. Fall back to search by product name/keyword
           try {
             const searchRes = await catalogService.getProducts({ q: idOrSlug, limit: 1 });
             if (searchRes.products && searchRes.products.length > 0) {
               p = searchRes.products[0];
             }
           } catch {}
+
+          // 2. If phrase search yielded no match, extract significant keywords (e.g. brand/model name)
+          if (!p) {
+            const words = idOrSlug.split(/\s+/).filter((w) => w.length >= 3);
+            for (let i = words.length - 1; i >= 0; i--) {
+              const kw = words[i];
+              // Skip generic words like 'sản', 'phẩm', 'laptop' if other words exist
+              if (['laptop', 'hàng', 'loại', 'máy'].includes(kw.toLowerCase()) && words.length > 1) {
+                continue;
+              }
+              try {
+                const searchRes = await catalogService.getProducts({ q: kw, limit: 1 });
+                if (searchRes.products && searchRes.products.length > 0) {
+                  p = searchRes.products[0];
+                  break;
+                }
+              } catch {}
+            }
+          }
         }
 
         if (p && !products.some((existing) => existing.id === p.id)) {
