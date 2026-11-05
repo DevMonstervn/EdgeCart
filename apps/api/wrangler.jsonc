@@ -55,7 +55,8 @@
       "vars": {
         "ENVIRONMENT": "staging",
         "APP_URL": "https://staging.buydragon.pages.dev",
-        "ALLOWED_ORIGINS": "https://staging.buydragon.pages.dev,https://buydragon.pages.dev"
+        "ALLOWED_ORIGINS": "https://staging.buydragon.pages.dev,https://buydragon.pages.dev",
+        "AI_MODEL": "gemini-1.5-flash"
       }
     }
   }

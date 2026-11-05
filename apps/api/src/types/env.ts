@@ -7,6 +7,9 @@ export interface Env {
   ALLOWED_ORIGINS?: string;
   R2_PUBLIC_BASE_URL?: string;
   JWT_SECRET: string;
+  GEMINI_API_KEY?: string;
+  AI_PROVIDER?: string;
+  AI_MODEL?: string;
 }
 
 export interface JwtPayload {

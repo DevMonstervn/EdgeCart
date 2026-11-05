@@ -2,6 +2,8 @@
 import Navbar from '../components/Navbar.vue';
 import MobileBottomNav from '../components/MobileBottomNav.vue';
 import Toast from '../components/Toast.vue';
+import AIChatLauncher from '../components/chat/AIChatLauncher.vue';
+import AIChatDrawer from '../components/chat/AIChatDrawer.vue';
 import { Zap, ShieldCheck, Heart } from 'lucide-vue-next';
 </script>
 
@@ -79,5 +81,9 @@ import { Zap, ShieldCheck, Heart } from 'lucide-vue-next';
 
     <!-- Global Toast Alert Container -->
     <Toast />
+
+    <!-- EdgeCart AI Assistant Widgets -->
+    <AIChatLauncher />
+    <AIChatDrawer />
   </div>
 </template>
