@@ -148,7 +148,12 @@ aiRouter.get('/models', async (c) => {
   const apiKey = (c.env.GEMINI_API_KEY || '').trim();
 
   // Test candidate models directly to diagnose upstream behavior empirically
-  const candidateModels = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-1.5-pro'];
+  const candidateModels = [
+    'gemini-3.8-flash',
+    'gemini-2.5-flash',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash',
+  ];
   const modelProbes: Record<string, { status: number; message: string }> = {};
 
   if (apiKey) {

@@ -37,7 +37,7 @@ export class GeminiProvider implements AIProvider {
   private model: string;
   private hasAttemptedModelResolution = false;
 
-  constructor(apiKey?: string, model: string = 'gemini-2.0-flash') {
+  constructor(apiKey?: string, model: string = 'gemini-3.8-flash') {
     this.apiKey = (apiKey || '').trim();
     this.model = model;
   }
@@ -155,9 +155,9 @@ export class GeminiProvider implements AIProvider {
 
       // Prefer available flash models
       const preferred =
-        pool.find((m) => m.name.includes('2.0-flash'))?.name ||
+        pool.find((m) => m.name.includes('3.8-flash'))?.name ||
         pool.find((m) => m.name.includes('2.5-flash'))?.name ||
-        pool.find((m) => m.name.includes('1.5-flash'))?.name ||
+        pool.find((m) => m.name.includes('2.0-flash'))?.name ||
         pool.find((m) => m.name.includes('flash'))?.name ||
         pool[0]?.name;
 

@@ -17,7 +17,7 @@ export class AIOrchestratorService {
 
   constructor(private env: Env) {
     this.repo = new AIConversationRepository(env.DB);
-    this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-2.0-flash');
+    this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-3.8-flash');
   }
 
   async listAvailableModels() {
