@@ -52,11 +52,15 @@
           "bucket_name": "edgecart-media-staging"
         }
       ],
+      "ai": {
+        "binding": "AI"
+      },
       "vars": {
         "ENVIRONMENT": "staging",
         "APP_URL": "https://staging.buydragon.pages.dev",
         "ALLOWED_ORIGINS": "https://staging.buydragon.pages.dev,https://buydragon.pages.dev",
-        "AI_MODEL": "gemini-3.8-flash"
+        "AI_PROVIDER": "workers-ai",
+        "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
       }
     }
   }

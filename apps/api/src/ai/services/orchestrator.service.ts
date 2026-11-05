@@ -1,6 +1,7 @@
 import type { Env } from '../../types/env.js';
 import { AIConversationRepository } from '../../repositories/ai-conversation.repo.js';
 import { GeminiProvider } from '../providers/gemini.provider.js';
+import { WorkersAIProvider, WORKERS_AI_MODELS } from '../providers/workers-ai.provider.js';
 import { BUSINESS_TOOLS, executeBusinessTool } from '../tools/business-tools.js';
 import type {
   AIConversation,
@@ -9,19 +10,52 @@ import type {
   AIMessageMetadata,
   AIProductCardData,
 } from '@edgecart/shared';
-import type { ProviderChatMessage } from '../interfaces/provider.js';
+import type { ProviderChatMessage, AIProvider } from '../interfaces/provider.js';
 
 export class AIOrchestratorService {
   private repo: AIConversationRepository;
-  private provider: GeminiProvider;
+  private provider: AIProvider;
 
   constructor(private env: Env) {
     this.repo = new AIConversationRepository(env.DB);
-    this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-3.8-flash');
+
+    const providerType = (env.AI_PROVIDER || '').toLowerCase();
+    if (providerType === 'gemini') {
+      this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-3.8-flash');
+    } else if (env.AI) {
+      this.provider = new WorkersAIProvider(env.AI, env.AI_MODEL || WORKERS_AI_MODELS.LLAMA_3_3_70B);
+    } else if (env.GEMINI_API_KEY) {
+      this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-3.8-flash');
+    } else {
+      this.provider = new WorkersAIProvider(env.AI, env.AI_MODEL || WORKERS_AI_MODELS.LLAMA_3_3_70B);
+    }
+  }
+
+  getProviderName(): string {
+    return this.provider.providerName;
   }
 
   async listAvailableModels() {
-    return await this.provider.listAvailableModels();
+    if (this.provider instanceof GeminiProvider) {
+      return await this.provider.listAvailableModels();
+    }
+    return [
+      {
+        name: WORKERS_AI_MODELS.LLAMA_3_3_70B,
+        displayName: 'Llama 3.3 70B Instruct (Fast FP8)',
+        supportedGenerationMethods: ['generateContent', 'functionCalling', 'streaming'],
+      },
+      {
+        name: WORKERS_AI_MODELS.LLAMA_3_1_8B,
+        displayName: 'Llama 3.1 8B Instruct',
+        supportedGenerationMethods: ['generateContent', 'functionCalling', 'streaming'],
+      },
+      {
+        name: WORKERS_AI_MODELS.DEEPSEEK_R1_32B,
+        displayName: 'DeepSeek R1 Distill Qwen 32B',
+        supportedGenerationMethods: ['generateContent', 'streaming'],
+      },
+    ];
   }
 
   private getSystemPrompt(): string {

@@ -2,6 +2,7 @@ export interface Env {
   DB: D1Database;
   KV: KVNamespace;
   R2: R2Bucket;
+  AI?: any; // Cloudflare Workers AI binding
   ENVIRONMENT: string;
   APP_URL: string;
   ALLOWED_ORIGINS?: string;

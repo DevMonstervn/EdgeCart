@@ -187,21 +187,23 @@ aiRouter.get('/models', async (c) => {
   try {
     const models = await orchestrator.listAvailableModels();
     return ok(c, {
-      provider: 'google-gemini',
+      provider: orchestrator.getProviderName(),
       edgeLocation: colo,
-      configuredModel: c.env.AI_MODEL || 'gemini-2.0-flash',
+      configuredModel: c.env.AI_MODEL || (c.env.AI ? '@cf/meta/llama-3.3-70b-instruct-fp8-fast' : 'gemini-3.8-flash'),
       availableModels: models,
-      hasKeyConfigured: Boolean(apiKey),
+      hasAIBinding: Boolean(c.env.AI),
+      hasGeminiKey: Boolean(apiKey),
       modelProbes,
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     return ok(c, {
-      provider: 'google-gemini',
+      provider: orchestrator.getProviderName(),
       edgeLocation: colo,
-      configuredModel: c.env.AI_MODEL || 'gemini-2.0-flash',
+      configuredModel: c.env.AI_MODEL || (c.env.AI ? '@cf/meta/llama-3.3-70b-instruct-fp8-fast' : 'gemini-3.8-flash'),
       availableModels: [],
-      hasKeyConfigured: Boolean(apiKey),
+      hasAIBinding: Boolean(c.env.AI),
+      hasGeminiKey: Boolean(apiKey),
       status: 'UPSTREAM_RESTRICTED',
       upstreamMessage: msg,
       modelProbes,

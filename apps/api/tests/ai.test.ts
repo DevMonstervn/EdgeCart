@@ -613,7 +613,7 @@ describe('EdgeCart AI Assistant Integration & Security Tests', () => {
     expect(res.status).toBe(200);
     const body = (await res.json()) as any;
     expect(body.success).toBe(true);
-    expect(body.data.provider).toBe('google-gemini');
+    expect(['cloudflare-workers-ai', 'google-gemini']).toContain(body.data.provider);
     expect(body.data.configuredModel).toBeDefined();
     // Verify no secret leak
     const bodyStr = JSON.stringify(body);
