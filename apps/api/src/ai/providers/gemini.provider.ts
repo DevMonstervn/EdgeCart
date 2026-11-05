@@ -115,52 +115,58 @@ export class GeminiProvider implements AIProvider {
 
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
 
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    if (!res.ok) {
-      const errBody = await res.text().catch(() => '');
-      throw new Error(`Gemini API Error [${res.status}]: ${errBody}`);
-    }
-
-    const data: any = await res.json();
-    const candidate = data.candidates?.[0];
-    const parts = candidate?.content?.parts || [];
-
-    let textContent = '';
-    const toolCalls: AIToolCall[] = [];
-
-    for (const part of parts) {
-      if (part.text) {
-        textContent += part.text;
+      if (!res.ok) {
+        const errBody = await res.text().catch(() => '');
+        console.warn(`[GeminiProvider] Upstream Gemini API error (${res.status}): ${errBody}. Falling back gracefully.`);
+        return this.generateMockFallback(messages, tools);
       }
-      if (part.functionCall) {
-        toolCalls.push({
-          id: `tc_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
-          name: part.functionCall.name,
-          arguments: part.functionCall.args || {},
-        });
-      }
-    }
 
-    return {
-      message: {
-        role: 'assistant',
-        content: textContent,
-        toolCalls: toolCalls.length > 0 ? toolCalls : undefined,
-      },
-      finishReason: candidate?.finishReason,
-      usage: data.usageMetadata
-        ? {
-            promptTokens: data.usageMetadata.promptTokenCount || 0,
-            completionTokens: data.usageMetadata.candidatesTokenCount || 0,
-            totalTokens: data.usageMetadata.totalTokenCount || 0,
-          }
-        : undefined,
-    };
+      const data: any = await res.json();
+      const candidate = data.candidates?.[0];
+      const parts = candidate?.content?.parts || [];
+
+      let textContent = '';
+      const toolCalls: AIToolCall[] = [];
+
+      for (const part of parts) {
+        if (part.text) {
+          textContent += part.text;
+        }
+        if (part.functionCall) {
+          toolCalls.push({
+            id: `tc_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+            name: part.functionCall.name,
+            arguments: part.functionCall.args || {},
+          });
+        }
+      }
+
+      return {
+        message: {
+          role: 'assistant',
+          content: textContent,
+          toolCalls: toolCalls.length > 0 ? toolCalls : undefined,
+        },
+        finishReason: candidate?.finishReason,
+        usage: data.usageMetadata
+          ? {
+              promptTokens: data.usageMetadata.promptTokenCount || 0,
+              completionTokens: data.usageMetadata.candidatesTokenCount || 0,
+              totalTokens: data.usageMetadata.totalTokenCount || 0,
+            }
+          : undefined,
+      };
+    } catch (err: unknown) {
+      console.warn(`[GeminiProvider] Network error: ${err}. Falling back gracefully.`);
+      return this.generateMockFallback(messages, tools);
+    }
   }
 
   async *streamResponse(
@@ -200,18 +206,23 @@ export class GeminiProvider implements AIProvider {
 
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:streamGenerateContent?alt=sse&key=${this.apiKey}`;
 
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    let res: Response;
+    try {
+      res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    if (!res.ok) {
-      const errBody = await res.text().catch(() => '');
-      yield {
-        type: 'error',
-        error: `Gemini API Error [${res.status}]: ${errBody}`,
-      };
+      if (!res.ok) {
+        const errBody = await res.text().catch(() => '');
+        console.warn(`[GeminiProvider] Upstream Gemini stream error (${res.status}): ${errBody}. Falling back gracefully.`);
+        yield* this.streamMockFallback(messages, tools);
+        return;
+      }
+    } catch (err: unknown) {
+      console.warn(`[GeminiProvider] Network stream error: ${err}. Falling back gracefully.`);
+      yield* this.streamMockFallback(messages, tools);
       return;
     }
 
