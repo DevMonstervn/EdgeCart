@@ -144,17 +144,63 @@ aiRouter.delete('/conversations/:id', async (c) => {
 // 5. Query available models securely (does not expose GEMINI_API_KEY)
 aiRouter.get('/models', async (c) => {
   const orchestrator = new AIOrchestratorService(c.env);
+  const colo = (c.req.raw as any)?.cf?.colo || 'UNKNOWN';
+  const apiKey = (c.env.GEMINI_API_KEY || '').trim();
+
+  // Test candidate models directly to diagnose upstream behavior empirically
+  const candidateModels = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-1.5-pro'];
+  const modelProbes: Record<string, { status: number; message: string }> = {};
+
+  if (apiKey) {
+    for (const model of candidateModels) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const probeRes = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: 'ping' }] }] }),
+        });
+        const probeText = await probeRes.text().catch(() => '');
+        let summary = probeText.slice(0, 150);
+        try {
+          const parsed = JSON.parse(probeText);
+          summary = parsed.error?.message || summary;
+        } catch {}
+        modelProbes[model] = {
+          status: probeRes.status,
+          message: summary,
+        };
+      } catch (e: unknown) {
+        modelProbes[model] = {
+          status: 0,
+          message: e instanceof Error ? e.message : String(e),
+        };
+      }
+    }
+  }
+
   try {
     const models = await orchestrator.listAvailableModels();
     return ok(c, {
       provider: 'google-gemini',
-      configuredModel: c.env.AI_MODEL || 'gemini-1.5-flash',
+      edgeLocation: colo,
+      configuredModel: c.env.AI_MODEL || 'gemini-2.0-flash',
       availableModels: models,
-      hasKeyConfigured: Boolean(c.env.GEMINI_API_KEY && c.env.GEMINI_API_KEY.trim().length > 0),
+      hasKeyConfigured: Boolean(apiKey),
+      modelProbes,
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
-    return fail(c, 500, ERROR_CODES.INTERNAL_SERVER_ERROR, `Failed to query upstream models: ${msg}`);
+    return ok(c, {
+      provider: 'google-gemini',
+      edgeLocation: colo,
+      configuredModel: c.env.AI_MODEL || 'gemini-2.0-flash',
+      availableModels: [],
+      hasKeyConfigured: Boolean(apiKey),
+      status: 'UPSTREAM_RESTRICTED',
+      upstreamMessage: msg,
+      modelProbes,
+    });
   }
 });
 
