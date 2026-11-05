@@ -1,5 +1,16 @@
 import type { ProductImageInput, SellerProductUpdateInput } from '@edgecart/shared';
 
+export function sanitizeLikeSearch(raw?: string, maxLength = 50): string | null {
+  if (!raw) return null;
+  const cleaned = raw
+    .trim()
+    .slice(0, maxLength)
+    .replace(/[%_\\]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned.length > 0 ? cleaned : null;
+}
+
 export interface DbProduct {
   id: string;
   category_id: string;
@@ -88,9 +99,10 @@ export class ProductRepository {
       bindings.push(params.storeId);
     }
 
-    if (params.q) {
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
       conditions.push('(p.name LIKE ? OR p.description LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+      bindings.push(`%${safeQ}%`, `%${safeQ}%`);
     }
 
     if (params.minPrice !== undefined) {
@@ -156,9 +168,10 @@ export class ProductRepository {
       // By default Seller sees both active and hidden products unless filtered
     }
 
-    if (params.q) {
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
       conditions.push('(p.name LIKE ? OR p.slug LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+      bindings.push(`%${safeQ}%`, `%${safeQ}%`);
     }
 
     const whereClause = `WHERE ${conditions.join(' AND ')}`;
@@ -199,9 +212,10 @@ export class ProductRepository {
       bindings.push(params.storeId);
     }
 
-    if (params.q) {
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
       conditions.push('(p.name LIKE ? OR p.description LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+      bindings.push(`%${safeQ}%`, `%${safeQ}%`);
     }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';

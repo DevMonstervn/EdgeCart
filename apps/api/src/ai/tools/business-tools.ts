@@ -161,9 +161,10 @@ export async function executeBusinessTool(
         ? parsed.data
         : { query: undefined, categorySlug: undefined, minPrice: undefined, maxPrice: undefined, limit: 5 };
       const limit = params.limit || 5;
+      const safeQ = params.query ? params.query.trim().slice(0, 50) : undefined;
 
       const result = await catalogService.getProducts({
-        q: params.query,
+        q: safeQ,
         category: params.categorySlug,
         minPrice: params.minPrice,
         maxPrice: params.maxPrice,
@@ -262,13 +263,28 @@ export async function executeBusinessTool(
     case 'compare_products': {
       const parsed = AICompareProductsInputSchema.safeParse(args);
       if (!parsed.success) {
-        return { toolName, result: { error: 'Cần tối thiểu 2 mã sản phẩm để so sánh' } };
+        return { toolName, result: { error: 'Cần tối thiểu 2 mã hoặc tên sản phẩm để so sánh' } };
       }
 
       const products: AIProductCardData[] = [];
-      for (const idOrSlug of parsed.data.productSlugsOrIds) {
+      for (const rawIdOrSlug of parsed.data.productSlugsOrIds) {
+        const idOrSlug = (rawIdOrSlug || '').trim().slice(0, 50);
+        if (!idOrSlug) continue;
+
+        let p: any = null;
         try {
-          const p = await catalogService.getProductBySlug(idOrSlug);
+          p = await catalogService.getProductBySlug(idOrSlug);
+        } catch {
+          // If slug lookup fails, fall back to search by product name/keyword
+          try {
+            const searchRes = await catalogService.getProducts({ q: idOrSlug, limit: 1 });
+            if (searchRes.products && searchRes.products.length > 0) {
+              p = searchRes.products[0];
+            }
+          } catch {}
+        }
+
+        if (p && !products.some((existing) => existing.id === p.id)) {
           products.push({
             id: p.id,
             name: p.name,
@@ -276,17 +292,22 @@ export async function executeBusinessTool(
             basePrice: p.basePrice,
             salePrice: p.salePrice ?? null,
             imageUrl: p.images?.[0]?.imageUrl || null,
-            stockQuantity: p.variants?.reduce((s, v) => s + (v.stockQuantity || 0), 0) ?? 0,
+            stockQuantity: p.variants?.reduce((s: number, v: any) => s + (v.stockQuantity || 0), 0) ?? 0,
             storeName: p.store?.name || 'EdgeCart Official',
             categoryName: p.category?.name || 'Sản phẩm',
+            isFeatured: p.isFeatured || false,
           });
-        } catch {}
+        }
       }
 
       if (products.length < 2) {
         return {
           toolName,
-          result: { error: 'Không thể tìm thấy đủ các sản phẩm được chỉ định để so sánh.' },
+          result: {
+            error:
+              'Không tìm thấy đủ ít nhất 2 sản phẩm tương ứng trong hệ thống để thực hiện so sánh. Vui lòng kiểm tra lại tên sản phẩm.',
+            comparedCount: products.length,
+          },
         };
       }
 

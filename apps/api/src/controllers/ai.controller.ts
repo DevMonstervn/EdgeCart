@@ -140,3 +140,21 @@ aiRouter.delete('/conversations/:id', async (c) => {
 
   return ok(c, { message: 'Đã xóa cuộc trò chuyện thành công' });
 });
+
+// 5. Query available models securely (does not expose GEMINI_API_KEY)
+aiRouter.get('/models', async (c) => {
+  const orchestrator = new AIOrchestratorService(c.env);
+  try {
+    const models = await orchestrator.listAvailableModels();
+    return ok(c, {
+      provider: 'google-gemini',
+      configuredModel: c.env.AI_MODEL || 'gemini-1.5-flash',
+      availableModels: models,
+      hasKeyConfigured: Boolean(c.env.GEMINI_API_KEY && c.env.GEMINI_API_KEY.trim().length > 0),
+    });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return fail(c, 500, ERROR_CODES.INTERNAL_SERVER_ERROR, `Failed to query upstream models: ${msg}`);
+  }
+});
+

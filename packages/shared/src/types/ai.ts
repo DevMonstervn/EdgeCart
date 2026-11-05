@@ -58,6 +58,9 @@ export interface AIMessageMetadata {
     name: string;
     args: Record<string, unknown>;
   }[];
+  provider?: 'gemini' | 'mock-fallback';
+  model?: string;
+  fallbackReason?: string;
 }
 
 export interface AIMessage {

@@ -49,12 +49,18 @@ describe('EdgeCart AI Assistant Integration & Security Tests', () => {
     // Seed test product & variant
     await env.DB.prepare(`
       INSERT INTO products (id, category_id, name, slug, description, base_price, sale_price, is_featured, is_active)
-      VALUES ('prod_ai_polo', 'cat_ai_fashion', 'Áo Polo Thể Thao Nam Rồng', 'ao-polo-the-thao-nam-rong', 'Áo polo chất liệu poly co giãn', 300000, 249000, 1, 1);
+      VALUES 
+        ('prod_ai_polo', 'cat_ai_fashion', 'Áo Polo Thể Thao Nam Rồng', 'ao-polo-the-thao-nam-rong', 'Áo polo chất liệu poly co giãn', 300000, 249000, 1, 1),
+        ('prod_ai_balo', 'cat_ai_fashion', 'Balo laptop UrbanShield', 'balo-laptop-urbanshield', 'Balo chống nước cao cấp', 850000, 720000, 1, 1),
+        ('prod_ai_stand', 'cat_ai_fashion', 'Giá đỡ laptop StandPro', 'gia-do-laptop-standpro', 'Giá đỡ nhôm công thái học', 350000, 290000, 1, 1);
     `).run();
 
     await env.DB.prepare(`
       INSERT INTO product_variants (id, product_id, sku, title, price, stock_quantity, is_active)
-      VALUES ('var_ai_polo_l', 'prod_ai_polo', 'POLO-MR-L', 'Xanh Navy / L', 249000, 25, 1);
+      VALUES 
+        ('var_ai_polo_l', 'prod_ai_polo', 'POLO-MR-L', 'Xanh Navy / L', 249000, 25, 1),
+        ('var_ai_balo', 'prod_ai_balo', 'BALO-UB-01', 'Đen Tiêu Chuẩn', 720000, 15, 1),
+        ('var_ai_stand', 'prod_ai_stand', 'STAND-PRO-AL', 'Bạc Nhôm', 290000, 40, 1);
     `).run();
 
     // Seed test order for User A
@@ -512,5 +518,134 @@ describe('EdgeCart AI Assistant Integration & Security Tests', () => {
     expect(bodySearch.success).toBe(true);
     expect(bodySearch.data.assistantMessage.content).toContain('sản phẩm phù hợp');
     expect(bodySearch.data.assistantMessage.metadata?.products?.length).toBeGreaterThan(0);
+  });
+
+  // 16. Product Comparison Tool Execution with Natural Language Names
+  it('16. compare_products tool compares products by natural language names and resolves slugs', async () => {
+    const result = await executeBusinessTool(
+      'compare_products',
+      { productSlugsOrIds: ['Balo laptop UrbanShield', 'Giá đỡ laptop StandPro'] },
+      { env }
+    );
+
+    expect(result.toolName).toBe('compare_products');
+    expect(result.comparison).toBeDefined();
+    expect(result.comparison?.products.length).toBe(2);
+    expect(result.comparison?.attributes.length).toBeGreaterThan(0);
+    const names = result.comparison?.products.map((p) => p.name);
+    expect(names).toContain('Balo laptop UrbanShield');
+    expect(names).toContain('Giá đỡ laptop StandPro');
+  });
+
+  // 17. Product Comparison Tool: Insufficient Products Graceful Handling
+  it('17. compare_products tool returns graceful polite message when fewer than 2 products found', async () => {
+    const result = await executeBusinessTool(
+      'compare_products',
+      { productSlugsOrIds: ['Sản phẩm không tồn tại 1', 'Sản phẩm không tồn tại 2'] },
+      { env }
+    );
+
+    expect(result.toolName).toBe('compare_products');
+    expect((result.result as any).error).toBeDefined();
+    expect((result.result as any).error).toContain('Không tìm thấy đủ ít nhất 2 sản phẩm');
+  });
+
+  // 18. End-to-end Chat: Product Comparison Intent Prioritization (P1 Fix)
+  it('18. POST /api/v1/ai/chat prioritizes comparison intent over "giá"/search for Vietnamese queries', async () => {
+    const res = await app.request(
+      '/api/v1/ai/chat',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-session-id': 'guest_compare_test',
+        },
+        body: JSON.stringify({
+          message: 'So sánh sản phẩm Balo laptop UrbanShield và Giá đỡ laptop StandPro',
+          stream: false,
+        }),
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+    expect(body.data.assistantMessage).toBeDefined();
+    expect(body.data.assistantMessage.metadata?.comparison).toBeDefined();
+    expect(body.data.assistantMessage.metadata?.comparison?.products.length).toBe(2);
+  });
+
+  // 19. SQL LIKE Safety: Long queries with special chars do not crash SQLite
+  it('19. sanitizeLikeSearch prevents SQLite LIKE pattern crashes on long inputs and wildcards', async () => {
+    const longMaliciousQuery = '%'.repeat(50) + "Giá đỡ' AND 1=1 [a-z] %%% " + 'X'.repeat(200);
+    const res = await app.request(
+      '/api/v1/ai/chat',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-session-id': 'guest_sql_safe',
+        },
+        body: JSON.stringify({
+          message: `Tìm sản phẩm ${longMaliciousQuery}`,
+          stream: false,
+        }),
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+  });
+
+  // 20. GET /api/v1/ai/models endpoint security
+  it('20. GET /api/v1/ai/models returns model configuration securely without exposing API keys', async () => {
+    const res = await app.request(
+      '/api/v1/ai/models',
+      {
+        method: 'GET',
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+    expect(body.data.provider).toBe('google-gemini');
+    expect(body.data.configuredModel).toBeDefined();
+    // Verify no secret leak
+    const bodyStr = JSON.stringify(body);
+    expect(bodyStr).not.toContain('GEMINI_API_KEY');
+    expect(bodyStr).not.toContain('AI_SECRET');
+  });
+
+  // 21. Telemetry verification: providerUsed and fallbackReason are accurately recorded
+  it('21. Provider telemetry differentiates mock-fallback from real Gemini without falsification', async () => {
+    const res = await app.request(
+      '/api/v1/ai/chat',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-session-id': 'guest_telemetry_check',
+        },
+        body: JSON.stringify({
+          message: 'Chính sách bảo hành tại EdgeCart như thế nào?',
+          stream: false,
+        }),
+      },
+      env
+    );
+
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as any;
+    expect(body.success).toBe(true);
+    const metadata = body.data.assistantMessage.metadata;
+    expect(metadata).toBeDefined();
+    // In test environment without real key, it must report mock-fallback, NOT gemini
+    expect(metadata.provider).toBe('mock-fallback');
+    expect(metadata.fallbackReason).toBeDefined();
   });
 });

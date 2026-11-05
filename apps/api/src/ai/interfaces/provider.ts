@@ -20,6 +20,9 @@ export interface ProviderResponse {
     completionTokens: number;
     totalTokens: number;
   };
+  providerUsed?: 'gemini' | 'mock-fallback';
+  modelUsed?: string;
+  fallbackReason?: string;
 }
 
 export interface AIProvider {

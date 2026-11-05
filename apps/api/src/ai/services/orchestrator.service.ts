@@ -17,7 +17,11 @@ export class AIOrchestratorService {
 
   constructor(private env: Env) {
     this.repo = new AIConversationRepository(env.DB);
-    this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-1.5-flash');
+    this.provider = new GeminiProvider(env.GEMINI_API_KEY, env.AI_MODEL || 'gemini-2.0-flash');
+  }
+
+  async listAvailableModels() {
+    return await this.provider.listAvailableModels();
   }
 
   private getSystemPrompt(): string {
@@ -104,7 +108,11 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
     // First call to model with business tools
     const response1 = await this.provider.generateResponse(chatMessages, BUSINESS_TOOLS, options);
     let finalAssistantText = response1.message.content || '';
-    const metadata: AIMessageMetadata = {};
+    const metadata: AIMessageMetadata = {
+      provider: response1.providerUsed || 'mock-fallback',
+      model: response1.modelUsed,
+      fallbackReason: response1.fallbackReason,
+    };
 
     // Check if model called tools
     if (response1.message.toolCalls && response1.message.toolCalls.length > 0) {
@@ -145,11 +153,20 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
       // Second call to model to synthesize answer based on tool outputs
       const response2 = await this.provider.generateResponse(chatMessages, undefined, options);
       finalAssistantText = response2.message.content || finalAssistantText;
+      if (response2.providerUsed) {
+        metadata.provider = response2.providerUsed;
+        metadata.model = response2.modelUsed || metadata.model;
+        metadata.fallbackReason = response2.fallbackReason || metadata.fallbackReason;
+      }
     }
 
     if (!finalAssistantText) {
       finalAssistantText = 'Tôi đã kiểm tra dữ liệu nhưng chưa tìm thấy thông tin phù hợp. Bạn có thể diễn đạt lại câu hỏi giúp tôi được không?';
     }
+
+    console.info(
+      `[AIOrchestrator] Message processed - Conversation: ${conversation.id}, Provider: ${metadata.provider}, Model: ${metadata.model || 'none'}${metadata.fallbackReason ? `, Fallback: ${metadata.fallbackReason}` : ''}`
+    );
 
     // Save assistant message with metadata
     const savedAssistantMsg = await this.repo.createMessage({
@@ -213,7 +230,11 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
 
     // First call to check if tools are required
     const response1 = await this.provider.generateResponse(chatMessages, BUSINESS_TOOLS, options);
-    const metadata: AIMessageMetadata = {};
+    const metadata: AIMessageMetadata = {
+      provider: response1.providerUsed || 'mock-fallback',
+      model: response1.modelUsed,
+      fallbackReason: response1.fallbackReason,
+    };
     let fullText = '';
 
     if (response1.message.toolCalls && response1.message.toolCalls.length > 0) {
@@ -260,6 +281,10 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
         if (chunk.type === 'text_delta' && chunk.delta) {
           fullText += chunk.delta;
           yield chunk;
+        } else if (chunk.type === 'done' && chunk.metadata) {
+          if (chunk.metadata.provider) metadata.provider = chunk.metadata.provider;
+          if (chunk.metadata.model) metadata.model = chunk.metadata.model;
+          if (chunk.metadata.fallbackReason) metadata.fallbackReason = chunk.metadata.fallbackReason;
         }
       }
     } else {
@@ -280,6 +305,10 @@ QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ 100%):
       fullText = 'Tôi có thể hỗ trợ gì thêm cho bạn trong việc mua sắm hôm nay?';
       yield { type: 'text_delta', delta: fullText };
     }
+
+    console.info(
+      `[AIOrchestrator] Stream finished - Conversation: ${conversation.id}, Provider: ${metadata.provider}, Model: ${metadata.model || 'none'}${metadata.fallbackReason ? `, Fallback: ${metadata.fallbackReason}` : ''}`
+    );
 
     // Save final assistant message to D1
     await this.repo.createMessage({
