@@ -9,6 +9,7 @@ export interface CheckoutOutput {
   totalAmount: number;
   paymentMethod: string;
   paymentUrl?: string;
+  orderAccessToken?: string;
 }
 
 export class CheckoutService {
@@ -61,6 +62,7 @@ export class CheckoutService {
 
     const orderId = crypto.randomUUID();
     const orderNumber = `EC-${Date.now().toString().slice(-6)}-${Math.floor(100 + Math.random() * 900)}`;
+    const orderAccessToken = crypto.randomUUID();
 
     // 4. ATOMIC ORDER CREATION & STOCK DEDUCTION
     await this.orderRepo.createAtomicOrder({
@@ -106,15 +108,22 @@ export class CheckoutService {
       paymentUrl = `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?orderId=${orderId}&amount=${totalAmount}`;
     }
 
+    // 7. Store Guest Order Access Token in KV (30 days TTL) if guest checkout
+    if (!userId && this.env.KV) {
+      await this.env.KV.put(`order_token:${orderAccessToken}`, orderId, { expirationTtl: 86400 * 30 });
+      await this.env.KV.put(`order_token_rev:${orderId}`, orderAccessToken, { expirationTtl: 86400 * 30 });
+    }
+
     const output: CheckoutOutput = {
       orderId,
       orderNumber,
       totalAmount,
       paymentMethod: input.paymentMethod,
       paymentUrl,
+      orderAccessToken: !userId ? orderAccessToken : undefined,
     };
 
-    // 7. Store Idempotency Result in KV (24 hours TTL)
+    // 8. Store Idempotency Result in KV (24 hours TTL)
     if (this.env.KV && idempotencyKey) {
       await this.env.KV.put(`idempotency:${idempotencyKey}`, JSON.stringify(output), {
         expirationTtl: 86400,

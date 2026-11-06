@@ -192,6 +192,11 @@ export class OrderRepository {
     return await this.db.prepare(query).bind(orderId).first<DbOrder>();
   }
 
+  async findOrderByNumber(orderNumber: string): Promise<DbOrder | null> {
+    const query = 'SELECT * FROM orders WHERE order_number = ? LIMIT 1';
+    return await this.db.prepare(query).bind(orderNumber).first<DbOrder>();
+  }
+
   async getOrderItems(orderId: string): Promise<DbOrderItem[]> {
     const query = 'SELECT * FROM order_items WHERE order_id = ?';
     const { results } = await this.db.prepare(query).bind(orderId).all<DbOrderItem>();

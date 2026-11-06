@@ -47,7 +47,8 @@ import { Zap, ShieldCheck, Heart } from 'lucide-vue-next';
             <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Tài khoản & Hỗ trợ</h4>
             <ul class="space-y-2 text-xs text-slate-500">
               <li><RouterLink to="/cart" class="hover:text-brand-600">Giỏ hàng</RouterLink></li>
-              <li><RouterLink to="/orders" class="hover:text-brand-600">Theo dõi đơn hàng</RouterLink></li>
+              <li><RouterLink to="/order-tracking" class="hover:text-brand-600">Tra cứu đơn hàng</RouterLink></li>
+              <li><RouterLink to="/orders" class="hover:text-brand-600">Lịch sử đơn hàng</RouterLink></li>
               <li><RouterLink to="/profile" class="hover:text-brand-600">Sổ địa chỉ</RouterLink></li>
             </ul>
           </div>

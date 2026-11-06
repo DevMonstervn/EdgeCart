@@ -93,16 +93,37 @@ describe('Phase 3 Frontend RBAC, Router Guards & Menu Visibility', () => {
     it('allows unauthenticated Guest on public shopping & storefront routes, but redirects protected routes to /login', async () => {
       const router = createAppRouter(createMemoryHistory());
 
-      for (const publicPath of ['/', '/products', '/stores/techzone', '/cart']) {
+      for (const publicPath of [
+        '/',
+        '/products',
+        '/products/ao-polo',
+        '/products/lego-star-wars-75192',
+        '/stores/techzone',
+        '/cart',
+        '/checkout',
+      ]) {
         await router.push(publicPath);
         expect(router.currentRoute.value.path).toBe(publicPath);
       }
 
-      for (const protectedPath of ['/products/ao-polo', '/checkout', '/profile', '/orders', '/become-seller', '/seller', '/admin']) {
+      for (const protectedPath of ['/profile', '/orders', '/become-seller', '/seller', '/admin']) {
         await router.push(protectedPath);
         expect(router.currentRoute.value.path).toBe('/login');
         expect(router.currentRoute.value.query.redirect).toBe(protectedPath);
       }
+    });
+
+    it('allows unauthenticated Guest to navigate directly to product detail with search query and preserve URL state', async () => {
+      const router = createAppRouter(createMemoryHistory());
+
+      await router.push('/products?q=lego&category=do-choi');
+      expect(router.currentRoute.value.path).toBe('/products');
+      expect(router.currentRoute.value.query.q).toBe('lego');
+      expect(router.currentRoute.value.query.category).toBe('do-choi');
+
+      await router.push('/products/lego-ninjago-mission?ref=search');
+      expect(router.currentRoute.value.path).toBe('/products/lego-ninjago-mission');
+      expect(router.currentRoute.value.query.ref).toBe('search');
     });
 
     it('allows CUSTOMER (non-seller) on shopping & /become-seller, redirects /seller/* to /become-seller, and blocks /admin/*', async () => {

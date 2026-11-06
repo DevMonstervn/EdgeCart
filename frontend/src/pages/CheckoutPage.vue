@@ -26,6 +26,7 @@ const auth = useAuthStore();
 const toast = useToastStore();
 
 const isSubmitting = ref(false);
+const guestEmail = ref('');
 const orderSuccessData = ref<any | null>(null);
 
 // Form Fields
@@ -55,6 +56,15 @@ const totalAmount = computed(() => {
 
 function validateForm(): boolean {
   errors.value = {};
+
+  if (!auth.isAuthenticated) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!guestEmail.value.trim()) {
+      errors.value.email = 'Vui lòng cung cấp email liên hệ để nhận mã tra cứu đơn hàng';
+    } else if (!emailRegex.test(guestEmail.value.trim())) {
+      errors.value.email = 'Email liên hệ không đúng định dạng';
+    }
+  }
 
   if (!recipientName.value.trim() || recipientName.value.length < 2) {
     errors.value.recipientName = 'Vui lòng nhập họ tên người nhận (tối thiểu 2 ký tự)';
@@ -98,6 +108,7 @@ async function handlePlaceOrder() {
     const idempotencyKey = safeRandomUUID();
     const result = await orderService.checkout(
       {
+        customerEmail: !auth.isAuthenticated ? guestEmail.value.trim() : undefined,
         shippingAddress: {
           recipientName: recipientName.value.trim(),
           phone: phone.value.trim(),
@@ -147,6 +158,13 @@ async function handlePlaceOrder() {
         </p>
 
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs sm:text-sm space-y-2 text-left mb-6">
+          <div v-if="orderSuccessData.orderAccessToken" class="flex flex-col gap-1 pb-2 border-b border-slate-200/60 text-xs">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-500">Mã tra cứu đơn hàng:</span>
+              <strong class="text-indigo-600 font-mono text-[11px] select-all bg-indigo-50 px-2 py-0.5 rounded-md">{{ orderSuccessData.orderAccessToken }}</strong>
+            </div>
+            <p class="text-[11px] text-slate-400 italic">Vui lòng lưu lại mã tra cứu để kiểm tra tiến độ giao hàng bất cứ lúc nào.</p>
+          </div>
           <div class="flex justify-between">
             <span class="text-slate-500">Mã đơn hàng:</span>
             <strong class="text-slate-900 font-mono">{{ orderSuccessData.orderNumber }}</strong>
@@ -163,10 +181,19 @@ async function handlePlaceOrder() {
 
         <div class="flex flex-col sm:flex-row gap-3">
           <RouterLink
+            v-if="auth.isAuthenticated"
             to="/orders"
             class="flex-1 py-3 px-4 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition text-center"
           >
             Xem lịch sử đơn hàng
+          </RouterLink>
+          <RouterLink
+            v-else-if="orderSuccessData.orderAccessToken"
+            :to="{ path: '/order-tracking', query: { orderNumber: orderSuccessData.orderNumber, token: orderSuccessData.orderAccessToken } }"
+            class="flex-1 py-3 px-4 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 transition text-center flex items-center justify-center gap-1.5 shadow-sm"
+          >
+            <span>Tra cứu tiến độ giao hàng</span>
+            <ArrowRight class="w-3.5 h-3.5" />
           </RouterLink>
           <RouterLink
             to="/"
@@ -192,6 +219,29 @@ async function handlePlaceOrder() {
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Form Section (2 cols) -->
           <div class="lg:col-span-2 space-y-6">
+            <!-- Guest Contact Email Section -->
+            <div v-if="!auth.isAuthenticated" class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs space-y-3">
+              <h2 class="text-base font-bold text-slate-900 pb-2 border-b border-slate-100 flex items-center justify-between">
+                <span>Thông tin liên hệ (Khách vãng lai)</span>
+                <span class="text-xs text-slate-400 font-normal">* Bắt buộc</span>
+              </h2>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Email nhận thông tin đơn hàng</label>
+                <input
+                  v-model="guestEmail"
+                  type="email"
+                  placeholder="example@email.com"
+                  class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
+                  :class="errors.email ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
+                />
+                <span v-if="errors.email" class="text-[11px] text-rose-500 mt-1 block">
+                  {{ errors.email }}
+                </span>
+                <p v-else class="text-[11px] text-slate-400 mt-1">
+                  EdgeCart sẽ cấp mã tra cứu đơn hàng bảo mật ngay sau khi đặt hàng thành công.
+                </p>
+              </div>
+            </div>
             <!-- 1. Shipping Address Form -->
             <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs space-y-4">
               <h2 class="text-base font-bold text-slate-900 pb-3 border-b border-slate-100 flex items-center justify-between">

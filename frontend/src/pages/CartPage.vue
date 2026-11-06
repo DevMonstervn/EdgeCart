@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useCartStore } from '../stores/cart.js';
+import { useToastStore } from '../stores/toast.js';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import EmptyState from '../components/EmptyState.vue';
 import {
@@ -15,6 +16,7 @@ import {
 } from 'lucide-vue-next';
 
 const cart = useCartStore();
+const toast = useToastStore();
 
 function formatVND(amount: number) {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
@@ -27,15 +29,32 @@ const shippingFee = computed(() => {
 const totalAmount = computed(() => {
   return cart.subtotal + shippingFee.value;
 });
+
+function handleClearCart() {
+  cart.clearCart();
+  toast.info('Đã xóa toàn bộ giỏ hàng');
+}
 </script>
 
 <template>
   <DefaultLayout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">Giỏ Hàng Của Bạn</h1>
-      <p class="text-xs sm:text-sm text-slate-500 mb-8">
-        Có {{ cart.totalItems }} sản phẩm đang chờ thanh toán
-      </p>
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">Giỏ Hàng Của Bạn</h1>
+          <p class="text-xs sm:text-sm text-slate-500">
+            Có {{ cart.totalItems }} sản phẩm đang chờ thanh toán
+          </p>
+        </div>
+        <button
+          v-if="cart.items.length > 0"
+          @click="handleClearCart"
+          class="text-xs font-semibold text-slate-500 hover:text-rose-600 transition flex items-center gap-1.5 px-3 py-2 rounded-xl hover:bg-rose-50 cursor-pointer"
+        >
+          <Trash2 class="w-4 h-4" />
+          <span>Xóa toàn bộ</span>
+        </button>
+      </div>
 
       <!-- Empty Cart State -->
       <EmptyState
@@ -102,6 +121,14 @@ const totalAmount = computed(() => {
                   Phân loại: <span class="text-slate-600">{{ item.variantTitle }}</span>
                 </p>
 
+                <!-- Out of Stock / Exceeds Stock Warning -->
+                <div v-if="item.currentStock <= 0" class="text-xs font-bold text-rose-600 mb-2">
+                  Sản phẩm tạm thời hết hàng
+                </div>
+                <div v-else-if="item.quantity > item.currentStock" class="text-xs font-semibold text-amber-600 mb-2">
+                  Kho chỉ còn {{ item.currentStock }} sản phẩm
+                </div>
+
                 <div class="text-sm font-bold text-brand-700 sm:hidden mb-2">
                   {{ formatVND(item.unitPrice) }}
                 </div>
@@ -119,7 +146,9 @@ const totalAmount = computed(() => {
                     <span class="w-8 text-center text-xs font-bold text-slate-800">{{ item.quantity }}</span>
                     <button
                       @click="cart.updateQuantity(item.variantId, item.quantity + 1)"
-                      class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 hover:bg-white transition"
+                      :disabled="item.quantity >= item.currentStock"
+                      :class="item.quantity >= item.currentStock ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white cursor-pointer'"
+                      class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-600 transition"
                       aria-label="Tăng số lượng"
                     >
                       <Plus class="w-3.5 h-3.5" />

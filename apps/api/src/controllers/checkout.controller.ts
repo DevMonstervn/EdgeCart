@@ -20,11 +20,17 @@ checkoutRouter.post('/', validateJson(CheckoutSchema), async (c) => {
   if (locked) {
     return fail(c, 403, ERROR_CODES.ACCOUNT_LOCKED, 'Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa');
   }
-  if (!userId || !email) {
+
+  // If unauthenticated and no guest contact email is provided, require login
+  if (!userId && !input.customerEmail) {
     return fail(c, 401, ERROR_CODES.AUTH_UNAUTHORIZED, 'Vui lòng đăng nhập tài khoản để đặt hàng');
   }
 
-  const userEmail = email;
+  // Determine user email: either from verified JWT (registered user) or from submitted payload (guest)
+  const userEmail = email || input.customerEmail;
+  if (!userEmail) {
+    return fail(c, 400, ERROR_CODES.BAD_REQUEST, 'Vui lòng cung cấp email liên hệ để đặt hàng');
+  }
 
   const service = new CheckoutService(c.env);
   try {

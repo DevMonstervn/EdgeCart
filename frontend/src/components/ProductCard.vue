@@ -56,12 +56,6 @@ async function handleQuickAdd(e: Event) {
   e.stopPropagation();
   if (!defaultVariant.value || isOutOfStock.value || isQuickAdding.value) return;
 
-  if (!auth.isAuthenticated) {
-    toast.info('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
-    router.push({ path: '/login', query: { redirect: `/products/${props.product.slug}` } });
-    return;
-  }
-
   isQuickAdding.value = true;
   try {
     await cart.addItem({
@@ -95,21 +89,14 @@ async function handleQuickBuy(e: Event) {
     imageUrl: primaryImage.value,
   };
 
-  if (!auth.isAuthenticated) {
-    await cart.addItem(item);
-    toast.info('Vui lòng đăng nhập để tiến hành thanh toán');
-    router.push({ path: '/login', query: { redirect: '/checkout' } });
-    return;
-  }
-
   isQuickBuying.value = true;
   try {
-    const success = await cart.addItem(item);
+    const success = await cart.buyNow(item);
     if (success) {
       await router.push('/checkout');
     }
   } catch (err: unknown) {
-    toast.error(err instanceof Error ? err.message : 'Không thể chuyển đến trang thanh toán');
+    toast.error(err instanceof Error ? err.message : 'Không thể chuyển đến thanh toán');
   } finally {
     isQuickBuying.value = false;
   }

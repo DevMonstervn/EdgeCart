@@ -79,13 +79,14 @@ export const CartMergeSchema = z.object({
 });
 
 export const CheckoutSchema = z.object({
+  customerEmail: z.string().trim().email('Email liên hệ không đúng định dạng').optional(),
   shippingAddress: z.object({
-    recipientName: z.string().min(2, 'Tên người nhận không được để trống'),
-    phone: z.string().regex(/^(0|\+84)[3|5|7|8|9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
-    province: z.string().min(1, 'Tỉnh/Thành phố không được để trống'),
-    district: z.string().min(1, 'Quận/Huyện không được để trống'),
-    ward: z.string().min(1, 'Phường/Xã không được để trống'),
-    streetAddress: z.string().min(5, 'Địa chỉ đường/phố không được để trống'),
+    recipientName: z.string().trim().min(2, 'Tên người nhận không được để trống'),
+    phone: z.string().trim().regex(VIETNAM_PHONE_REGEX, 'Số điện thoại không hợp lệ'),
+    province: z.string().trim().min(1, 'Tỉnh/Thành phố không được để trống'),
+    district: z.string().trim().nullish().transform((v) => v ?? ''),
+    ward: z.string().trim().min(1, 'Phường/Xã không được để trống'),
+    streetAddress: z.string().trim().min(3, 'Địa chỉ đường/phố không được để trống'),
   }),
   paymentMethod: z.enum([
     PAYMENT_METHOD.COD,
