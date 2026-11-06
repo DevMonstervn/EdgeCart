@@ -9,6 +9,7 @@ export interface CheckoutResult {
   totalAmount: number;
   paymentMethod: string;
   paymentUrl?: string;
+  orderAccessToken?: string;
 }
 
 export const orderService = {
@@ -67,6 +68,19 @@ export const orderService = {
     const res = await apiClient.get<ApiResponse<Order>>(`/orders/${encodeURIComponent(id)}`);
     if (!res.data.success || !res.data.data) {
       throw new Error(res.data.error?.message || 'Không tìm thấy đơn hàng');
+    }
+    return res.data.data;
+  },
+
+  async getGuestOrder(orderNumber: string, token: string): Promise<Order> {
+    const res = await apiClient.get<ApiResponse<Order>>('/orders/guest/track', {
+      params: { orderNumber },
+      headers: {
+        'X-Order-Token': token,
+      },
+    });
+    if (!res.data.success || !res.data.data) {
+      throw new Error(res.data.error?.message || 'Không thể tra cứu đơn hàng');
     }
     return res.data.data;
   },

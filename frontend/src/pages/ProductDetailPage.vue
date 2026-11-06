@@ -95,12 +95,6 @@ function handleQuantityChange(delta: number) {
 }
 
 async function handleAddToCart() {
-  if (!auth.isAuthenticated) {
-    toast.info('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
-    router.push({ path: '/login', query: { redirect: route.fullPath } });
-    return;
-  }
-
   if (!product.value || !selectedVariant.value || isOutOfStock.value || isAddingToCart.value) return;
 
   isAddingToCart.value = true;
@@ -129,26 +123,9 @@ async function handleAddToCart() {
 async function handleBuyNow() {
   if (!product.value || !selectedVariant.value || isOutOfStock.value || isBuyingNow.value) return;
 
-  if (!auth.isAuthenticated) {
-    // Save to guest cart so it automatically transfers after login
-    await cart.addItem({
-      variantId: selectedVariant.value.id,
-      productName: product.value.name,
-      variantTitle: selectedVariant.value.title,
-      sku: selectedVariant.value.sku,
-      unitPrice: currentPrice.value,
-      quantity: quantity.value,
-      currentStock: selectedVariant.value.stockQuantity,
-      imageUrl: images.value[0],
-    });
-    toast.info('Vui lòng đăng nhập để tiến hành thanh toán');
-    router.push({ path: '/login', query: { redirect: '/checkout' } });
-    return;
-  }
-
   isBuyingNow.value = true;
   try {
-    const success = await cart.addItem({
+    const success = await cart.buyNow({
       variantId: selectedVariant.value.id,
       productName: product.value.name,
       variantTitle: selectedVariant.value.title,
@@ -163,7 +140,7 @@ async function handleBuyNow() {
       await router.push('/checkout');
     }
   } catch (err: unknown) {
-    toast.error(err instanceof Error ? err.message : 'Không thể chuyển đến trang thanh toán');
+    toast.error(err instanceof Error ? err.message : 'Không thể chuyển đến thanh toán');
   } finally {
     isBuyingNow.value = false;
   }

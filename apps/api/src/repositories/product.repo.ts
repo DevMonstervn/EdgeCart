@@ -1,4 +1,127 @@
-import type { ProductImageInput, SellerProductUpdateInput } from '@edgecart/shared';
+import {
+  type ProductImageInput,
+  type SellerProductUpdateInput,
+  removeVietnameseTones,
+  resolveCategorySlug,
+} from '@edgecart/shared';
+
+export function sanitizeLikeSearch(raw?: string, maxLength = 50): string | null {
+  if (!raw) return null;
+  const cleaned = raw
+    .trim()
+    .slice(0, maxLength)
+    .replace(/[%_\\]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned.length > 0 ? cleaned : null;
+}
+
+export function capitalizeInitial(text: string): string {
+  if (!text) return text;
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+export function preprocessSearchQuery(query: string): string[] {
+  // 1. Normalize punctuation to spaces (preserve alphanumeric, Vietnamese diacritics, and hyphens)
+  const cleaned = query
+    .replace(/[?!,;:()"'~#$^*+=<>|\\/]/g, ' ')
+    .replace(/\.(?!\d)/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned) return [];
+
+  // 2. Normalize compound terms where redundant context would fail exact product title matching
+  // "chuột máy tính" -> "chuột" (all mice in catalog are computer mice; "máy tính" is not in ProMouse title)
+  let text = cleaned.replace(/chuột\s+máy\s+tính/gi, 'chuột');
+  text = text.replace(/chuot\s+may\s+tinh/gi, 'chuot');
+
+  // Split into raw words
+  const words = text.split(/\s+/).filter((w) => w.length > 0);
+  if (words.length === 0) return [];
+
+  // Conversational stopwords & filler words (normalized lowercase)
+  const CONVERSATIONAL_STOPWORDS = new Set([
+    'tim', 'kiem', 'cho', 'toi', 'minh', 'ban', 'em', 'anh', 'chi',
+    'mot', 'cai', 'chiec', 'nhung', 'cac',
+    'muon', 'can', 'mua', 'xem', 'hoi', 'co',
+    'nao', 'gi', 'duoc', 'nhi', 'nhe', 'nha', 'a', 'ha',
+    'xin', 'xo', 'mau',
+  ]);
+
+  const filteredTokens: string[] = [];
+
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    const unaccented = removeVietnameseTones(word).toLowerCase();
+
+    // Contextual handling of "không" / "khong":
+    // If followed by "dây" / "day", "không dây" is a critical product attribute -> KEEP!
+    if (unaccented === 'khong') {
+      const nextWord = i + 1 < words.length ? removeVietnameseTones(words[i + 1]).toLowerCase() : '';
+      if (nextWord === 'day') {
+        filteredTokens.push(word);
+        continue;
+      } else {
+        // Standalone "không" (question particle e.g. "có ... không?") -> skip
+        continue;
+      }
+    }
+
+    // Filter conversational stopwords
+    if (CONVERSATIONAL_STOPWORDS.has(unaccented)) {
+      continue;
+    }
+
+    filteredTokens.push(word);
+  }
+
+  // If query was composed ENTIRELY of stopwords (e.g. "tìm cho tôi"), fallback to words
+  const candidateTokens = filteredTokens.length > 0 ? filteredTokens : words;
+
+  // Apply maximum token limit AFTER stopword removal
+  return candidateTokens.slice(0, 6);
+}
+
+export function buildProductSearchConditions(safeQ: string): { clause: string; bindings: string[] } | null {
+  const tokens = preprocessSearchQuery(safeQ);
+  if (tokens.length === 0) return null;
+
+  const tokenClauses: string[] = [];
+  const bindings: string[] = [];
+
+  for (const token of tokens) {
+    const unaccented = removeVietnameseTones(token);
+    const capitalized = capitalizeInitial(token);
+
+    const subClauses: string[] = [
+      'p.name LIKE ?',
+      'p.description LIKE ?',
+      'EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id = p.id AND (v.title LIKE ? OR v.title LIKE ?))',
+    ];
+    bindings.push(`%${token}%`, `%${token}%`, `%${token}%`, `%${capitalized}%`);
+
+    // Handle SQLite non-ASCII case difference (e.g. 'đèn' vs 'Đèn')
+    if (capitalized !== token) {
+      subClauses.push('p.name LIKE ?', 'p.description LIKE ?');
+      bindings.push(`%${capitalized}%`, `%${capitalized}%`);
+    }
+
+    // Only apply unaccented slug fallback if token has at least 3 characters
+    // Prevents short tokens like "on" (from "ồn") from broad false positives across slugs (e.g. khong, chong, cong)
+    if (unaccented.length >= 3) {
+      subClauses.push('p.slug LIKE ?');
+      bindings.push(`%${unaccented}%`);
+    }
+
+    tokenClauses.push(`(${subClauses.join(' OR ')})`);
+  }
+
+  return {
+    clause: tokenClauses.join(' AND '),
+    bindings,
+  };
+}
 
 export interface DbProduct {
   id: string;
@@ -74,8 +197,14 @@ export class ProductRepository {
     const bindings: any[] = [];
 
     if (params.categorySlug) {
-      conditions.push('c.slug = ?');
-      bindings.push(params.categorySlug);
+      const resolvedCategory = resolveCategorySlug(params.categorySlug);
+      if (resolvedCategory) {
+        conditions.push('c.slug = ?');
+        bindings.push(resolvedCategory);
+      } else if (!params.q) {
+        conditions.push('c.slug = ?');
+        bindings.push(params.categorySlug);
+      }
     }
 
     if (params.storeSlug) {
@@ -88,9 +217,13 @@ export class ProductRepository {
       bindings.push(params.storeId);
     }
 
-    if (params.q) {
-      conditions.push('(p.name LIKE ? OR p.description LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
+      const searchConditions = buildProductSearchConditions(safeQ);
+      if (searchConditions) {
+        conditions.push(searchConditions.clause);
+        bindings.push(...searchConditions.bindings);
+      }
     }
 
     if (params.minPrice !== undefined) {
@@ -156,9 +289,13 @@ export class ProductRepository {
       // By default Seller sees both active and hidden products unless filtered
     }
 
-    if (params.q) {
-      conditions.push('(p.name LIKE ? OR p.slug LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
+      const searchConditions = buildProductSearchConditions(safeQ);
+      if (searchConditions) {
+        conditions.push(searchConditions.clause);
+        bindings.push(...searchConditions.bindings);
+      }
     }
 
     const whereClause = `WHERE ${conditions.join(' AND ')}`;
@@ -199,9 +336,13 @@ export class ProductRepository {
       bindings.push(params.storeId);
     }
 
-    if (params.q) {
-      conditions.push('(p.name LIKE ? OR p.description LIKE ?)');
-      bindings.push(`%${params.q}%`, `%${params.q}%`);
+    const safeQ = sanitizeLikeSearch(params.q, 50);
+    if (safeQ) {
+      const searchConditions = buildProductSearchConditions(safeQ);
+      if (searchConditions) {
+        conditions.push(searchConditions.clause);
+        bindings.push(...searchConditions.bindings);
+      }
     }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';

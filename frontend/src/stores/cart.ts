@@ -128,6 +128,41 @@ export const useCartStore = defineStore('cart', () => {
     return true;
   }
 
+  async function buyNow(payload: {
+    variantId: string;
+    productName: string;
+    variantTitle: string;
+    sku: string;
+    unitPrice: number;
+    quantity: number;
+    currentStock: number;
+    imageUrl?: string | null;
+  }): Promise<boolean> {
+    const toast = useToastStore();
+
+    if (payload.quantity <= 0) {
+      return false;
+    }
+
+    if (payload.quantity > payload.currentStock) {
+      toast.error(`Chỉ còn ${payload.currentStock} sản phẩm trong kho!`);
+      return false;
+    }
+
+    const existing = items.value.find((i) => i.variantId === payload.variantId);
+
+    // If item is already in cart, avoid duplicate increment
+    if (existing) {
+      if (existing.quantity < payload.quantity) {
+        await updateQuantity(payload.variantId, payload.quantity);
+      }
+      return true;
+    }
+
+    // Otherwise add as new item
+    return await addItem(payload);
+  }
+
   async function updateQuantity(variantId: string, quantity: number) {
     const auth = useAuthStore();
     const toast = useToastStore();
@@ -262,6 +297,7 @@ export const useCartStore = defineStore('cart', () => {
     amountToFreeShipping,
     fetchBackendCart,
     addItem,
+    buyNow,
     updateQuantity,
     removeItem,
     mergeGuestCart,

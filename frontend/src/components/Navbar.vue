@@ -96,6 +96,7 @@ async function handleLogout() {
           <!-- Desktop Navigation Links (Role-Aware) -->
           <nav class="hidden md:flex items-center gap-4 text-sm font-medium text-slate-600">
             <RouterLink to="/products" class="hover:text-brand-600 transition">Sản phẩm</RouterLink>
+            <RouterLink to="/order-tracking" class="hover:text-brand-600 transition">Tra cứu đơn</RouterLink>
 
             <RouterLink
               v-if="auth.isSeller"
