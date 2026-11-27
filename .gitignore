@@ -43,3 +43,7 @@ backups/
 *.backup
 *.sql
 !apps/api/migrations/*.sql
+
+# Local scratch scripts and captured analytics data
+scratch/
+basinCatalog/data/
