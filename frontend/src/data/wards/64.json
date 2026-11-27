@@ -1,0 +1,1528 @@
+[
+  {
+    "code": 23557,
+    "name": "Phường Yên Đỗ",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23560,
+    "name": "Phường Diên Hồng",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23563,
+    "name": "Phường Ia Kring",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23566,
+    "name": "Phường Hội Thương",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23569,
+    "name": "Phường Hội Phú",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23570,
+    "name": "Phường Phù Đổng",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23572,
+    "name": "Phường Hoa Lư",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23575,
+    "name": "Phường Tây Sơn",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23578,
+    "name": "Phường Thống Nhất",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23579,
+    "name": "Phường Đống Đa",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23581,
+    "name": "Phường Trà Bá",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23582,
+    "name": "Phường Thắng Lợi",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23584,
+    "name": "Phường Yên Thế",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23586,
+    "name": "Phường Chi Lăng",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23590,
+    "name": "Xã Biển Hồ",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23596,
+    "name": "Xã Trà Đa",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23599,
+    "name": "Xã Chư Á",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23602,
+    "name": "Xã An Phú",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23605,
+    "name": "Xã Diên Phú",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23608,
+    "name": "Xã Ia Kênh",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23611,
+    "name": "Xã Gào",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thành phố Pleiku"
+  },
+  {
+    "code": 23614,
+    "name": "Phường An Bình",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23617,
+    "name": "Phường Tây Sơn",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23620,
+    "name": "Phường An Phú",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23623,
+    "name": "Phường An Tân",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23626,
+    "name": "Xã Tú An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23627,
+    "name": "Xã Xuân An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23629,
+    "name": "Xã Cửu An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23630,
+    "name": "Phường An Phước",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23632,
+    "name": "Xã Song An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23633,
+    "name": "Phường Ngô Mây",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 23635,
+    "name": "Xã Thành An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã An Khê"
+  },
+  {
+    "code": 24041,
+    "name": "Phường Cheo Reo",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24042,
+    "name": "Phường Hòa Bình",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24044,
+    "name": "Phường Đoàn Kết",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24045,
+    "name": "Phường Sông Bờ",
+    "division_type": "phường",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24064,
+    "name": "Xã Ia RBol",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24065,
+    "name": "Xã Chư Băh",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24070,
+    "name": "Xã Ia RTô",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 24073,
+    "name": "Xã Ia Sao",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Thị xã Ayun Pa"
+  },
+  {
+    "code": 23638,
+    "name": "Thị trấn KBang",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23641,
+    "name": "Xã Kon Pne",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23644,
+    "name": "Xã Đăk Roong",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23647,
+    "name": "Xã Sơn Lang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23650,
+    "name": "Xã KRong",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23653,
+    "name": "Xã Sơ Pai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23656,
+    "name": "Xã Lơ Ku",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23659,
+    "name": "Xã Đông",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23660,
+    "name": "Xã Đak SMar",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23662,
+    "name": "Xã Nghĩa An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23665,
+    "name": "Xã Tơ Tung",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23668,
+    "name": "Xã Kông Lơng Khơng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23674,
+    "name": "Xã Kông Bơ La",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện KBang"
+  },
+  {
+    "code": 23677,
+    "name": "Thị trấn Đăk Đoa",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23680,
+    "name": "Xã Hà Đông",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23683,
+    "name": "Xã Đăk Sơmei",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23684,
+    "name": "Xã Đăk Krong",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23686,
+    "name": "Xã Hải Yang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23689,
+    "name": "Xã Kon Gang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23692,
+    "name": "Xã Hà Bầu",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23695,
+    "name": "Xã Nam Yang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23698,
+    "name": "Xã K' Dang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23701,
+    "name": "Xã H' Neng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23704,
+    "name": "Xã Tân Bình",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23707,
+    "name": "Xã Glar",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23710,
+    "name": "Xã A Dơk",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23713,
+    "name": "Xã Trang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23714,
+    "name": "Xã HNol",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23716,
+    "name": "Xã Ia Pết",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23719,
+    "name": "Xã Ia Băng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Đoa"
+  },
+  {
+    "code": 23722,
+    "name": "Thị trấn Phú Hòa",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23725,
+    "name": "Xã Hà Tây",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23728,
+    "name": "Xã Ia Khươl",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23731,
+    "name": "Xã Ia Phí",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23734,
+    "name": "Thị trấn Ia Ly",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23737,
+    "name": "Xã Ia Mơ Nông",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23738,
+    "name": "Xã Ia Kreng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23740,
+    "name": "Xã Đăk Tơ Ver",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23743,
+    "name": "Xã Hòa Phú",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23746,
+    "name": "Xã Chư Đăng Ya",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23749,
+    "name": "Xã Ia Ka",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23752,
+    "name": "Xã Ia Nhin",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23755,
+    "name": "Xã Nghĩa Hòa",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23761,
+    "name": "Xã Nghĩa Hưng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Păh"
+  },
+  {
+    "code": 23764,
+    "name": "Thị trấn Ia Kha",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23767,
+    "name": "Xã Ia Sao",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23768,
+    "name": "Xã Ia Yok",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23770,
+    "name": "Xã Ia Hrung",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23771,
+    "name": "Xã Ia Bă",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23773,
+    "name": "Xã Ia Khai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23776,
+    "name": "Xã Ia KRai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23778,
+    "name": "Xã Ia Grăng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23779,
+    "name": "Xã Ia Tô",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23782,
+    "name": "Xã Ia O",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23785,
+    "name": "Xã Ia Dêr",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23788,
+    "name": "Xã Ia Chia",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23791,
+    "name": "Xã Ia Pếch",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Grai"
+  },
+  {
+    "code": 23794,
+    "name": "Thị trấn Kon Dơng",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23797,
+    "name": "Xã Ayun",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23798,
+    "name": "Xã Đak Jơ Ta",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23799,
+    "name": "Xã Đak Ta Ley",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23800,
+    "name": "Xã Hra",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23803,
+    "name": "Xã Đăk Yă",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23806,
+    "name": "Xã Đăk Djrăng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23809,
+    "name": "Xã Lơ Pang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23812,
+    "name": "Xã Kon Thụp",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23815,
+    "name": "Xã Đê Ar",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23818,
+    "name": "Xã Kon Chiêng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23821,
+    "name": "Xã Đăk Trôi",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Mang Yang"
+  },
+  {
+    "code": 23824,
+    "name": "Thị trấn Kông Chro",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23827,
+    "name": "Xã Chư Krêy",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23830,
+    "name": "Xã An Trung",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23833,
+    "name": "Xã Kông Yang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23836,
+    "name": "Xã Đăk Tơ Pang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23839,
+    "name": "Xã SRó",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23840,
+    "name": "Xã Đắk Kơ Ning",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23842,
+    "name": "Xã Đăk Song",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23843,
+    "name": "Xã Đăk Pling",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23845,
+    "name": "Xã Yang Trung",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23846,
+    "name": "Xã Đăk Pơ Pho",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23848,
+    "name": "Xã Ya Ma",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23851,
+    "name": "Xã Chơ Long",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23854,
+    "name": "Xã Yang Nam",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Kông Chro"
+  },
+  {
+    "code": 23857,
+    "name": "Thị trấn Chư Ty",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23860,
+    "name": "Xã Ia Dơk",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23863,
+    "name": "Xã Ia Krêl",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23866,
+    "name": "Xã Ia Din",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23869,
+    "name": "Xã Ia Kla",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23872,
+    "name": "Xã Ia Dom",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23875,
+    "name": "Xã Ia Lang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23878,
+    "name": "Xã Ia Kriêng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23881,
+    "name": "Xã Ia Pnôn",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23884,
+    "name": "Xã Ia Nan",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đức Cơ"
+  },
+  {
+    "code": 23887,
+    "name": "Thị trấn Chư Prông",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23888,
+    "name": "Xã Ia Kly",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23890,
+    "name": "Xã Bình Giáo",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23893,
+    "name": "Xã Ia Drăng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23896,
+    "name": "Xã Thăng Hưng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23899,
+    "name": "Xã Bàu Cạn",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23902,
+    "name": "Xã Ia Phìn",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23905,
+    "name": "Xã Ia Băng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23908,
+    "name": "Xã Ia Tôr",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23911,
+    "name": "Xã Ia Boòng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23914,
+    "name": "Xã Ia O",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23917,
+    "name": "Xã Ia Púch",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23920,
+    "name": "Xã Ia Me",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23923,
+    "name": "Xã Ia Vê",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23924,
+    "name": "Xã Ia Bang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23926,
+    "name": "Xã Ia Pia",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23929,
+    "name": "Xã Ia Ga",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23932,
+    "name": "Xã Ia Lâu",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23935,
+    "name": "Xã Ia Piơr",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23938,
+    "name": "Xã Ia Mơ",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Prông"
+  },
+  {
+    "code": 23941,
+    "name": "Thị trấn Chư Sê",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23944,
+    "name": "Xã Ia Tiêm",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23945,
+    "name": "Xã Chư Pơng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23946,
+    "name": "Xã Bar Măih",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23947,
+    "name": "Xã Bờ Ngoong",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23950,
+    "name": "Xã Ia Glai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23953,
+    "name": "Xã AL Bá",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23954,
+    "name": "Xã Kông HTok",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23956,
+    "name": "Xã AYun",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23959,
+    "name": "Xã Ia HLốp",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23962,
+    "name": "Xã Ia Blang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23965,
+    "name": "Xã Dun",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23966,
+    "name": "Xã Ia Pal",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23968,
+    "name": "Xã H Bông",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23977,
+    "name": "Xã Ia Ko",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Sê"
+  },
+  {
+    "code": 23989,
+    "name": "Xã Hà Tam",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 23992,
+    "name": "Xã An Thành",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 23995,
+    "name": "Thị trấn Đak Pơ",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 23998,
+    "name": "Xã Yang Bắc",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 24001,
+    "name": "Xã Cư An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 24004,
+    "name": "Xã Tân An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 24007,
+    "name": "Xã Phú An",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 24010,
+    "name": "Xã Ya Hội",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Đăk Pơ"
+  },
+  {
+    "code": 24013,
+    "name": "Xã Pờ Tó",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24016,
+    "name": "Xã Chư Răng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24019,
+    "name": "Xã Ia KDăm",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24022,
+    "name": "Xã Kim Tân",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24025,
+    "name": "Xã Chư Mố",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24028,
+    "name": "Xã Ia Tul",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24031,
+    "name": "Xã Ia Ma Rơn",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24034,
+    "name": "Xã Ia Broăi",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24037,
+    "name": "Xã Ia Trok",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Ia Pa"
+  },
+  {
+    "code": 24076,
+    "name": "Thị trấn Phú Túc",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24079,
+    "name": "Xã Ia RSai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24082,
+    "name": "Xã Ia RSươm",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24085,
+    "name": "Xã Chư Gu",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24088,
+    "name": "Xã Đất Bằng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24091,
+    "name": "Xã Ia Mláh",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24094,
+    "name": "Xã Chư Drăng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24097,
+    "name": "Xã Phú Cần",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24100,
+    "name": "Xã Ia HDreh",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24103,
+    "name": "Xã Ia RMok",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24106,
+    "name": "Xã Chư Ngọc",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24109,
+    "name": "Xã Uar",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24112,
+    "name": "Xã Chư Rcăm",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24115,
+    "name": "Xã Krông Năng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Krông Pa"
+  },
+  {
+    "code": 24043,
+    "name": "Thị trấn Phú Thiện",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24046,
+    "name": "Xã Chư A Thai",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24048,
+    "name": "Xã Ayun Hạ",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24049,
+    "name": "Xã Ia Ake",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24052,
+    "name": "Xã Ia Sol",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24055,
+    "name": "Xã Ia Piar",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24058,
+    "name": "Xã Ia Peng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24060,
+    "name": "Xã Chrôh Pơnan",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24061,
+    "name": "Xã Ia Hiao",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 24067,
+    "name": "Xã Ia Yeng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Phú Thiện"
+  },
+  {
+    "code": 23942,
+    "name": "Thị trấn Nhơn Hoà",
+    "division_type": "thị trấn",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23971,
+    "name": "Xã Ia Hrú",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23972,
+    "name": "Xã Ia Rong",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23974,
+    "name": "Xã Ia Dreng",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23978,
+    "name": "Xã Ia Hla",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23980,
+    "name": "Xã Chư Don",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23983,
+    "name": "Xã Ia Phang",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23986,
+    "name": "Xã Ia Le",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  },
+  {
+    "code": 23987,
+    "name": "Xã Ia BLứ",
+    "division_type": "xã",
+    "province_code": 64,
+    "district_name": "Huyện Chư Pưh"
+  }
+]

@@ -1,0 +1,1213 @@
+[
+  {
+    "code": 6649,
+    "name": "Phường Hà Khánh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6652,
+    "name": "Phường Hà Phong",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6655,
+    "name": "Phường Hà Khẩu",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6658,
+    "name": "Phường Cao Xanh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6661,
+    "name": "Phường Giếng Đáy",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6664,
+    "name": "Phường Hà Tu",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6667,
+    "name": "Phường Hà Trung",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6670,
+    "name": "Phường Hà Lầm",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6673,
+    "name": "Phường Bãi Cháy",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6676,
+    "name": "Phường Cao Thắng",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6679,
+    "name": "Phường Hùng Thắng",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6685,
+    "name": "Phường Trần Hưng Đạo",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6688,
+    "name": "Phường Hồng Hải",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6691,
+    "name": "Phường Hồng Gai",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6694,
+    "name": "Phường Bạch Đằng",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6697,
+    "name": "Phường Hồng Hà",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6700,
+    "name": "Phường Tuần Châu",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6703,
+    "name": "Phường Việt Hưng",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6706,
+    "name": "Phường Đại Yên",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7030,
+    "name": "Phường Hoành Bồ",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7033,
+    "name": "Xã Kỳ Thượng",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7036,
+    "name": "Xã Đồng Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7039,
+    "name": "Xã Tân Dân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7042,
+    "name": "Xã Đồng Lâm",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7045,
+    "name": "Xã Hòa Bình",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7048,
+    "name": "Xã Vũ Oai",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7051,
+    "name": "Xã Dân Chủ",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7054,
+    "name": "Xã Quảng La",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7057,
+    "name": "Xã Bằng Cả",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7060,
+    "name": "Xã Thống Nhất",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7063,
+    "name": "Xã Sơn Dương",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 7066,
+    "name": "Xã Lê Lợi",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Hạ Long"
+  },
+  {
+    "code": 6709,
+    "name": "Phường Ka Long",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6712,
+    "name": "Phường Trần Phú",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6715,
+    "name": "Phường Ninh Dương",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6721,
+    "name": "Phường Trà Cổ",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6724,
+    "name": "Xã Hải Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6727,
+    "name": "Xã Bắc Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6730,
+    "name": "Xã Hải Đông",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6733,
+    "name": "Xã Hải Tiến",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6736,
+    "name": "Phường Hải Yên",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6739,
+    "name": "Xã Quảng Nghĩa",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6742,
+    "name": "Phường Hải Hoà",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6745,
+    "name": "Xã Hải Xuân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6748,
+    "name": "Xã Vạn Ninh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6751,
+    "name": "Phường Bình Ngọc",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6754,
+    "name": "Xã Vĩnh Trung",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6757,
+    "name": "Xã Vĩnh Thực",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Móng Cái"
+  },
+  {
+    "code": 6760,
+    "name": "Phường Mông Dương",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6763,
+    "name": "Phường Cửa Ông",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6766,
+    "name": "Phường Cẩm Sơn",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6769,
+    "name": "Phường Cẩm Đông",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6772,
+    "name": "Phường Cẩm Phú",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6775,
+    "name": "Phường Cẩm Tây",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6778,
+    "name": "Phường Quang Hanh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6781,
+    "name": "Phường Cẩm Thịnh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6784,
+    "name": "Phường Cẩm Thủy",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6787,
+    "name": "Phường Cẩm Thạch",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6790,
+    "name": "Phường Cẩm Thành",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6793,
+    "name": "Phường Cẩm Trung",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6796,
+    "name": "Phường Cẩm Bình",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6799,
+    "name": "Xã Hải Hòa",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6805,
+    "name": "Xã Dương Huy",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Cẩm Phả"
+  },
+  {
+    "code": 6808,
+    "name": "Phường Vàng Danh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6811,
+    "name": "Phường Thanh Sơn",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6814,
+    "name": "Phường Bắc Sơn",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6817,
+    "name": "Phường Quang Trung",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6820,
+    "name": "Phường Trưng Vương",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6823,
+    "name": "Phường Nam Khê",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6826,
+    "name": "Phường Yên Thanh",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6829,
+    "name": "Xã Thượng Yên Công",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6832,
+    "name": "Phường Phương Đông",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6835,
+    "name": "Phường Phương Nam",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Uông Bí"
+  },
+  {
+    "code": 6838,
+    "name": "Thị trấn Bình Liêu",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6841,
+    "name": "Xã Hoành Mô",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6844,
+    "name": "Xã Đồng Tâm",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6847,
+    "name": "Xã Đồng Văn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6853,
+    "name": "Xã Vô Ngại",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6856,
+    "name": "Xã Lục Hồn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6859,
+    "name": "Xã Húc Động",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Bình Liêu"
+  },
+  {
+    "code": 6862,
+    "name": "Thị trấn Tiên Yên",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6865,
+    "name": "Xã Hà Lâu",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6868,
+    "name": "Xã Đại Dực",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6871,
+    "name": "Xã Phong Dụ",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6874,
+    "name": "Xã Điền Xá",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6877,
+    "name": "Xã Đông Ngũ",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6880,
+    "name": "Xã Yên Than",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6883,
+    "name": "Xã Đông Hải",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6886,
+    "name": "Xã Hải Lạng",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6889,
+    "name": "Xã Tiên Lãng",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6892,
+    "name": "Xã Đồng Rui",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Tiên Yên"
+  },
+  {
+    "code": 6895,
+    "name": "Thị trấn Đầm Hà",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6898,
+    "name": "Xã Quảng Lâm",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6901,
+    "name": "Xã Quảng An",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6904,
+    "name": "Xã Tân Bình",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6910,
+    "name": "Xã Dực Yên",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6913,
+    "name": "Xã Quảng Tân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6916,
+    "name": "Xã Đầm Hà",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6917,
+    "name": "Xã Tân Lập",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6919,
+    "name": "Xã Đại Bình",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Đầm Hà"
+  },
+  {
+    "code": 6922,
+    "name": "Thị trấn Quảng Hà",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6925,
+    "name": "Xã Quảng Đức",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6928,
+    "name": "Xã Quảng Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6931,
+    "name": "Xã Quảng Thành",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6937,
+    "name": "Xã Quảng Thịnh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6940,
+    "name": "Xã Quảng Minh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6943,
+    "name": "Xã Quảng Chính",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6946,
+    "name": "Xã Quảng Long",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6949,
+    "name": "Xã Đường Hoa",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6952,
+    "name": "Xã Quảng Phong",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6967,
+    "name": "Xã Cái Chiên",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Hải Hà"
+  },
+  {
+    "code": 6970,
+    "name": "Thị trấn Ba Chẽ",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6973,
+    "name": "Xã Thanh Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6976,
+    "name": "Xã Thanh Lâm",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6979,
+    "name": "Xã Đạp Thanh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6982,
+    "name": "Xã Nam Sơn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6985,
+    "name": "Xã Lương Minh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6988,
+    "name": "Xã Đồn Đạc",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Ba Chẽ"
+  },
+  {
+    "code": 6994,
+    "name": "Thị trấn Cái Rồng",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 6997,
+    "name": "Xã Đài Xuyên",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7000,
+    "name": "Xã Bình Dân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7003,
+    "name": "Xã Vạn Yên",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7006,
+    "name": "Xã Minh Châu",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7009,
+    "name": "Xã Đoàn Kết",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7012,
+    "name": "Xã Hạ Long",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7015,
+    "name": "Xã Đông Xá",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7018,
+    "name": "Xã Bản Sen",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7021,
+    "name": "Xã Thắng Lợi",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7024,
+    "name": "Xã Quan Lạn",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7027,
+    "name": "Xã Ngọc Vừng",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Vân Đồn"
+  },
+  {
+    "code": 7069,
+    "name": "Phường Mạo Khê",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7075,
+    "name": "Xã An Sinh",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7078,
+    "name": "Xã Tràng Lương",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7081,
+    "name": "Phường Bình Khê",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7084,
+    "name": "Xã Việt Dân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7090,
+    "name": "Phường Bình Dương",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7093,
+    "name": "Phường Đức Chính",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7096,
+    "name": "Phường Tràng An",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7099,
+    "name": "Xã Nguyễn Huệ",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7102,
+    "name": "Phường Thủy An",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7105,
+    "name": "Phường Xuân Sơn",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7108,
+    "name": "Xã Hồng Thái Tây",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7111,
+    "name": "Xã Hồng Thái Đông",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7114,
+    "name": "Phường Hoàng Quế",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7117,
+    "name": "Phường Yên Thọ",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7120,
+    "name": "Phường Hồng Phong",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7123,
+    "name": "Phường Kim Sơn",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7126,
+    "name": "Phường Hưng Đạo",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7129,
+    "name": "Phường Yên Đức",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thành phố Đông Triều"
+  },
+  {
+    "code": 7132,
+    "name": "Phường Quảng Yên",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7135,
+    "name": "Phường Đông Mai",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7138,
+    "name": "Phường Minh Thành",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7144,
+    "name": "Xã Sông Khoai",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7147,
+    "name": "Xã Hiệp Hòa",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7150,
+    "name": "Phường Cộng Hòa",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7153,
+    "name": "Xã Tiền An",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7156,
+    "name": "Xã Hoàng Tân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7159,
+    "name": "Phường Tân An",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7162,
+    "name": "Phường Yên Giang",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7165,
+    "name": "Phường Nam Hoà",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7168,
+    "name": "Phường Hà An",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7171,
+    "name": "Xã Cẩm La",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7174,
+    "name": "Phường Phong Hải",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7177,
+    "name": "Phường Yên Hải",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7180,
+    "name": "Xã Liên Hòa",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7183,
+    "name": "Phường Phong Cốc",
+    "division_type": "phường",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7186,
+    "name": "Xã Liên Vị",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7189,
+    "name": "Xã Tiền Phong",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Thị xã Quảng Yên"
+  },
+  {
+    "code": 7192,
+    "name": "Thị trấn Cô Tô",
+    "division_type": "thị trấn",
+    "province_code": 22,
+    "district_name": "Huyện Cô Tô"
+  },
+  {
+    "code": 7195,
+    "name": "Xã Đồng Tiến",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Cô Tô"
+  },
+  {
+    "code": 7198,
+    "name": "Xã Thanh Lân",
+    "division_type": "xã",
+    "province_code": 22,
+    "district_name": "Huyện Cô Tô"
+  },
+  {
+    "code": 90005,
+    "name": "Đặc khu Vân Đồn",
+    "division_type": "đặc khu",
+    "province_code": 22,
+    "district_name": "Đặc khu Vân Đồn"
+  },
+  {
+    "code": 90006,
+    "name": "Đặc khu Cô Tô",
+    "division_type": "đặc khu",
+    "province_code": 22,
+    "district_name": "Đặc khu Cô Tô"
+  }
+]

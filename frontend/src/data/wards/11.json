@@ -1,0 +1,905 @@
+[
+  {
+    "code": 3124,
+    "name": "Phường Noong Bua",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3127,
+    "name": "Phường Him Lam",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3130,
+    "name": "Phường Thanh Bình",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3133,
+    "name": "Phường Tân Thanh",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3136,
+    "name": "Phường Mường Thanh",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3139,
+    "name": "Phường Nam Thanh",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3142,
+    "name": "Phường Thanh Trường",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3145,
+    "name": "Xã Thanh Minh",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3316,
+    "name": "Xã Nà Tấu",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3317,
+    "name": "Xã Nà Nhạn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3325,
+    "name": "Xã Mường Phăng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3326,
+    "name": "Xã Pá Khoang",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thành phố Điện Biên Phủ"
+  },
+  {
+    "code": 3148,
+    "name": "Phường Sông Đà",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thị xã Mường Lay"
+  },
+  {
+    "code": 3151,
+    "name": "Phường Na Lay",
+    "division_type": "phường",
+    "province_code": 11,
+    "district_name": "Thị xã Mường Lay"
+  },
+  {
+    "code": 3184,
+    "name": "Xã Lay Nưa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Thị xã Mường Lay"
+  },
+  {
+    "code": 3154,
+    "name": "Xã Sín Thầu",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3155,
+    "name": "Xã Sen Thượng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3157,
+    "name": "Xã Chung Chải",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3158,
+    "name": "Xã Leng Su Sìn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3159,
+    "name": "Xã Pá Mỳ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3160,
+    "name": "Xã Mường Nhé",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3161,
+    "name": "Xã Nậm Vì",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3162,
+    "name": "Xã Nậm Kè",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3163,
+    "name": "Xã Mường Toong",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3164,
+    "name": "Xã Quảng Lâm",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3177,
+    "name": "Xã Huổi Lếnh",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Nhé"
+  },
+  {
+    "code": 3172,
+    "name": "Thị trấn Mường Chà",
+    "division_type": "thị trấn",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3178,
+    "name": "Xã Xá Tổng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3181,
+    "name": "Xã Mường Tùng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3190,
+    "name": "Xã Hừa Ngài",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3191,
+    "name": "Xã Huổi Mí",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3193,
+    "name": "Xã Pa Ham",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3194,
+    "name": "Xã Nậm Nèn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3196,
+    "name": "Xã Huổi Lèng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3197,
+    "name": "Xã Sa Lông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3200,
+    "name": "Xã Ma Thì Hồ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3201,
+    "name": "Xã Na Sang",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3202,
+    "name": "Xã Mường Mươn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Chà"
+  },
+  {
+    "code": 3217,
+    "name": "Thị trấn Tủa Chùa",
+    "division_type": "thị trấn",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3220,
+    "name": "Xã Huổi Só",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3223,
+    "name": "Xã Xín Chải",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3226,
+    "name": "Xã Tả Sìn Thàng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3229,
+    "name": "Xã Lao Xả Phình",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3232,
+    "name": "Xã Tả Phìn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3235,
+    "name": "Xã Tủa Thàng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3238,
+    "name": "Xã Trung Thu",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3241,
+    "name": "Xã Sính Phình",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3244,
+    "name": "Xã Sáng Nhè",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3247,
+    "name": "Xã Mường Đun",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3250,
+    "name": "Xã Mường Báng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tủa Chùa"
+  },
+  {
+    "code": 3253,
+    "name": "Thị trấn Tuần Giáo",
+    "division_type": "thị trấn",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3259,
+    "name": "Xã Phình Sáng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3260,
+    "name": "Xã Rạng Đông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3262,
+    "name": "Xã Mùn Chung",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3263,
+    "name": "Xã Nà Tòng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3265,
+    "name": "Xã Ta Ma",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3268,
+    "name": "Xã Mường Mùn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3269,
+    "name": "Xã Pú Xi",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3271,
+    "name": "Xã Pú Nhung",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3274,
+    "name": "Xã Quài Nưa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3277,
+    "name": "Xã Mường Thín",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3280,
+    "name": "Xã Tỏa Tình",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3283,
+    "name": "Xã Nà Sáy",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3284,
+    "name": "Xã Mường Khong",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3289,
+    "name": "Xã Quài Cang",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3295,
+    "name": "Xã Quài Tở",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3298,
+    "name": "Xã Chiềng Sinh",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3299,
+    "name": "Xã Chiềng Đông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3304,
+    "name": "Xã Tênh Phông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Tuần Giáo"
+  },
+  {
+    "code": 3319,
+    "name": "Xã Mường Pồn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3322,
+    "name": "Xã Thanh Nưa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3323,
+    "name": "Xã Hua Thanh",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3328,
+    "name": "Xã Thanh Luông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3331,
+    "name": "Xã Thanh Hưng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3334,
+    "name": "Xã Thanh Xương",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3337,
+    "name": "Xã Thanh Chăn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3340,
+    "name": "Xã Pa Thơm",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3343,
+    "name": "Xã Thanh An",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3346,
+    "name": "Xã Thanh Yên",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3349,
+    "name": "Xã Noong Luống",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3352,
+    "name": "Xã Noọng Hẹt",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3355,
+    "name": "Xã Sam Mứn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3356,
+    "name": "Xã Pom Lót",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3358,
+    "name": "Xã Núa Ngam",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3359,
+    "name": "Xã Hẹ Muông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3361,
+    "name": "Xã Na Ư",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3364,
+    "name": "Xã Mường Nhà",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3365,
+    "name": "Xã Na Tông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3367,
+    "name": "Xã Mường Lói",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3368,
+    "name": "Xã Phu Luông",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên"
+  },
+  {
+    "code": 3203,
+    "name": "Thị trấn Điện Biên Đông",
+    "division_type": "thị trấn",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3205,
+    "name": "Xã Na Son",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3208,
+    "name": "Xã Phì Nhừ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3211,
+    "name": "Xã Chiềng Sơ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3214,
+    "name": "Xã Mường Luân",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3370,
+    "name": "Xã Pú Nhi",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3371,
+    "name": "Xã Nong U",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3373,
+    "name": "Xã Xa Dung",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3376,
+    "name": "Xã Keo Lôm",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3379,
+    "name": "Xã Luân Giới",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3382,
+    "name": "Xã Phình Giàng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3383,
+    "name": "Xã Pú Hồng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3384,
+    "name": "Xã Tìa Dình",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3385,
+    "name": "Xã Háng Lìa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Điện Biên Đông"
+  },
+  {
+    "code": 3256,
+    "name": "Thị trấn Mường Ảng",
+    "division_type": "thị trấn",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3286,
+    "name": "Xã Mường Đăng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3287,
+    "name": "Xã Ngối Cáy",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3292,
+    "name": "Xã Ẳng Tở",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3301,
+    "name": "Xã Búng Lao",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3302,
+    "name": "Xã Xuân Lao",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3307,
+    "name": "Xã Ẳng Nưa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3310,
+    "name": "Xã Ẳng Cang",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3312,
+    "name": "Xã Nặm Lịch",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3313,
+    "name": "Xã Mường Lạn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Mường Ảng"
+  },
+  {
+    "code": 3156,
+    "name": "Xã Nậm Tin",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3165,
+    "name": "Xã Pa Tần",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3166,
+    "name": "Xã Chà Cang",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3167,
+    "name": "Xã Na Cô Sa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3168,
+    "name": "Xã Nà Khoa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3169,
+    "name": "Xã Nà Hỳ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3170,
+    "name": "Xã Nà Bủng",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3171,
+    "name": "Xã Nậm Nhừ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3173,
+    "name": "Xã Nậm Chua",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3174,
+    "name": "Xã Nậm Khăn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3175,
+    "name": "Xã Chà Tở",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3176,
+    "name": "Xã Vàng Đán",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3187,
+    "name": "Xã Chà Nưa",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3198,
+    "name": "Xã Phìn Hồ",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  },
+  {
+    "code": 3199,
+    "name": "Xã Si Pa Phìn",
+    "division_type": "xã",
+    "province_code": 11,
+    "district_name": "Huyện Nậm Pồ"
+  }
+]

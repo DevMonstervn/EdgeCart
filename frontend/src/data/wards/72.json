@@ -1,0 +1,660 @@
+[
+  {
+    "code": 25456,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25459,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25462,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25465,
+    "name": "Phường Hiệp Ninh",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25468,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25471,
+    "name": "Xã Thạnh Tân",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25474,
+    "name": "Xã Tân Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25477,
+    "name": "Xã Bình Minh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25480,
+    "name": "Phường Ninh Sơn",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25483,
+    "name": "Phường Ninh Thạnh",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thành phố Tây Ninh"
+  },
+  {
+    "code": 25486,
+    "name": "Thị trấn Tân Biên",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25489,
+    "name": "Xã Tân Lập",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25492,
+    "name": "Xã Thạnh Bắc",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25495,
+    "name": "Xã Tân Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25498,
+    "name": "Xã Thạnh Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25501,
+    "name": "Xã Thạnh Tây",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25504,
+    "name": "Xã Hòa Hiệp",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25507,
+    "name": "Xã Tân Phong",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25510,
+    "name": "Xã Mỏ Công",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25513,
+    "name": "Xã Trà Vong",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Biên"
+  },
+  {
+    "code": 25516,
+    "name": "Thị trấn Tân Châu",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25519,
+    "name": "Xã Tân Hà",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25522,
+    "name": "Xã Tân Đông",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25525,
+    "name": "Xã Tân Hội",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25528,
+    "name": "Xã Tân Hòa",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25531,
+    "name": "Xã Suối Ngô",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25534,
+    "name": "Xã Suối Dây",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25537,
+    "name": "Xã Tân Hiệp",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25540,
+    "name": "Xã Thạnh Đông",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25543,
+    "name": "Xã Tân Thành",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25546,
+    "name": "Xã Tân Phú",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25549,
+    "name": "Xã Tân Hưng",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Tân Châu"
+  },
+  {
+    "code": 25552,
+    "name": "Thị trấn Dương Minh Châu",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25555,
+    "name": "Xã Suối Đá",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25558,
+    "name": "Xã Phan",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25561,
+    "name": "Xã Phước Ninh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25564,
+    "name": "Xã Phước Minh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25567,
+    "name": "Xã Bàu Năng",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25570,
+    "name": "Xã Chà Là",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25573,
+    "name": "Xã Cầu Khởi",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25576,
+    "name": "Xã Bến Củi",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25579,
+    "name": "Xã Lộc Ninh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25582,
+    "name": "Xã Truông Mít",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Dương Minh Châu"
+  },
+  {
+    "code": 25585,
+    "name": "Thị trấn Châu Thành",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25588,
+    "name": "Xã Hảo Đước",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25591,
+    "name": "Xã Phước Vinh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25594,
+    "name": "Xã Đồng Khởi",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25597,
+    "name": "Xã Thái Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25600,
+    "name": "Xã An Cơ",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25603,
+    "name": "Xã Biên Giới",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25606,
+    "name": "Xã Hòa Thạnh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25609,
+    "name": "Xã Trí Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25612,
+    "name": "Xã Hòa Hội",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25615,
+    "name": "Xã An Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25618,
+    "name": "Xã Thanh Điền",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25621,
+    "name": "Xã Thành Long",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25624,
+    "name": "Xã Ninh Điền",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25627,
+    "name": "Xã Long Vĩnh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Châu Thành"
+  },
+  {
+    "code": 25630,
+    "name": "Phường Long Hoa",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25633,
+    "name": "Phường Hiệp Tân",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25636,
+    "name": "Phường Long Thành Bắc",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25639,
+    "name": "Xã Trường Hòa",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25642,
+    "name": "Xã Trường Đông",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25645,
+    "name": "Phường Long Thành Trung",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25648,
+    "name": "Xã Trường Tây",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25651,
+    "name": "Xã Long Thành Nam",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Hòa Thành"
+  },
+  {
+    "code": 25654,
+    "name": "Thị trấn Gò Dầu",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25657,
+    "name": "Xã Thạnh Đức",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25660,
+    "name": "Xã Cẩm Giang",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25663,
+    "name": "Xã Hiệp Thạnh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25666,
+    "name": "Xã Bàu Đồn",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25669,
+    "name": "Xã Phước Thạnh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25672,
+    "name": "Xã Phước Đông",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25675,
+    "name": "Xã Phước Trạch",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25678,
+    "name": "Xã Thanh Phước",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Gò Dầu"
+  },
+  {
+    "code": 25681,
+    "name": "Thị trấn Bến Cầu",
+    "division_type": "thị trấn",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25684,
+    "name": "Xã Long Chữ",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25687,
+    "name": "Xã Long Phước",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25690,
+    "name": "Xã Long Giang",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25693,
+    "name": "Xã Tiên Thuận",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25696,
+    "name": "Xã Long Khánh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25699,
+    "name": "Xã Lợi Thuận",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25702,
+    "name": "Xã Long Thuận",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25705,
+    "name": "Xã An Thạnh",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Huyện Bến Cầu"
+  },
+  {
+    "code": 25708,
+    "name": "Phường Trảng Bàng",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25711,
+    "name": "Xã Đôn Thuận",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25714,
+    "name": "Xã Hưng Thuận",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25717,
+    "name": "Phường Lộc Hưng",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25720,
+    "name": "Phường Gia Lộc",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25723,
+    "name": "Phường Gia Bình",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25729,
+    "name": "Xã Phước Bình",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25732,
+    "name": "Phường An Tịnh",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25735,
+    "name": "Phường An Hòa",
+    "division_type": "phường",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  },
+  {
+    "code": 25738,
+    "name": "Xã Phước Chỉ",
+    "division_type": "xã",
+    "province_code": 72,
+    "district_name": "Thị xã Trảng Bàng"
+  }
+]

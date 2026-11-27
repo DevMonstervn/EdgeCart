@@ -1,0 +1,940 @@
+[
+  {
+    "code": 19777,
+    "name": "Phường Vỹ Dạ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19780,
+    "name": "Phường Phường Đúc",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19783,
+    "name": "Phường Vĩnh Ninh",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19786,
+    "name": "Phường Phú Hội",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19789,
+    "name": "Phường Phú Nhuận",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19792,
+    "name": "Phường Xuân Phú",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19795,
+    "name": "Phường Trường An",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19798,
+    "name": "Phường Phước Vĩnh",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19801,
+    "name": "Phường An Cựu",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19807,
+    "name": "Phường Thuỷ Biều",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19813,
+    "name": "Phường Thuỷ Xuân",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19815,
+    "name": "Phường An Đông",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19816,
+    "name": "Phường An Tây",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19900,
+    "name": "Phường Thuận An",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19909,
+    "name": "Phường Dương Nỗ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19930,
+    "name": "Phường Phú Thượng",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19963,
+    "name": "Phường Thủy Vân",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19981,
+    "name": "Phường Thủy Bằng",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 20002,
+    "name": "Phường Hương Phong",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Thuận Hóa"
+  },
+  {
+    "code": 19750,
+    "name": "Phường Tây Lộc",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19753,
+    "name": "Phường Thuận Lộc",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19756,
+    "name": "Phường Gia Hội",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19759,
+    "name": "Phường Phú Hậu",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19762,
+    "name": "Phường Thuận Hòa",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19768,
+    "name": "Phường Đông Ba",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19774,
+    "name": "Phường Kim Long",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19803,
+    "name": "Phường An Hòa",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19804,
+    "name": "Phường Hương Sơ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19810,
+    "name": "Phường Hương Long",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 20014,
+    "name": "Phường Hương Vinh",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 20023,
+    "name": "Phường Hương An",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 20029,
+    "name": "Phường Long Hồ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Quận Phú Xuân"
+  },
+  {
+    "code": 19819,
+    "name": "Phường Phong Thu",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19825,
+    "name": "Xã Phong Thạnh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19828,
+    "name": "Phường Phong Phú",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19831,
+    "name": "Xã Phong Bình",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19837,
+    "name": "Xã Phong Chương",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19843,
+    "name": "Phường Phong Hải",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19846,
+    "name": "Phường Phong Hòa",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19852,
+    "name": "Phường Phong Hiền",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19855,
+    "name": "Xã Phong Mỹ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19858,
+    "name": "Phường Phong An",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19861,
+    "name": "Xã Phong Xuân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19864,
+    "name": "Xã Phong Sơn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Phong Điền"
+  },
+  {
+    "code": 19867,
+    "name": "Thị trấn Sịa",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19870,
+    "name": "Xã Quảng Thái",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19873,
+    "name": "Xã Quảng Ngạn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19876,
+    "name": "Xã Quảng Lợi",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19879,
+    "name": "Xã Quảng Công",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19882,
+    "name": "Xã Quảng Phước",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19885,
+    "name": "Xã Quảng Vinh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19888,
+    "name": "Xã Quảng An",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19891,
+    "name": "Xã Quảng Thành",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19894,
+    "name": "Xã Quảng Thọ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19897,
+    "name": "Xã Quảng Phú",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Quảng Điền"
+  },
+  {
+    "code": 19903,
+    "name": "Xã Phú Thuận",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19912,
+    "name": "Xã Phú An",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19915,
+    "name": "Xã Phú Hải",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19918,
+    "name": "Xã Phú Xuân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19921,
+    "name": "Xã Phú Diên",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19927,
+    "name": "Xã Phú Mỹ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19933,
+    "name": "Xã Phú Hồ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19936,
+    "name": "Xã Vinh Xuân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19939,
+    "name": "Xã Phú Lương",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19942,
+    "name": "Thị trấn Phú Đa",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19945,
+    "name": "Xã Vinh Thanh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19948,
+    "name": "Xã Vinh An",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19954,
+    "name": "Xã Phú Gia",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19957,
+    "name": "Xã Vinh Hà",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Vang"
+  },
+  {
+    "code": 19960,
+    "name": "Phường Phú Bài",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19966,
+    "name": "Xã Thủy Thanh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19969,
+    "name": "Phường Thủy Dương",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19972,
+    "name": "Phường Thủy Phương",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19975,
+    "name": "Phường Thủy Châu",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19978,
+    "name": "Phường Thủy Lương",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19984,
+    "name": "Xã Thủy Tân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19987,
+    "name": "Xã Thủy Phù",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19990,
+    "name": "Xã Phú Sơn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19993,
+    "name": "Xã Dương Hòa",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Thủy"
+  },
+  {
+    "code": 19996,
+    "name": "Phường Tứ Hạ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20005,
+    "name": "Xã Hương Toàn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20008,
+    "name": "Phường Hương Vân",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20011,
+    "name": "Phường Hương Văn",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20017,
+    "name": "Phường Hương Xuân",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20020,
+    "name": "Phường Hương Chữ",
+    "division_type": "phường",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20026,
+    "name": "Xã Hương Bình",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20035,
+    "name": "Xã Bình Tiến",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20041,
+    "name": "Xã Bình Thành",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Thị xã Hương Trà"
+  },
+  {
+    "code": 20044,
+    "name": "Thị trấn A Lưới",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20047,
+    "name": "Xã Hồng Vân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20050,
+    "name": "Xã Hồng Hạ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20053,
+    "name": "Xã Hồng Kim",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20056,
+    "name": "Xã Trung Sơn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20059,
+    "name": "Xã Hương Nguyên",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20065,
+    "name": "Xã Hồng Bắc",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20068,
+    "name": "Xã A Ngo",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20071,
+    "name": "Xã Sơn Thủy",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20074,
+    "name": "Xã Phú Vinh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20080,
+    "name": "Xã Hương Phong",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20083,
+    "name": "Xã Quảng Nhâm",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20086,
+    "name": "Xã Hồng Thượng",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20089,
+    "name": "Xã Hồng Thái",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20095,
+    "name": "Xã A Roàng",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20098,
+    "name": "Xã Đông Sơn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20101,
+    "name": "Xã Lâm Đớt",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20104,
+    "name": "Xã Hồng Thủy",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện A Lưới"
+  },
+  {
+    "code": 20107,
+    "name": "Thị trấn Phú Lộc",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20110,
+    "name": "Thị trấn Lăng Cô",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20113,
+    "name": "Xã Vinh Mỹ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20116,
+    "name": "Xã Vinh Hưng",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20122,
+    "name": "Xã Giang Hải",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20125,
+    "name": "Xã Vinh Hiền",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20128,
+    "name": "Xã Lộc Bổn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20131,
+    "name": "Thị trấn Lộc Sơn",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20134,
+    "name": "Xã Lộc Bình",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20137,
+    "name": "Xã Lộc Vĩnh",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20140,
+    "name": "Xã Lộc An",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20143,
+    "name": "Xã Lộc Điền",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20146,
+    "name": "Xã Lộc Thủy",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20149,
+    "name": "Xã Lộc Trì",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20152,
+    "name": "Xã Lộc Tiến",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20155,
+    "name": "Xã Lộc Hòa",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20158,
+    "name": "Xã Xuân Lộc",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20161,
+    "name": "Thị trấn Khe Tre",
+    "division_type": "thị trấn",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20164,
+    "name": "Xã Hương Phú",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20167,
+    "name": "Xã Hương Sơn",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20170,
+    "name": "Xã Hương Lộc",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20173,
+    "name": "Xã Thượng Quảng",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20176,
+    "name": "Xã Hương Hòa",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20179,
+    "name": "Xã Hương Xuân",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20182,
+    "name": "Xã Hương Hữu",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20185,
+    "name": "Xã Thượng Lộ",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20188,
+    "name": "Xã Thượng Long",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  },
+  {
+    "code": 20191,
+    "name": "Xã Thượng Nhật",
+    "division_type": "xã",
+    "province_code": 46,
+    "district_name": "Huyện Phú Lộc"
+  }
+]
