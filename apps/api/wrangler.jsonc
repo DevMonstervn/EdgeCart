@@ -24,10 +24,15 @@
       "bucket_name": "edgecart-media-prod"
     }
   ],
+  "ai": {
+    "binding": "AI"
+  },
   "vars": {
     "ENVIRONMENT": "production",
     "APP_URL": "https://buydragon.pages.dev",
-    "ALLOWED_ORIGINS": "https://buydragon.pages.dev"
+    "ALLOWED_ORIGINS": "https://buydragon.pages.dev",
+    "AI_PROVIDER": "workers-ai",
+    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
   },
   "env": {
     "staging": {
