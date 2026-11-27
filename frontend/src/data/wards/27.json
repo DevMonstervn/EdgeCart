@@ -1,0 +1,849 @@
+[
+  {
+    "code": 9163,
+    "name": "Phường Vũ Ninh",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9166,
+    "name": "Phường Đáp Cầu",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9169,
+    "name": "Phường Thị Cầu",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9172,
+    "name": "Phường Kinh Bắc",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9181,
+    "name": "Phường Đại Phúc",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9184,
+    "name": "Phường Tiền Ninh Vệ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9187,
+    "name": "Phường Suối Hoa",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9190,
+    "name": "Phường Võ Cường",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9214,
+    "name": "Phường Hòa Long",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9226,
+    "name": "Phường Vạn An",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9235,
+    "name": "Phường Khúc Xuyên",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9244,
+    "name": "Phường Phong Khê",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9256,
+    "name": "Phường Kim Chân",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9271,
+    "name": "Phường Vân Dương",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9286,
+    "name": "Phường Nam Sơn",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9325,
+    "name": "Phường Khắc Niệm",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9331,
+    "name": "Phường Hạp Lĩnh",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Bắc Ninh"
+  },
+  {
+    "code": 9193,
+    "name": "Thị trấn Chờ",
+    "division_type": "thị trấn",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9196,
+    "name": "Xã Dũng Liệt",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9199,
+    "name": "Xã Tam Đa",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9202,
+    "name": "Xã Tam Giang",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9205,
+    "name": "Xã Yên Trung",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9208,
+    "name": "Xã Thụy Hòa",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9211,
+    "name": "Xã Hòa Tiến",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9217,
+    "name": "Xã Đông Tiến",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9220,
+    "name": "Xã Yên Phụ",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9223,
+    "name": "Xã Trung Nghĩa",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9229,
+    "name": "Xã Đông Phong",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9232,
+    "name": "Xã Long Châu",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9238,
+    "name": "Xã Văn Môn",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9241,
+    "name": "Xã Đông Thọ",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Yên Phong"
+  },
+  {
+    "code": 9247,
+    "name": "Phường Phố Mới",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9250,
+    "name": "Xã Việt Thống",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9253,
+    "name": "Phường Đại Xuân",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9259,
+    "name": "Phường Nhân Hòa",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9262,
+    "name": "Phường Bằng An",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9265,
+    "name": "Phường Phương Liễu",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9268,
+    "name": "Phường Quế Tân",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9274,
+    "name": "Phường Phù Lương",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9277,
+    "name": "Xã Phù Lãng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9280,
+    "name": "Phường Phượng Mao",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9283,
+    "name": "Phường Việt Hùng",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9289,
+    "name": "Xã Ngọc Xá",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9292,
+    "name": "Xã Châu Phong",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9295,
+    "name": "Phường Bồng Lai",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9298,
+    "name": "Phường Cách Bi",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9301,
+    "name": "Xã Đào Viên",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9304,
+    "name": "Xã Yên Giả",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9307,
+    "name": "Xã Mộ Đạo",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9310,
+    "name": "Xã Đức Long",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9313,
+    "name": "Xã Chi Lăng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Quế Võ"
+  },
+  {
+    "code": 9319,
+    "name": "Thị trấn Lim",
+    "division_type": "thị trấn",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9322,
+    "name": "Xã Phú Lâm",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9328,
+    "name": "Xã Nội Duệ",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9334,
+    "name": "Xã Liên Bão",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9337,
+    "name": "Xã Hiên Vân",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9340,
+    "name": "Xã Hoàn Sơn",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9343,
+    "name": "Xã Lạc Vệ",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9346,
+    "name": "Xã Việt Đoàn",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9349,
+    "name": "Xã Phật Tích",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9352,
+    "name": "Xã Tân Chi",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9355,
+    "name": "Xã Đại Đồng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9358,
+    "name": "Xã Tri Phương",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9361,
+    "name": "Xã Minh Đạo",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9364,
+    "name": "Xã Cảnh Hưng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Tiên Du"
+  },
+  {
+    "code": 9367,
+    "name": "Phường Đông Ngàn",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9370,
+    "name": "Phường Tam Sơn",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9373,
+    "name": "Phường Hương Mạc",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9376,
+    "name": "Phường Tương Giang",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9379,
+    "name": "Phường Phù Khê",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9382,
+    "name": "Phường Đồng Kỵ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9383,
+    "name": "Phường Trang Hạ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9385,
+    "name": "Phường Đồng Nguyên",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9388,
+    "name": "Phường Châu Khê",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9391,
+    "name": "Phường Tân Hồng",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9394,
+    "name": "Phường Đình Bảng",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9397,
+    "name": "Phường Phù Chẩn",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thành phố Từ Sơn"
+  },
+  {
+    "code": 9400,
+    "name": "Phường Hồ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9403,
+    "name": "Xã Hoài Thượng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9406,
+    "name": "Xã Đại Đồng Thành",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9409,
+    "name": "Xã Mão Điền",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9412,
+    "name": "Phường Song Hồ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9415,
+    "name": "Xã Đình Tổ",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9418,
+    "name": "Phường An Bình",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9421,
+    "name": "Phường Trí Quả",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9424,
+    "name": "Phường Gia Đông",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9427,
+    "name": "Phường Thanh Khương",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9430,
+    "name": "Phường Trạm Lộ",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9433,
+    "name": "Phường Xuân Lâm",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9436,
+    "name": "Phường Hà Mãn",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9439,
+    "name": "Xã Ngũ Thái",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9442,
+    "name": "Xã Nguyệt Đức",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9445,
+    "name": "Phường Ninh Xá",
+    "division_type": "phường",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9448,
+    "name": "Xã Nghĩa Đạo",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9451,
+    "name": "Xã Song Liễu",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Thị xã Thuận Thành"
+  },
+  {
+    "code": 9454,
+    "name": "Thị trấn Gia Bình",
+    "division_type": "thị trấn",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9457,
+    "name": "Xã Vạn Ninh",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9460,
+    "name": "Xã Thái Bảo",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9463,
+    "name": "Xã Giang Sơn",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9466,
+    "name": "Xã Cao Đức",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9469,
+    "name": "Xã Đại Lai",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9472,
+    "name": "Xã Song Giang",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9475,
+    "name": "Xã Bình Dương",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9478,
+    "name": "Xã Lãng Ngâm",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9481,
+    "name": "Thị trấn Nhân Thắng",
+    "division_type": "thị trấn",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9484,
+    "name": "Xã Xuân Lai",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9487,
+    "name": "Xã Đông Cứu",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9490,
+    "name": "Xã Đại Bái",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9493,
+    "name": "Xã Quỳnh Phú",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Gia Bình"
+  },
+  {
+    "code": 9496,
+    "name": "Thị trấn Thứa",
+    "division_type": "thị trấn",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9499,
+    "name": "Xã An Thịnh",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9502,
+    "name": "Xã Trung Kênh",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9505,
+    "name": "Xã Phú Hòa",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9508,
+    "name": "Xã An Tập",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9511,
+    "name": "Xã Tân Lãng",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9514,
+    "name": "Xã Quảng Phú",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9517,
+    "name": "Xã Quang Minh",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9523,
+    "name": "Xã Trung Chính",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9529,
+    "name": "Xã Bình Định",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9532,
+    "name": "Xã Phú Lương",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  },
+  {
+    "code": 9535,
+    "name": "Xã Lâm Thao",
+    "division_type": "xã",
+    "province_code": 27,
+    "district_name": "Huyện Lương Tài"
+  }
+]

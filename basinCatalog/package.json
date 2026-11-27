@@ -1,0 +1,12 @@
+{
+  "name": "edgecart-basin-catalog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "stats": "node cli.js stats",
+    "visit": "node cli.js visit",
+    "send": "node cli.js send",
+    "json": "node cli.js json"
+  }
+}

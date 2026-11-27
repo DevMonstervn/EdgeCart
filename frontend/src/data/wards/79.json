@@ -1,0 +1,1920 @@
+[
+  {
+    "code": 26734,
+    "name": "Phường Tân Định",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26737,
+    "name": "Phường Đa Kao",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26740,
+    "name": "Phường Bến Nghé",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26743,
+    "name": "Phường Bến Thành",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26746,
+    "name": "Phường Nguyễn Thái Bình",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26749,
+    "name": "Phường Phạm Ngũ Lão",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26752,
+    "name": "Phường Cầu Ông Lãnh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26755,
+    "name": "Phường Cô Giang",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26758,
+    "name": "Phường Nguyễn Cư Trinh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26761,
+    "name": "Phường Cầu Kho",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 1"
+  },
+  {
+    "code": 26764,
+    "name": "Phường Thạnh Xuân",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26767,
+    "name": "Phường Thạnh Lộc",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26770,
+    "name": "Phường Hiệp Thành",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26773,
+    "name": "Phường Thới An",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26776,
+    "name": "Phường Tân Chánh Hiệp",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26779,
+    "name": "Phường An Phú Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26782,
+    "name": "Phường Tân Thới Hiệp",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26785,
+    "name": "Phường Trung Mỹ Tây",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26787,
+    "name": "Phường Tân Hưng Thuận",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26788,
+    "name": "Phường Đông Hưng Thuận",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26791,
+    "name": "Phường Tân Thới Nhất",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 12"
+  },
+  {
+    "code": 26872,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26875,
+    "name": "Phường 17",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26876,
+    "name": "Phường 6",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26878,
+    "name": "Phường 16",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26881,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26882,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26884,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26887,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26890,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26898,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26899,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26902,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Gò Vấp"
+  },
+  {
+    "code": 26905,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26908,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26911,
+    "name": "Phường 27",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26914,
+    "name": "Phường 26",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26917,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26920,
+    "name": "Phường 25",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26923,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26926,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26935,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26941,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26944,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26950,
+    "name": "Phường 17",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26956,
+    "name": "Phường 22",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26959,
+    "name": "Phường 19",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26962,
+    "name": "Phường 28",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Thạnh"
+  },
+  {
+    "code": 26965,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26968,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26971,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26974,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26977,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26980,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26983,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26986,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26989,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26992,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26995,
+    "name": "Phường 6",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 26998,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 27001,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 27004,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 27007,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Bình"
+  },
+  {
+    "code": 27010,
+    "name": "Phường Tân Sơn Nhì",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27013,
+    "name": "Phường Tây Thạnh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27016,
+    "name": "Phường Sơn Kỳ",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27019,
+    "name": "Phường Tân Quý",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27022,
+    "name": "Phường Tân Thành",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27025,
+    "name": "Phường Phú Thọ Hòa",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27028,
+    "name": "Phường Phú Thạnh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27031,
+    "name": "Phường Phú Trung",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27034,
+    "name": "Phường Hòa Thạnh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27037,
+    "name": "Phường Hiệp Tân",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27040,
+    "name": "Phường Tân Thới Hòa",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Tân Phú"
+  },
+  {
+    "code": 27043,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27046,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27049,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27052,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27058,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27061,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27064,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27067,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27070,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27073,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 27085,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Phú Nhuận"
+  },
+  {
+    "code": 26794,
+    "name": "Phường Linh Xuân",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26797,
+    "name": "Phường Bình Chiểu",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26800,
+    "name": "Phường Linh Trung",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26803,
+    "name": "Phường Tam Bình",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26806,
+    "name": "Phường Tam Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26809,
+    "name": "Phường Hiệp Bình Phước",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26812,
+    "name": "Phường Hiệp Bình Chánh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26815,
+    "name": "Phường Linh Chiểu",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26818,
+    "name": "Phường Linh Tây",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26821,
+    "name": "Phường Linh Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26824,
+    "name": "Phường Bình Thọ",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26827,
+    "name": "Phường Trường Thọ",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26830,
+    "name": "Phường Long Bình",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26833,
+    "name": "Phường Long Thạnh Mỹ",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26836,
+    "name": "Phường Tân Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26839,
+    "name": "Phường Hiệp Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26842,
+    "name": "Phường Tăng Nhơn Phú A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26845,
+    "name": "Phường Tăng Nhơn Phú B",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26848,
+    "name": "Phường Phước Long B",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26851,
+    "name": "Phường Phước Long A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26854,
+    "name": "Phường Trường Thạnh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26857,
+    "name": "Phường Long Phước",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26860,
+    "name": "Phường Long Trường",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26863,
+    "name": "Phường Phước Bình",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 26866,
+    "name": "Phường Phú Hữu",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27088,
+    "name": "Phường Thảo Điền",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27091,
+    "name": "Phường An Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27094,
+    "name": "Phường An Khánh",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27097,
+    "name": "Phường Bình Trưng Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27100,
+    "name": "Phường Bình Trưng Tây",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27109,
+    "name": "Phường Cát Lái",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27112,
+    "name": "Phường Thạnh Mỹ Lợi",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27115,
+    "name": "Phường An Lợi Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27118,
+    "name": "Phường Thủ Thiêm",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Thành phố Thủ Đức"
+  },
+  {
+    "code": 27127,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27130,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27133,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27139,
+    "name": "Phường Võ Thị Sáu",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27142,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27148,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27151,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27154,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27157,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27160,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 3"
+  },
+  {
+    "code": 27163,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27166,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27169,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27172,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27178,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27181,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27184,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27187,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27190,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27193,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27202,
+    "name": "Phường 6",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 10"
+  },
+  {
+    "code": 27208,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27211,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27214,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27217,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27220,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27223,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27229,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27238,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27247,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27253,
+    "name": "Phường 16",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 11"
+  },
+  {
+    "code": 27259,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27265,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27271,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27277,
+    "name": "Phường 18",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27283,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27286,
+    "name": "Phường 3",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27289,
+    "name": "Phường 16",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27292,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27295,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27298,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 4"
+  },
+  {
+    "code": 27301,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27304,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27307,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27310,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27316,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27325,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27328,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27331,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27334,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27343,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 5"
+  },
+  {
+    "code": 27346,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27349,
+    "name": "Phường 13",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27352,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27358,
+    "name": "Phường 12",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27361,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27364,
+    "name": "Phường 11",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27376,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27379,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27382,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27385,
+    "name": "Phường 10",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 6"
+  },
+  {
+    "code": 27397,
+    "name": "Phường Rạch Ông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27403,
+    "name": "Phường Hưng Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27409,
+    "name": "Phường 4",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27415,
+    "name": "Phường Xóm Củi",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27418,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27421,
+    "name": "Phường 14",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27424,
+    "name": "Phường 6",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27427,
+    "name": "Phường 15",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27430,
+    "name": "Phường 16",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27433,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 8"
+  },
+  {
+    "code": 27436,
+    "name": "Phường Bình Hưng Hòa",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27439,
+    "name": "Phường Bình Hưng Hoà A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27442,
+    "name": "Phường Bình Hưng Hoà B",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27445,
+    "name": "Phường Bình Trị Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27448,
+    "name": "Phường Bình Trị Đông A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27451,
+    "name": "Phường Bình Trị Đông B",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27454,
+    "name": "Phường Tân Tạo",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27457,
+    "name": "Phường Tân Tạo A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27460,
+    "name": "Phường An Lạc",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27463,
+    "name": "Phường An Lạc A",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận Bình Tân"
+  },
+  {
+    "code": 27466,
+    "name": "Phường Tân Thuận Đông",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27469,
+    "name": "Phường Tân Thuận Tây",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27472,
+    "name": "Phường Tân Kiểng",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27475,
+    "name": "Phường Tân Hưng",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27478,
+    "name": "Phường Bình Thuận",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27481,
+    "name": "Phường Tân Quy",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27484,
+    "name": "Phường Phú Thuận",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27487,
+    "name": "Phường Tân Phú",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27490,
+    "name": "Phường Tân Phong",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27493,
+    "name": "Phường Phú Mỹ",
+    "division_type": "phường",
+    "province_code": 79,
+    "district_name": "Quận 7"
+  },
+  {
+    "code": 27496,
+    "name": "Thị trấn Củ Chi",
+    "division_type": "thị trấn",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27499,
+    "name": "Xã Phú Mỹ Hưng",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27502,
+    "name": "Xã An Phú",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27505,
+    "name": "Xã Trung Lập Thượng",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27508,
+    "name": "Xã An Nhơn Tây",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27511,
+    "name": "Xã Nhuận Đức",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27514,
+    "name": "Xã Phạm Văn Cội",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27517,
+    "name": "Xã Phú Hòa Đông",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27520,
+    "name": "Xã Trung Lập Hạ",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27523,
+    "name": "Xã Trung An",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27526,
+    "name": "Xã Phước Thạnh",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27529,
+    "name": "Xã Phước Hiệp",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27532,
+    "name": "Xã Tân An Hội",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27535,
+    "name": "Xã Phước Vĩnh An",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27538,
+    "name": "Xã Thái Mỹ",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27541,
+    "name": "Xã Tân Thạnh Tây",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27544,
+    "name": "Xã Hòa Phú",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27547,
+    "name": "Xã Tân Thạnh Đông",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27550,
+    "name": "Xã Bình Mỹ",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27553,
+    "name": "Xã Tân Phú Trung",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27556,
+    "name": "Xã Tân Thông Hội",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Củ Chi"
+  },
+  {
+    "code": 27559,
+    "name": "Thị trấn Hóc Môn",
+    "division_type": "thị trấn",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27562,
+    "name": "Xã Tân Hiệp",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27565,
+    "name": "Xã Nhị Bình",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27568,
+    "name": "Xã Đông Thạnh",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27571,
+    "name": "Xã Tân Thới Nhì",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27574,
+    "name": "Xã Thới Tam Thôn",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27577,
+    "name": "Xã Xuân Thới Sơn",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27580,
+    "name": "Xã Tân Xuân",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27583,
+    "name": "Xã Xuân Thới Đông",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27586,
+    "name": "Xã Trung Chánh",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27589,
+    "name": "Xã Xuân Thới Thượng",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27592,
+    "name": "Xã Bà Điểm",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Hóc Môn"
+  },
+  {
+    "code": 27595,
+    "name": "Thị trấn Tân Túc",
+    "division_type": "thị trấn",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27598,
+    "name": "Xã Phạm Văn Hai",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27601,
+    "name": "Xã Vĩnh Lộc A",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27604,
+    "name": "Xã Vĩnh Lộc B",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27607,
+    "name": "Xã Bình Lợi",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27610,
+    "name": "Xã Lê Minh Xuân",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27613,
+    "name": "Xã Tân Nhựt",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27616,
+    "name": "Xã Tân Kiên",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27619,
+    "name": "Xã Bình Hưng",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27622,
+    "name": "Xã Phong Phú",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27625,
+    "name": "Xã An Phú Tây",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27628,
+    "name": "Xã Hưng Long",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27631,
+    "name": "Xã Đa Phước",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27634,
+    "name": "Xã Tân Quý Tây",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27637,
+    "name": "Xã Bình Chánh",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27640,
+    "name": "Xã Quy Đức",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Bình Chánh"
+  },
+  {
+    "code": 27643,
+    "name": "Thị trấn Nhà Bè",
+    "division_type": "thị trấn",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27646,
+    "name": "Xã Phước Kiển",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27649,
+    "name": "Xã Phước Lộc",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27652,
+    "name": "Xã Nhơn Đức",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27655,
+    "name": "Xã Phú Xuân",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27658,
+    "name": "Xã Long Thới",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27661,
+    "name": "Xã Hiệp Phước",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Nhà Bè"
+  },
+  {
+    "code": 27664,
+    "name": "Thị trấn Cần Thạnh",
+    "division_type": "thị trấn",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27667,
+    "name": "Xã Bình Khánh",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27670,
+    "name": "Xã Tam Thôn Hiệp",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27673,
+    "name": "Xã An Thới Đông",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27676,
+    "name": "Xã Thạnh An",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27679,
+    "name": "Xã Long Hòa",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 27682,
+    "name": "Xã Lý Nhơn",
+    "division_type": "xã",
+    "province_code": 79,
+    "district_name": "Huyện Cần Giờ"
+  },
+  {
+    "code": 90001,
+    "name": "Đặc khu Côn Đảo",
+    "division_type": "đặc khu",
+    "province_code": 79,
+    "district_name": "Đặc khu Côn Đảo"
+  }
+]

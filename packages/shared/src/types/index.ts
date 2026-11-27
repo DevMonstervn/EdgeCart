@@ -80,10 +80,11 @@ export interface Address {
   recipientName: string;
   phone: string;
   province: string;
-  district: string;
+  district?: string | null;
   ward: string;
   streetAddress: string;
   isDefault: boolean;
+  label?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -249,3 +250,4 @@ export interface ApiResponse<T = unknown> {
 }
 
 export * from './ai.js';
+

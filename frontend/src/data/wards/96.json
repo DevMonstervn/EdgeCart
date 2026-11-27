@@ -1,0 +1,702 @@
+[
+  {
+    "code": 31999,
+    "name": "Phường 9",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32002,
+    "name": "Phường 2",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32005,
+    "name": "Phường 1",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32008,
+    "name": "Phường 5",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32014,
+    "name": "Phường 8",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32017,
+    "name": "Phường 6",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32020,
+    "name": "Phường 7",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32022,
+    "name": "Phường Tân Xuyên",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32023,
+    "name": "Xã An Xuyên",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32025,
+    "name": "Phường Tân Thành",
+    "division_type": "phường",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32026,
+    "name": "Xã Tân Thành",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32029,
+    "name": "Xã Tắc Vân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32032,
+    "name": "Xã Lý Văn Lâm",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32035,
+    "name": "Xã Định Bình",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32038,
+    "name": "Xã Hòa Thành",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32041,
+    "name": "Xã Hòa Tân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Thành phố Cà Mau"
+  },
+  {
+    "code": 32044,
+    "name": "Thị trấn U Minh",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32047,
+    "name": "Xã Khánh Hòa",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32048,
+    "name": "Xã Khánh Thuận",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32050,
+    "name": "Xã Khánh Tiến",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32053,
+    "name": "Xã Nguyễn Phích",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32056,
+    "name": "Xã Khánh Lâm",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32059,
+    "name": "Xã Khánh An",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32062,
+    "name": "Xã Khánh Hội",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện U Minh"
+  },
+  {
+    "code": 32065,
+    "name": "Thị trấn Thới Bình",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32068,
+    "name": "Xã Biển Bạch",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32069,
+    "name": "Xã Tân Bằng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32071,
+    "name": "Xã Trí Phải",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32072,
+    "name": "Xã Trí Lực",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32074,
+    "name": "Xã Biển Bạch Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32077,
+    "name": "Xã Thới Bình",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32080,
+    "name": "Xã Tân Phú",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32083,
+    "name": "Xã Tân Lộc Bắc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32086,
+    "name": "Xã Tân Lộc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32089,
+    "name": "Xã Tân Lộc Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32092,
+    "name": "Xã Hồ Thị Kỷ",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Thới Bình"
+  },
+  {
+    "code": 32095,
+    "name": "Thị trấn Trần Văn Thời",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32098,
+    "name": "Thị trấn Sông Đốc",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32101,
+    "name": "Xã Khánh Bình Tây Bắc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32104,
+    "name": "Xã Khánh Bình Tây",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32107,
+    "name": "Xã Trần Hợi",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32108,
+    "name": "Xã Khánh Lộc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32110,
+    "name": "Xã Khánh Bình",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32113,
+    "name": "Xã Khánh Hưng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32116,
+    "name": "Xã Khánh Bình Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32119,
+    "name": "Xã Khánh Hải",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32122,
+    "name": "Xã Lợi An",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32124,
+    "name": "Xã Phong Điền",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32125,
+    "name": "Xã Phong Lạc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Trần Văn Thời"
+  },
+  {
+    "code": 32128,
+    "name": "Thị trấn Cái Nước",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32130,
+    "name": "Xã Thạnh Phú",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32131,
+    "name": "Xã Lương Thế Trân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32134,
+    "name": "Xã Phú Hưng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32137,
+    "name": "Xã Tân Hưng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32140,
+    "name": "Xã Hưng Mỹ",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32141,
+    "name": "Xã Hoà Mỹ",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32142,
+    "name": "Xã Đông Hưng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32143,
+    "name": "Xã Đông Thới",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32146,
+    "name": "Xã Tân Hưng Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32149,
+    "name": "Xã Trần Thới",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Cái Nước"
+  },
+  {
+    "code": 32152,
+    "name": "Thị trấn Đầm Dơi",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32155,
+    "name": "Xã Tạ An Khương",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32158,
+    "name": "Xã Tạ An Khương Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32161,
+    "name": "Xã Trần Phán",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32162,
+    "name": "Xã Tân Trung",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32164,
+    "name": "Xã Tân Đức",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32167,
+    "name": "Xã Tân Thuận",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32170,
+    "name": "Xã Tạ An Khương Nam",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32173,
+    "name": "Xã Tân Duyệt",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32174,
+    "name": "Xã Tân Dân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32176,
+    "name": "Xã Tân Tiến",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32179,
+    "name": "Xã Quách Phẩm Bắc",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32182,
+    "name": "Xã Quách Phẩm",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32185,
+    "name": "Xã Thanh Tùng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32186,
+    "name": "Xã Ngọc Chánh",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32188,
+    "name": "Xã Nguyễn Huân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Đầm Dơi"
+  },
+  {
+    "code": 32191,
+    "name": "Thị trấn Năm Căn",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32194,
+    "name": "Xã Hàm Rồng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32197,
+    "name": "Xã Hiệp Tùng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32200,
+    "name": "Xã Đất Mới",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32201,
+    "name": "Xã Lâm Hải",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32203,
+    "name": "Xã Hàng Vịnh",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32206,
+    "name": "Xã Tam Giang",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32209,
+    "name": "Xã Tam Giang Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Năm Căn"
+  },
+  {
+    "code": 32212,
+    "name": "Thị trấn Cái Đôi Vàm",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32214,
+    "name": "Xã Phú Thuận",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32215,
+    "name": "Xã Phú Mỹ",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32218,
+    "name": "Xã Phú Tân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32221,
+    "name": "Xã Tân Hải",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32224,
+    "name": "Xã Việt Thắng",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32227,
+    "name": "Xã Tân Hưng Tây",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32228,
+    "name": "Xã Rạch Chèo",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32230,
+    "name": "Xã Nguyễn Việt Khái",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Phú Tân"
+  },
+  {
+    "code": 32233,
+    "name": "Xã Tam Giang Tây",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32236,
+    "name": "Xã Tân Ân Tây",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32239,
+    "name": "Xã Viên An Đông",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32242,
+    "name": "Xã Viên An",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32244,
+    "name": "Thị trấn Rạch Gốc",
+    "division_type": "thị trấn",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32245,
+    "name": "Xã Tân Ân",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  },
+  {
+    "code": 32248,
+    "name": "Xã Đất Mũi",
+    "division_type": "xã",
+    "province_code": 96,
+    "district_name": "Huyện Ngọc Hiển"
+  }
+]

@@ -1,0 +1,562 @@
+[
+  {
+    "code": 31117,
+    "name": "Phường Cái Khế",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31120,
+    "name": "Phường An Hòa",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31123,
+    "name": "Phường Thới Bình",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31135,
+    "name": "Phường Tân An",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31144,
+    "name": "Phường Xuân Khánh",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31147,
+    "name": "Phường Hưng Lợi",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31149,
+    "name": "Phường An Khánh",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31150,
+    "name": "Phường An Bình",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ninh Kiều"
+  },
+  {
+    "code": 31153,
+    "name": "Phường Châu Văn Liêm",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31154,
+    "name": "Phường Thới Hòa",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31156,
+    "name": "Phường Thới Long",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31157,
+    "name": "Phường Long Hưng",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31159,
+    "name": "Phường Thới An",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31162,
+    "name": "Phường Phước Thới",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31165,
+    "name": "Phường Trường Lạc",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Ô Môn"
+  },
+  {
+    "code": 31168,
+    "name": "Phường Bình Thủy",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31169,
+    "name": "Phường Trà An",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31171,
+    "name": "Phường Trà Nóc",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31174,
+    "name": "Phường Thới An Đông",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31177,
+    "name": "Phường An Thới",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31178,
+    "name": "Phường Bùi Hữu Nghĩa",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31180,
+    "name": "Phường Long Hòa",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31183,
+    "name": "Phường Long Tuyền",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Bình Thuỷ"
+  },
+  {
+    "code": 31186,
+    "name": "Phường Lê Bình",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31189,
+    "name": "Phường Hưng Phú",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31192,
+    "name": "Phường Hưng Thạnh",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31195,
+    "name": "Phường Ba Láng",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31198,
+    "name": "Phường Thường Thạnh",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31201,
+    "name": "Phường Phú Thứ",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31204,
+    "name": "Phường Tân Phú",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Cái Răng"
+  },
+  {
+    "code": 31207,
+    "name": "Phường Thốt Nốt",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31210,
+    "name": "Phường Thới Thuận",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31212,
+    "name": "Phường Thuận An",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31213,
+    "name": "Phường Tân Lộc",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31216,
+    "name": "Phường Trung Nhứt",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31217,
+    "name": "Phường Thạnh Hoà",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31219,
+    "name": "Phường Trung Kiên",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31227,
+    "name": "Phường Tân Hưng",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31228,
+    "name": "Phường Thuận Hưng",
+    "division_type": "phường",
+    "province_code": 92,
+    "district_name": "Quận Thốt Nốt"
+  },
+  {
+    "code": 31211,
+    "name": "Xã Vĩnh Bình",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31231,
+    "name": "Thị trấn Thanh An",
+    "division_type": "thị trấn",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31232,
+    "name": "Thị trấn Vĩnh Thạnh",
+    "division_type": "thị trấn",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31234,
+    "name": "Xã Thạnh Mỹ",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31237,
+    "name": "Xã Vĩnh Trinh",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31240,
+    "name": "Xã Thạnh An",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31241,
+    "name": "Xã Thạnh Tiến",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31243,
+    "name": "Xã Thạnh Thắng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31244,
+    "name": "Xã Thạnh Lợi",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31246,
+    "name": "Xã Thạnh Qưới",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31252,
+    "name": "Xã Thạnh Lộc",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Vĩnh Thạnh"
+  },
+  {
+    "code": 31222,
+    "name": "Xã Trung An",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31225,
+    "name": "Xã Trung Thạnh",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31249,
+    "name": "Xã Thạnh Phú",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31255,
+    "name": "Xã Trung Hưng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31261,
+    "name": "Thị trấn Cờ Đỏ",
+    "division_type": "thị trấn",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31264,
+    "name": "Xã Thới Hưng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31273,
+    "name": "Xã Đông Hiệp",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31274,
+    "name": "Xã Đông Thắng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31276,
+    "name": "Xã Thới Đông",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31277,
+    "name": "Xã Thới Xuân",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Cờ Đỏ"
+  },
+  {
+    "code": 31299,
+    "name": "Thị trấn Phong Điền",
+    "division_type": "thị trấn",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31300,
+    "name": "Xã Nhơn Ái",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31303,
+    "name": "Xã Giai Xuân",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31306,
+    "name": "Xã Tân Thới",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31309,
+    "name": "Xã Trường Long",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31312,
+    "name": "Xã Mỹ Khánh",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31315,
+    "name": "Xã Nhơn Nghĩa",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Phong Điền"
+  },
+  {
+    "code": 31258,
+    "name": "Thị trấn Thới Lai",
+    "division_type": "thị trấn",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31267,
+    "name": "Xã Thới Thạnh",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31268,
+    "name": "Xã Tân Thạnh",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31270,
+    "name": "Xã Xuân Thắng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31279,
+    "name": "Xã Đông Bình",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31282,
+    "name": "Xã Đông Thuận",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31285,
+    "name": "Xã Thới Tân",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31286,
+    "name": "Xã Trường Thắng",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31288,
+    "name": "Xã Định Môn",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31291,
+    "name": "Xã Trường Thành",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31294,
+    "name": "Xã Trường Xuân",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31297,
+    "name": "Xã Trường Xuân A",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  },
+  {
+    "code": 31298,
+    "name": "Xã Trường Xuân B",
+    "division_type": "xã",
+    "province_code": 92,
+    "district_name": "Huyện Thới Lai"
+  }
+]

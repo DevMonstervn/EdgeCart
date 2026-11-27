@@ -6,6 +6,7 @@ import {
 } from 'vue-router';
 import type { UserRole } from '@edgecart/shared';
 import { useAuthStore } from '../stores/auth.js';
+import { trackVisit } from '../services/analytics.service.js';
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -258,6 +259,11 @@ export function createAppRouter(history: RouterHistory = createWebHistory()) {
     }
 
     return true;
+  });
+
+  // Telemetry: stream page visit to Basin Catalog (nhom8)
+  instance.afterEach((to) => {
+    trackVisit(to.fullPath);
   });
 
   return instance;

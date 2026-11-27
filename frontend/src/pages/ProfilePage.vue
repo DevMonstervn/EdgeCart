@@ -3,11 +3,14 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
+import { useAddressStore } from '../stores/address.js';
 import { getRoleBadgeClass } from '../utils/format.js';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
 import Modal from '../components/Modal.vue';
+import AddressModal from '../components/AddressModal.vue';
 import SingleImageUploader from '../components/SingleImageUploader.vue';
 import { uploadService } from '../services/upload.service.js';
+import type { Address, AddressInput } from '@edgecart/shared';
 import {
   Mail,
   Phone,
@@ -21,21 +24,21 @@ import {
   Camera,
   Edit2,
   Loader2,
+  Trash2,
+  CheckCircle2,
+  Home,
+  Building2,
 } from 'lucide-vue-next';
 
 const router = useRouter();
 const auth = useAuthStore();
 const toast = useToastStore();
+const addressStore = useAddressStore();
 
 const isAddressModalOpen = ref(false);
-const newAddress = ref({
-  recipientName: '',
-  phone: '',
-  province: '',
-  district: '',
-  ward: '',
-  streetAddress: '',
-});
+const addressToEdit = ref<Address | null>(null);
+const addressToDelete = ref<Address | null>(null);
+const isConfirmDeleteOpen = ref(false);
 
 const isEditProfileOpen = ref(false);
 const isSavingProfile = ref(false);
@@ -46,6 +49,42 @@ const profileForm = ref({
   phone: '',
   avatarUrl: '',
 });
+
+function openAddAddressModal() {
+  addressToEdit.value = null;
+  isAddressModalOpen.value = true;
+}
+
+function openEditAddressModal(addr: Address) {
+  addressToEdit.value = addr;
+  isAddressModalOpen.value = true;
+}
+
+function confirmDeleteAddress(addr: Address) {
+  addressToDelete.value = addr;
+  isConfirmDeleteOpen.value = true;
+}
+
+async function handleDeleteAddress() {
+  if (!addressToDelete.value) return;
+  await addressStore.deleteAddress(addressToDelete.value.id);
+  isConfirmDeleteOpen.value = false;
+  addressToDelete.value = null;
+}
+
+async function handleSetDefaultAddress(addr: Address) {
+  await addressStore.setDefault(addr.id);
+}
+
+async function handleSaveAddress(payload: AddressInput) {
+  if (addressToEdit.value) {
+    const res = await addressStore.updateAddress(addressToEdit.value.id, payload);
+    if (res) isAddressModalOpen.value = false;
+  } else {
+    const res = await addressStore.addAddress(payload);
+    if (res) isAddressModalOpen.value = false;
+  }
+}
 
 function triggerDirectAvatarPick() {
   if (isUploadingAvatar.value) return;
@@ -108,17 +147,12 @@ async function handleLogout() {
   router.push('/');
 }
 
-function handleSaveAddress() {
-  toast.success('Đã lưu địa chỉ mới');
-  isAddressModalOpen.value = false;
-}
-
 onMounted(async () => {
   if (!auth.isAuthenticated) {
     router.push('/login?redirect=/profile');
     return;
   }
-  await auth.fetchProfile();
+  await Promise.all([auth.fetchProfile(), addressStore.fetchAddresses()]);
 });
 </script>
 
@@ -303,21 +337,125 @@ onMounted(async () => {
                 <span>Sổ Địa Chỉ Giao Hàng</span>
               </h3>
               <button
-                @click="isAddressModalOpen = true"
-                class="inline-flex items-center gap-1 text-xs font-bold text-brand-600 hover:text-brand-700"
+                type="button"
+                @click="openAddAddressModal"
+                class="inline-flex items-center gap-1 text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-xl transition cursor-pointer"
               >
                 <Plus class="w-3.5 h-3.5" />
-                <span>Thêm địa chỉ</span>
+                <span>Thêm địa chỉ mới</span>
               </button>
             </div>
 
-            <!-- Default Address Card -->
-            <div class="p-4 rounded-2xl border border-brand-200 bg-brand-50/30 text-xs space-y-1 relative">
-              <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-600 text-white">
-                Mặc định
-              </span>
-              <div class="font-bold text-slate-900 text-sm">{{ auth.user?.fullName }} ({{ auth.user?.phone || '0912345678' }})</div>
-              <div class="text-slate-600">Số 123 Đường Cầu Giấy, Phường Dịch Vọng, Quận Cầu Giấy, Hà Nội</div>
+            <!-- Loading State -->
+            <div v-if="addressStore.isLoading" class="p-6 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+              <Loader2 class="w-4 h-4 animate-spin text-brand-600" />
+              <span>Đang tải danh sách địa chỉ...</span>
+            </div>
+
+            <!-- Empty State (No Addresses) -->
+            <div
+              v-else-if="addressStore.addresses.length === 0"
+              class="p-6 rounded-2xl border-2 border-dashed border-slate-200 text-center flex flex-col items-center justify-center"
+            >
+              <div class="w-12 h-12 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center mb-2">
+                <MapPin class="w-6 h-6 stroke-1" />
+              </div>
+              <h4 class="text-sm font-bold text-slate-800 mb-1">Chưa có địa chỉ nhận hàng</h4>
+              <p class="text-xs text-slate-500 mb-4 max-w-sm">
+                Bạn chưa lưu địa chỉ nào. Hãy thêm địa chỉ giao hàng để đặt hàng nhanh chóng và thuận tiện hơn.
+              </p>
+              <button
+                type="button"
+                @click="openAddAddressModal"
+                class="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold shadow-md shadow-brand-600/20 active:scale-98 transition cursor-pointer"
+              >
+                <Plus class="w-3.5 h-3.5" />
+                <span>Thêm địa chỉ đầu tiên</span>
+              </button>
+            </div>
+
+            <!-- Address List -->
+            <div v-else class="space-y-3">
+              <div
+                v-for="addr in addressStore.addresses"
+                :key="addr.id"
+                class="p-4 rounded-2xl border transition-all text-xs space-y-2 relative"
+                :class="
+                  addr.isDefault
+                    ? 'border-brand-300 bg-brand-50/20 shadow-2xs'
+                    : 'border-slate-200/90 bg-white hover:border-slate-300'
+                "
+              >
+                <!-- Top Row: Name, Phone & Badges -->
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-bold text-slate-900 text-sm">{{ addr.recipientName }}</span>
+                    <span class="text-slate-400">|</span>
+                    <span class="font-semibold text-slate-600">{{ addr.phone }}</span>
+
+                    <!-- Default Badge -->
+                    <span
+                      v-if="addr.isDefault"
+                      class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white flex items-center gap-1"
+                    >
+                      <CheckCircle2 class="w-3 h-3" />
+                      <span>Mặc định</span>
+                    </span>
+
+                    <!-- Label Badge -->
+                    <span
+                      class="text-[10px] font-semibold px-2 py-0.5 rounded-full border flex items-center gap-1"
+                      :class="
+                        addr.label === 'OFFICE'
+                          ? 'border-indigo-200 bg-indigo-50 text-indigo-700'
+                          : 'border-slate-200 bg-slate-50 text-slate-600'
+                      "
+                    >
+                      <Building2 v-if="addr.label === 'OFFICE'" class="w-2.5 h-2.5" />
+                      <Home v-else class="w-2.5 h-2.5" />
+                      <span>{{ addr.label === 'OFFICE' ? 'Văn phòng' : (addr.label === 'HOME' ? 'Nhà riêng' : addr.label) }}</span>
+                    </span>
+                  </div>
+
+                  <!-- Actions: Edit & Delete -->
+                  <div class="flex items-center gap-2 text-xs">
+                    <button
+                      type="button"
+                      @click="openEditAddressModal(addr)"
+                      class="font-semibold text-brand-600 hover:text-brand-700 hover:underline cursor-pointer"
+                    >
+                      Chỉnh sửa
+                    </button>
+                    <span class="text-slate-300">·</span>
+                    <button
+                      type="button"
+                      @click="confirmDeleteAddress(addr)"
+                      class="font-semibold text-rose-500 hover:text-rose-700 hover:underline cursor-pointer"
+                    >
+                      Xóa
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Address Body -->
+                <div class="text-slate-700 leading-relaxed">
+                  <p class="font-medium text-slate-800">{{ addr.streetAddress }}</p>
+                  <p class="text-slate-500 text-[11px]">
+                    {{ addr.ward }}{{ addr.district ? ', ' + addr.district : '' }}, {{ addr.province }}
+                  </p>
+                </div>
+
+                <!-- Set Default Action -->
+                <div v-if="!addr.isDefault" class="pt-1 flex justify-start">
+                  <button
+                    type="button"
+                    @click="handleSetDefaultAddress(addr)"
+                    class="px-2.5 py-1 rounded-lg border border-slate-200 hover:border-brand-300 hover:bg-brand-50 text-[11px] font-semibold text-slate-600 hover:text-brand-700 transition cursor-pointer"
+                  >
+                    Thiết lập làm mặc định
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -392,53 +530,46 @@ onMounted(async () => {
       </form>
     </Modal>
 
-    <!-- Add Address Modal -->
-    <Modal :isOpen="isAddressModalOpen" title="Thêm địa chỉ giao hàng mới" @close="isAddressModalOpen = false">
-      <form @submit.prevent="handleSaveAddress" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Họ tên người nhận</label>
-          <input
-            v-model="newAddress.recipientName"
-            type="text"
-            required
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"
-          />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại</label>
-          <input
-            v-model="newAddress.phone"
-            type="tel"
-            required
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"
-          />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Địa chỉ chi tiết</label>
-          <input
-            v-model="newAddress.streetAddress"
-            type="text"
-            required
-            placeholder="Số nhà, tên đường..."
-            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"
-          />
-        </div>
-        <div class="pt-2 flex justify-end gap-2">
+    <!-- Add / Edit Address Modal -->
+    <AddressModal
+      :isOpen="isAddressModalOpen"
+      :addressToEdit="addressToEdit"
+      :isSaving="addressStore.isSaving"
+      @close="isAddressModalOpen = false"
+      @save="handleSaveAddress"
+    />
+
+    <!-- Confirm Delete Address Modal -->
+    <Modal :isOpen="isConfirmDeleteOpen" title="Xác nhận xóa địa chỉ" @close="isConfirmDeleteOpen = false">
+      <div class="space-y-4">
+        <p class="text-xs text-slate-600">
+          Bạn có chắc chắn muốn xóa địa chỉ của
+          <strong class="text-slate-900">{{ addressToDelete?.recipientName }}</strong>
+          ({{ addressToDelete?.phone }}) tại
+          <span class="text-slate-800">{{ addressToDelete?.streetAddress }}, {{ addressToDelete?.province }}</span>?
+        </p>
+
+        <p v-if="addressToDelete?.isDefault" class="text-[11px] text-amber-700 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+          Lưu ý: Đây là địa chỉ mặc định của bạn. Khi xóa, hệ thống sẽ tự động chuyển địa chỉ còn lại làm mặc định mới.
+        </p>
+
+        <div class="pt-2 flex justify-end gap-2.5">
           <button
             type="button"
-            @click="isAddressModalOpen = false"
-            class="px-4 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-semibold"
+            @click="isConfirmDeleteOpen = false"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition cursor-pointer"
           >
-            Hủy
+            Hủy bỏ
           </button>
           <button
-            type="submit"
-            class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold"
+            type="button"
+            @click="handleDeleteAddress"
+            class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold shadow-md shadow-rose-600/20 transition cursor-pointer"
           >
-            Lưu địa chỉ
+            Xác nhận xóa
           </button>
         </div>
-      </form>
+      </div>
     </Modal>
   </DefaultLayout>
 </template>

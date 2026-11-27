@@ -1,0 +1,356 @@
+{
+  "legalBasis": "Nghị quyết số 202/2025/QH15 của Quốc hội khóa XV & Quyết định số 19/2025/QĐ-TTg của Thủ tướng Chính phủ",
+  "source": "Tổng cục Thống kê (GSO) & Open API Vietnam (provinces.open-api.vn)",
+  "effectiveDate": "2025-07-01",
+  "lastUpdated": "2026-11-05",
+  "totalProvinces": 34,
+  "totalCommunes": 6139,
+  "communeBreakdown": {
+    "phuong": 1200,
+    "xa": 4583,
+    "thiTran": 343,
+    "dacKhu": 13
+  },
+  "provinces": [
+    {
+      "code": 1,
+      "name": "Thành phố Hà Nội",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 526,
+      "phuong": 160,
+      "xa": 345,
+      "thiTran": 21,
+      "dacKhu": 0
+    },
+    {
+      "code": 79,
+      "name": "Thành phố Hồ Chí Minh",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 274,
+      "phuong": 210,
+      "xa": 58,
+      "thiTran": 5,
+      "dacKhu": 1
+    },
+    {
+      "code": 31,
+      "name": "Thành phố Hải Phòng",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 169,
+      "phuong": 79,
+      "xa": 81,
+      "thiTran": 7,
+      "dacKhu": 2
+    },
+    {
+      "code": 48,
+      "name": "Thành phố Đà Nẵng",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 48,
+      "phuong": 36,
+      "xa": 11,
+      "thiTran": 0,
+      "dacKhu": 1
+    },
+    {
+      "code": 92,
+      "name": "Thành phố Cần Thơ",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 80,
+      "phuong": 39,
+      "xa": 36,
+      "thiTran": 5,
+      "dacKhu": 0
+    },
+    {
+      "code": 46,
+      "name": "Thành phố Huế",
+      "division_type": "thành phố trung ương",
+      "totalCommunes": 134,
+      "phuong": 48,
+      "xa": 79,
+      "thiTran": 7,
+      "dacKhu": 0
+    },
+    {
+      "code": 4,
+      "name": "Tỉnh Cao Bằng",
+      "division_type": "tỉnh",
+      "totalCommunes": 161,
+      "phuong": 8,
+      "xa": 139,
+      "thiTran": 14,
+      "dacKhu": 0
+    },
+    {
+      "code": 12,
+      "name": "Tỉnh Lai Châu",
+      "division_type": "tỉnh",
+      "totalCommunes": 106,
+      "phuong": 5,
+      "xa": 94,
+      "thiTran": 7,
+      "dacKhu": 0
+    },
+    {
+      "code": 11,
+      "name": "Tỉnh Điện Biên",
+      "division_type": "tỉnh",
+      "totalCommunes": 129,
+      "phuong": 9,
+      "xa": 115,
+      "thiTran": 5,
+      "dacKhu": 0
+    },
+    {
+      "code": 14,
+      "name": "Tỉnh Sơn La",
+      "division_type": "tỉnh",
+      "totalCommunes": 204,
+      "phuong": 7,
+      "xa": 188,
+      "thiTran": 9,
+      "dacKhu": 0
+    },
+    {
+      "code": 20,
+      "name": "Tỉnh Lạng Sơn",
+      "division_type": "tỉnh",
+      "totalCommunes": 194,
+      "phuong": 5,
+      "xa": 175,
+      "thiTran": 14,
+      "dacKhu": 0
+    },
+    {
+      "code": 22,
+      "name": "Tỉnh Quảng Ninh",
+      "division_type": "tỉnh",
+      "totalCommunes": 173,
+      "phuong": 73,
+      "xa": 91,
+      "thiTran": 7,
+      "dacKhu": 2
+    },
+    {
+      "code": 38,
+      "name": "Tỉnh Thanh Hóa",
+      "division_type": "tỉnh",
+      "totalCommunes": 549,
+      "phuong": 63,
+      "xa": 454,
+      "thiTran": 32,
+      "dacKhu": 0
+    },
+    {
+      "code": 40,
+      "name": "Tỉnh Nghệ An",
+      "division_type": "tỉnh",
+      "totalCommunes": 412,
+      "phuong": 33,
+      "xa": 362,
+      "thiTran": 17,
+      "dacKhu": 0
+    },
+    {
+      "code": 42,
+      "name": "Tỉnh Hà Tĩnh",
+      "division_type": "tỉnh",
+      "totalCommunes": 210,
+      "phuong": 25,
+      "xa": 171,
+      "thiTran": 14,
+      "dacKhu": 0
+    },
+    {
+      "code": 8,
+      "name": "Tỉnh Tuyên Quang",
+      "division_type": "tỉnh",
+      "totalCommunes": 137,
+      "phuong": 10,
+      "xa": 121,
+      "thiTran": 6,
+      "dacKhu": 0
+    },
+    {
+      "code": 10,
+      "name": "Tỉnh Lào Cai",
+      "division_type": "tỉnh",
+      "totalCommunes": 151,
+      "phuong": 16,
+      "xa": 126,
+      "thiTran": 9,
+      "dacKhu": 0
+    },
+    {
+      "code": 19,
+      "name": "Tỉnh Thái Nguyên",
+      "division_type": "tỉnh",
+      "totalCommunes": 172,
+      "phuong": 41,
+      "xa": 121,
+      "thiTran": 10,
+      "dacKhu": 0
+    },
+    {
+      "code": 25,
+      "name": "Tỉnh Phú Thọ",
+      "division_type": "tỉnh",
+      "totalCommunes": 207,
+      "phuong": 15,
+      "xa": 180,
+      "thiTran": 12,
+      "dacKhu": 0
+    },
+    {
+      "code": 27,
+      "name": "Tỉnh Bắc Ninh",
+      "division_type": "tỉnh",
+      "totalCommunes": 121,
+      "phuong": 50,
+      "xa": 66,
+      "thiTran": 5,
+      "dacKhu": 0
+    },
+    {
+      "code": 33,
+      "name": "Tỉnh Hưng Yên",
+      "division_type": "tỉnh",
+      "totalCommunes": 139,
+      "phuong": 13,
+      "xa": 118,
+      "thiTran": 8,
+      "dacKhu": 0
+    },
+    {
+      "code": 37,
+      "name": "Tỉnh Ninh Bình",
+      "division_type": "tỉnh",
+      "totalCommunes": 125,
+      "phuong": 18,
+      "xa": 101,
+      "thiTran": 6,
+      "dacKhu": 0
+    },
+    {
+      "code": 45,
+      "name": "Tỉnh Quảng Trị",
+      "division_type": "tỉnh",
+      "totalCommunes": 120,
+      "phuong": 13,
+      "xa": 95,
+      "thiTran": 11,
+      "dacKhu": 1
+    },
+    {
+      "code": 51,
+      "name": "Tỉnh Quảng Ngãi",
+      "division_type": "tỉnh",
+      "totalCommunes": 171,
+      "phuong": 17,
+      "xa": 144,
+      "thiTran": 9,
+      "dacKhu": 1
+    },
+    {
+      "code": 64,
+      "name": "Tỉnh Gia Lai",
+      "division_type": "tỉnh",
+      "totalCommunes": 218,
+      "phuong": 24,
+      "xa": 180,
+      "thiTran": 14,
+      "dacKhu": 0
+    },
+    {
+      "code": 66,
+      "name": "Tỉnh Đắk Lắk",
+      "division_type": "tỉnh",
+      "totalCommunes": 180,
+      "phuong": 18,
+      "xa": 149,
+      "thiTran": 13,
+      "dacKhu": 0
+    },
+    {
+      "code": 56,
+      "name": "Tỉnh Khánh Hòa",
+      "division_type": "tỉnh",
+      "totalCommunes": 133,
+      "phuong": 30,
+      "xa": 96,
+      "thiTran": 6,
+      "dacKhu": 1
+    },
+    {
+      "code": 68,
+      "name": "Tỉnh Lâm Đồng",
+      "division_type": "tỉnh",
+      "totalCommunes": 142,
+      "phuong": 18,
+      "xa": 110,
+      "thiTran": 13,
+      "dacKhu": 1
+    },
+    {
+      "code": 75,
+      "name": "Tỉnh Đồng Nai",
+      "division_type": "tỉnh",
+      "totalCommunes": 159,
+      "phuong": 33,
+      "xa": 117,
+      "thiTran": 9,
+      "dacKhu": 0
+    },
+    {
+      "code": 72,
+      "name": "Tỉnh Tây Ninh",
+      "division_type": "tỉnh",
+      "totalCommunes": 94,
+      "phuong": 17,
+      "xa": 71,
+      "thiTran": 6,
+      "dacKhu": 0
+    },
+    {
+      "code": 87,
+      "name": "Tỉnh Đồng Tháp",
+      "division_type": "tỉnh",
+      "totalCommunes": 141,
+      "phuong": 18,
+      "xa": 114,
+      "thiTran": 9,
+      "dacKhu": 0
+    },
+    {
+      "code": 86,
+      "name": "Tỉnh Vĩnh Long",
+      "division_type": "tỉnh",
+      "totalCommunes": 102,
+      "phuong": 13,
+      "xa": 83,
+      "thiTran": 6,
+      "dacKhu": 0
+    },
+    {
+      "code": 89,
+      "name": "Tỉnh An Giang",
+      "division_type": "tỉnh",
+      "totalCommunes": 158,
+      "phuong": 27,
+      "xa": 110,
+      "thiTran": 18,
+      "dacKhu": 3
+    },
+    {
+      "code": 96,
+      "name": "Tỉnh Cà Mau",
+      "division_type": "tỉnh",
+      "totalCommunes": 100,
+      "phuong": 9,
+      "xa": 82,
+      "thiTran": 9,
+      "dacKhu": 0
+    }
+  ]
+}

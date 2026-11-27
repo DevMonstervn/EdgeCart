@@ -1,0 +1,975 @@
+[
+  {
+    "code": 11950,
+    "name": "Phường Lam Sơn",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11953,
+    "name": "Phường Hiến Nam",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11956,
+    "name": "Phường An Tảo",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11959,
+    "name": "Phường Lê Lợi",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11962,
+    "name": "Phường Minh Khai",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11968,
+    "name": "Phường Hồng Châu",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11971,
+    "name": "Xã Trung Nghĩa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11974,
+    "name": "Xã Liên Phương",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11977,
+    "name": "Xã Phương Nam",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11980,
+    "name": "Xã Quảng Châu",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11983,
+    "name": "Xã Bảo Khê",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 12331,
+    "name": "Xã Phú Cường",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 12334,
+    "name": "Xã Hùng Cường",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 12385,
+    "name": "Xã Tân Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 12388,
+    "name": "Xã Hoàng Hanh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thành phố Hưng Yên"
+  },
+  {
+    "code": 11986,
+    "name": "Thị trấn Như Quỳnh",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 11989,
+    "name": "Xã Lạc Đạo",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 11992,
+    "name": "Xã Chỉ Đạo",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 11995,
+    "name": "Xã Đại Đồng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 11998,
+    "name": "Xã Việt Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12001,
+    "name": "Xã Tân Quang",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12004,
+    "name": "Xã Đình Dù",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12007,
+    "name": "Xã Minh Hải",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12010,
+    "name": "Xã Lương Tài",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12013,
+    "name": "Xã Trưng Trắc",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12016,
+    "name": "Xã Lạc Hồng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Lâm"
+  },
+  {
+    "code": 12019,
+    "name": "Thị trấn Văn Giang",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12022,
+    "name": "Xã Xuân Quan",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12025,
+    "name": "Xã Cửu Cao",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12028,
+    "name": "Xã Phụng Công",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12031,
+    "name": "Xã Nghĩa Trụ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12034,
+    "name": "Xã Long Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12037,
+    "name": "Xã Vĩnh Khúc",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12040,
+    "name": "Xã Liên Nghĩa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12043,
+    "name": "Xã Tân Tiến",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12046,
+    "name": "Xã Thắng Lợi",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12049,
+    "name": "Xã Mễ Sở",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Văn Giang"
+  },
+  {
+    "code": 12052,
+    "name": "Thị trấn Yên Mỹ",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12055,
+    "name": "Xã Nguyễn Văn Linh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12061,
+    "name": "Xã Đồng Than",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12064,
+    "name": "Xã Ngọc Long",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12067,
+    "name": "Xã Liêu Xá",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12070,
+    "name": "Xã Hoàn Long",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12073,
+    "name": "Xã Tân Lập",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12076,
+    "name": "Xã Thanh Long",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12079,
+    "name": "Xã Yên Phú",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12085,
+    "name": "Xã Trung Hòa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12091,
+    "name": "Xã Việt Yên",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12100,
+    "name": "Xã Tân Minh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Yên Mỹ"
+  },
+  {
+    "code": 12103,
+    "name": "Phường Bần Yên Nhân",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12106,
+    "name": "Phường Phan Đình Phùng",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12109,
+    "name": "Xã Cẩm Xá",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12112,
+    "name": "Xã Dương Quang",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12115,
+    "name": "Xã Hòa Phong",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12118,
+    "name": "Phường Nhân Hòa",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12121,
+    "name": "Phường Dị Sử",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12124,
+    "name": "Phường Bạch Sam",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12127,
+    "name": "Phường Minh Đức",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12130,
+    "name": "Phường Phùng Chí Kiên",
+    "division_type": "phường",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12133,
+    "name": "Xã Xuân Dục",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12136,
+    "name": "Xã Ngọc Lâm",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12139,
+    "name": "Xã Hưng Long",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Thị xã Mỹ Hào"
+  },
+  {
+    "code": 12142,
+    "name": "Thị trấn Ân Thi",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12145,
+    "name": "Xã Phù Ủng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12148,
+    "name": "Xã Bắc Sơn",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12151,
+    "name": "Xã Bãi Sậy",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12154,
+    "name": "Xã Đào Dương",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12157,
+    "name": "Xã Quang Vinh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12160,
+    "name": "Xã Vân Du",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12166,
+    "name": "Xã Xuân Trúc",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12169,
+    "name": "Xã Hoàng Hoa Thám",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12172,
+    "name": "Xã Quảng Lãng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12175,
+    "name": "Xã Đa Lộc",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12178,
+    "name": "Xã Đặng Lễ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12181,
+    "name": "Xã Cẩm Ninh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12184,
+    "name": "Xã Nguyễn Trãi",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12190,
+    "name": "Xã Hồ Tùng Mậu",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12193,
+    "name": "Xã Tiền Phong",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12196,
+    "name": "Xã Hồng Quang",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12202,
+    "name": "Xã Hạ Lễ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Ân Thi"
+  },
+  {
+    "code": 12205,
+    "name": "Thị trấn Khoái Châu",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12208,
+    "name": "Xã Đông Tảo",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12211,
+    "name": "Xã Bình Minh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12214,
+    "name": "Xã Phạm Hồng Thái",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12220,
+    "name": "Xã Ông Đình",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12223,
+    "name": "Xã Tân Dân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12226,
+    "name": "Xã Tứ Dân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12229,
+    "name": "Xã An Vĩ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12232,
+    "name": "Xã Đông Kết",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12238,
+    "name": "Xã Dân Tiến",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12244,
+    "name": "Xã Đồng Tiến",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12247,
+    "name": "Xã Tân Châu",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12250,
+    "name": "Xã Liên Khê",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12253,
+    "name": "Xã Phùng Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12256,
+    "name": "Xã Việt Hòa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12259,
+    "name": "Xã Đông Ninh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12262,
+    "name": "Xã Đại Tập",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12265,
+    "name": "Xã Chí Minh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12271,
+    "name": "Xã Thuần Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12274,
+    "name": "Xã Nguyễn Huệ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Khoái Châu"
+  },
+  {
+    "code": 12280,
+    "name": "Thị trấn Lương Bằng",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12283,
+    "name": "Xã Nghĩa Dân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12286,
+    "name": "Xã Toàn Thắng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12289,
+    "name": "Xã Vĩnh Xá",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12292,
+    "name": "Xã Phạm Ngũ Lão",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12295,
+    "name": "Xã Phú Thọ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12298,
+    "name": "Xã Đồng Thanh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12301,
+    "name": "Xã Song Mai",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12304,
+    "name": "Xã Chính Nghĩa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12313,
+    "name": "Xã Mai Động",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12316,
+    "name": "Xã Đức Hợp",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12319,
+    "name": "Xã Hùng An",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12322,
+    "name": "Xã Ngọc Thanh",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12325,
+    "name": "Xã Diên Hồng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12328,
+    "name": "Xã Hiệp Cường",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Kim Động"
+  },
+  {
+    "code": 12337,
+    "name": "Thị trấn Vương",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12340,
+    "name": "Xã Hưng Đạo",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12346,
+    "name": "Xã Nhật Tân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12352,
+    "name": "Xã Lệ Xá",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12355,
+    "name": "Xã An Viên",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12361,
+    "name": "Xã Trung Dũng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12364,
+    "name": "Xã Hải Thắng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12367,
+    "name": "Xã Thủ Sỹ",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12370,
+    "name": "Xã Thiện Phiến",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12373,
+    "name": "Xã Thụy Lôi",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12376,
+    "name": "Xã Cương Chính",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Tiên Lữ"
+  },
+  {
+    "code": 12391,
+    "name": "Thị trấn Trần Cao",
+    "division_type": "thị trấn",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12394,
+    "name": "Xã Minh Tân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12397,
+    "name": "Xã Phan Sào Nam",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12400,
+    "name": "Xã Quang Hưng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12403,
+    "name": "Xã Minh Hoàng",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12406,
+    "name": "Xã Đoàn Đào",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12409,
+    "name": "Xã Tống Phan",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12412,
+    "name": "Xã Đình Cao",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12415,
+    "name": "Xã Nhật Quang",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12421,
+    "name": "Xã Tam Đa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12424,
+    "name": "Xã Tiên Tiến",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12427,
+    "name": "Xã Nguyên Hòa",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  },
+  {
+    "code": 12430,
+    "name": "Xã Tống Trân",
+    "division_type": "xã",
+    "province_code": 33,
+    "district_name": "Huyện Phù Cừ"
+  }
+]

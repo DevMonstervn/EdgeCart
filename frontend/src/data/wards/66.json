@@ -1,0 +1,1262 @@
+[
+  {
+    "code": 24118,
+    "name": "Phường Tân Lập",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24121,
+    "name": "Phường Tân Hòa",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24124,
+    "name": "Phường Tân An",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24130,
+    "name": "Phường Thành Nhất",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24133,
+    "name": "Phường Thành Công",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24136,
+    "name": "Phường Tân Lợi",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24142,
+    "name": "Phường Tân Thành",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24145,
+    "name": "Phường Tân Tiến",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24148,
+    "name": "Phường Tự An",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24151,
+    "name": "Phường Ea Tam",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24154,
+    "name": "Phường Khánh Xuân",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24157,
+    "name": "Xã Hòa Thuận",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24160,
+    "name": "Xã Cư ÊBur",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24163,
+    "name": "Xã Ea Tu",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24166,
+    "name": "Xã Hòa Thắng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24169,
+    "name": "Xã Ea Kao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24172,
+    "name": "Xã Hòa Phú",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24175,
+    "name": "Xã Hòa Khánh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24178,
+    "name": "Xã Hòa Xuân",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thành phố Buôn Ma Thuột"
+  },
+  {
+    "code": 24305,
+    "name": "Phường An Lạc",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24308,
+    "name": "Phường An Bình",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24311,
+    "name": "Phường Thiện An",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24318,
+    "name": "Phường Đạt Hiếu",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24322,
+    "name": "Phường Đoàn Kết",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24328,
+    "name": "Xã Ea Drông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24331,
+    "name": "Phường Thống Nhất",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24332,
+    "name": "Phường Bình Tân",
+    "division_type": "phường",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24334,
+    "name": "Xã Ea Siên",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24337,
+    "name": "Xã Bình Thuận",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24340,
+    "name": "Xã Cư Bao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Thị xã Buôn Hồ"
+  },
+  {
+    "code": 24181,
+    "name": "Thị trấn Ea Drăng",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24184,
+    "name": "Xã Ea H'leo",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24187,
+    "name": "Xã Ea Sol",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24190,
+    "name": "Xã Ea Ral",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24193,
+    "name": "Xã Ea Wy",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24194,
+    "name": "Xã Cư A Mung",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24196,
+    "name": "Xã Cư Mốt",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24199,
+    "name": "Xã Ea Hiao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24202,
+    "name": "Xã Ea Khal",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24205,
+    "name": "Xã Dliê Yang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24207,
+    "name": "Xã Ea Tir",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24208,
+    "name": "Xã Ea Nam",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea H'leo"
+  },
+  {
+    "code": 24211,
+    "name": "Thị trấn Ea Súp",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24214,
+    "name": "Xã Ia Lốp",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24215,
+    "name": "Xã Ia JLơi",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24217,
+    "name": "Xã Ea Rốk",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24220,
+    "name": "Xã Ya Tờ Mốt",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24221,
+    "name": "Xã Ia RVê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24223,
+    "name": "Xã Ea Lê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24226,
+    "name": "Xã Cư KBang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24229,
+    "name": "Xã Ea Bung",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24232,
+    "name": "Xã Cư M'Lan",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Súp"
+  },
+  {
+    "code": 24235,
+    "name": "Xã Krông Na",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24238,
+    "name": "Xã Ea Huar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24241,
+    "name": "Xã Ea Wer",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24244,
+    "name": "Xã Tân Hoà",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24247,
+    "name": "Xã Cuôr KNia",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24250,
+    "name": "Xã Ea Bar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24253,
+    "name": "Xã Ea Nuôl",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Buôn Đôn"
+  },
+  {
+    "code": 24256,
+    "name": "Thị trấn Ea Pốk",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24259,
+    "name": "Thị trấn Quảng Phú",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24262,
+    "name": "Xã Quảng Tiến",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24264,
+    "name": "Xã Ea Kuêh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24265,
+    "name": "Xã Ea Kiết",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24268,
+    "name": "Xã Ea Tar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24271,
+    "name": "Xã Cư Dliê M'nông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24274,
+    "name": "Xã Ea H'đinh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24277,
+    "name": "Xã Ea Tul",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24280,
+    "name": "Xã Ea KPam",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24283,
+    "name": "Xã Ea M'DRóh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24286,
+    "name": "Xã Quảng Hiệp",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24289,
+    "name": "Xã Cư M'gar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24292,
+    "name": "Xã Ea D'Rơng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24295,
+    "name": "Xã Ea M'nang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24298,
+    "name": "Xã Cư Suê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24301,
+    "name": "Xã Cuor Đăng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư M'gar"
+  },
+  {
+    "code": 24307,
+    "name": "Xã Cư Né",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24310,
+    "name": "Xã Chư KBô",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24313,
+    "name": "Xã Cư Pơng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24314,
+    "name": "Xã Ea Sin",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24316,
+    "name": "Thị trấn Pơng Drang",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24317,
+    "name": "Xã Tân Lập",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24319,
+    "name": "Xã Ea Ngai",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Búk"
+  },
+  {
+    "code": 24343,
+    "name": "Thị trấn Krông Năng",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24346,
+    "name": "Xã ĐLiê Ya",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24349,
+    "name": "Xã Ea Tóh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24352,
+    "name": "Xã Ea Tam",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24355,
+    "name": "Xã Phú Lộc",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24358,
+    "name": "Xã Tam Giang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24359,
+    "name": "Xã Ea Puk",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24360,
+    "name": "Xã Ea Dăh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24361,
+    "name": "Xã Ea Hồ",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24364,
+    "name": "Xã Phú Xuân",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24367,
+    "name": "Xã Cư Klông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24370,
+    "name": "Xã Ea Tân",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Năng"
+  },
+  {
+    "code": 24373,
+    "name": "Thị trấn Ea Kar",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24376,
+    "name": "Thị trấn Ea Knốp",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24379,
+    "name": "Xã Ea Sô",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24380,
+    "name": "Xã Ea Sar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24382,
+    "name": "Xã Xuân Phú",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24385,
+    "name": "Xã Cư Huê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24388,
+    "name": "Xã Ea Tih",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24391,
+    "name": "Xã Ea Đar",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24394,
+    "name": "Xã Ea Kmút",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24397,
+    "name": "Xã Cư Ni",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24400,
+    "name": "Xã Ea Păl",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24401,
+    "name": "Xã Cư Prông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24403,
+    "name": "Xã Ea Ô",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24404,
+    "name": "Xã Cư ELang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24406,
+    "name": "Xã Cư Bông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24409,
+    "name": "Xã Cư Jang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Ea Kar"
+  },
+  {
+    "code": 24412,
+    "name": "Thị trấn M'Đrắk",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24415,
+    "name": "Xã Cư Prao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24418,
+    "name": "Xã Ea Pil",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24421,
+    "name": "Xã Ea Lai",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24424,
+    "name": "Xã Ea H'MLay",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24427,
+    "name": "Xã Krông Jing",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24430,
+    "name": "Xã Ea M' Doal",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24433,
+    "name": "Xã Ea Riêng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24436,
+    "name": "Xã Cư M'ta",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24439,
+    "name": "Xã Cư K Róa",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24442,
+    "name": "Xã Krông Á",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24444,
+    "name": "Xã Cư San",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24445,
+    "name": "Xã Ea Trang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện M'Đrắk"
+  },
+  {
+    "code": 24448,
+    "name": "Thị trấn Krông Kmar",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24451,
+    "name": "Xã Dang Kang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24454,
+    "name": "Xã Cư KTy",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24457,
+    "name": "Xã Hòa Thành",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24463,
+    "name": "Xã Hòa Phong",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24466,
+    "name": "Xã Hòa Lễ",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24469,
+    "name": "Xã Yang Reh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24472,
+    "name": "Xã Ea Trul",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24475,
+    "name": "Xã Khuê Ngọc Điền",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24478,
+    "name": "Xã Cư Pui",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24481,
+    "name": "Xã Hòa Sơn",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24484,
+    "name": "Xã Cư Drăm",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24487,
+    "name": "Xã Yang Mao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Bông"
+  },
+  {
+    "code": 24490,
+    "name": "Thị trấn Phước An",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24493,
+    "name": "Xã KRông Búk",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24496,
+    "name": "Xã Ea Kly",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24499,
+    "name": "Xã Ea Kênh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24502,
+    "name": "Xã Ea Phê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24505,
+    "name": "Xã Ea KNuec",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24508,
+    "name": "Xã Ea Yông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24511,
+    "name": "Xã Hòa An",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24514,
+    "name": "Xã Ea Kuăng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24517,
+    "name": "Xã Hòa Đông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24520,
+    "name": "Xã Ea Hiu",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24523,
+    "name": "Xã Hòa Tiến",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24526,
+    "name": "Xã Tân Tiến",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24529,
+    "name": "Xã Vụ Bổn",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24532,
+    "name": "Xã Ea Uy",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24535,
+    "name": "Xã Ea Yiêng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông Pắc"
+  },
+  {
+    "code": 24538,
+    "name": "Thị trấn Buôn Trấp",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24556,
+    "name": "Xã Dray Sáp",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24559,
+    "name": "Xã Ea Na",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24565,
+    "name": "Xã Ea Bông",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24568,
+    "name": "Xã Băng A Drênh",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24571,
+    "name": "Xã Dur KMăl",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24574,
+    "name": "Xã Bình Hòa",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24577,
+    "name": "Xã Quảng Điền",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Krông A Na"
+  },
+  {
+    "code": 24580,
+    "name": "Thị trấn Liên Sơn",
+    "division_type": "thị trấn",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24583,
+    "name": "Xã Yang Tao",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24586,
+    "name": "Xã Bông Krang",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24589,
+    "name": "Xã Đắk Liêng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24592,
+    "name": "Xã Buôn Triết",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24595,
+    "name": "Xã Buôn Tría",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24598,
+    "name": "Xã Đắk Phơi",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24601,
+    "name": "Xã Đắk Nuê",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24604,
+    "name": "Xã Krông Nô",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24607,
+    "name": "Xã Nam Ka",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24610,
+    "name": "Xã Ea R'Bin",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Lắk"
+  },
+  {
+    "code": 24540,
+    "name": "Xã Ea Ning",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24541,
+    "name": "Xã Cư Ê Wi",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24544,
+    "name": "Xã Ea Ktur",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24547,
+    "name": "Xã Ea Tiêu",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24550,
+    "name": "Xã Ea BHốk",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24553,
+    "name": "Xã Ea Hu",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24561,
+    "name": "Xã Dray Bhăng",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  },
+  {
+    "code": 24562,
+    "name": "Xã Hòa Hiệp",
+    "division_type": "xã",
+    "province_code": 66,
+    "district_name": "Huyện Cư Kuin"
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "code": 20194,
+    "name": "Phường Hòa Hiệp Bắc",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Liên Chiểu"
+  },
+  {
+    "code": 20195,
+    "name": "Phường Hòa Hiệp Nam",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Liên Chiểu"
+  },
+  {
+    "code": 20197,
+    "name": "Phường Hòa Khánh Bắc",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Liên Chiểu"
+  },
+  {
+    "code": 20198,
+    "name": "Phường Hòa Khánh Nam",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Liên Chiểu"
+  },
+  {
+    "code": 20200,
+    "name": "Phường Hòa Minh",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Liên Chiểu"
+  },
+  {
+    "code": 20206,
+    "name": "Phường Thanh Khê Tây",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20207,
+    "name": "Phường Thanh Khê Đông",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20209,
+    "name": "Phường Xuân Hà",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20215,
+    "name": "Phường Chính Gián",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20218,
+    "name": "Phường Thạc Gián",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20224,
+    "name": "Phường An Khê",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Thanh Khê"
+  },
+  {
+    "code": 20227,
+    "name": "Phường Thanh Bình",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20230,
+    "name": "Phường Thuận Phước",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20233,
+    "name": "Phường Thạch Thang",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20236,
+    "name": "Phường Hải Châu",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20242,
+    "name": "Phường Phước Ninh",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20245,
+    "name": "Phường Hòa Thuận Tây",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20254,
+    "name": "Phường Bình Thuận",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20257,
+    "name": "Phường Hòa Cường Bắc",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20258,
+    "name": "Phường Hòa Cường Nam",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Hải Châu"
+  },
+  {
+    "code": 20263,
+    "name": "Phường Thọ Quang",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20266,
+    "name": "Phường Nại Hiên Đông",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20269,
+    "name": "Phường Mân Thái",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20272,
+    "name": "Phường An Hải Bắc",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20275,
+    "name": "Phường Phước Mỹ",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20278,
+    "name": "Phường An Hải Nam",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Sơn Trà"
+  },
+  {
+    "code": 20284,
+    "name": "Phường Mỹ An",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Ngũ Hành Sơn"
+  },
+  {
+    "code": 20285,
+    "name": "Phường Khuê Mỹ",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Ngũ Hành Sơn"
+  },
+  {
+    "code": 20287,
+    "name": "Phường Hoà Quý",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Ngũ Hành Sơn"
+  },
+  {
+    "code": 20290,
+    "name": "Phường Hoà Hải",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Ngũ Hành Sơn"
+  },
+  {
+    "code": 20260,
+    "name": "Phường Khuê Trung",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20305,
+    "name": "Phường Hòa Phát",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20306,
+    "name": "Phường Hòa An",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20311,
+    "name": "Phường Hòa Thọ Tây",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20312,
+    "name": "Phường Hòa Thọ Đông",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20314,
+    "name": "Phường Hòa Xuân",
+    "division_type": "phường",
+    "province_code": 48,
+    "district_name": "Quận Cẩm Lệ"
+  },
+  {
+    "code": 20293,
+    "name": "Xã Hòa Bắc",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20296,
+    "name": "Xã Hòa Liên",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20299,
+    "name": "Xã Hòa Ninh",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20302,
+    "name": "Xã Hòa Sơn",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20308,
+    "name": "Xã Hòa Nhơn",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20317,
+    "name": "Xã Hòa Phú",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20320,
+    "name": "Xã Hòa Phong",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20323,
+    "name": "Xã Hòa Châu",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20326,
+    "name": "Xã Hòa Tiến",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20329,
+    "name": "Xã Hòa Phước",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 20332,
+    "name": "Xã Hòa Khương",
+    "division_type": "xã",
+    "province_code": 48,
+    "district_name": "Huyện Hòa Vang"
+  },
+  {
+    "code": 90004,
+    "name": "Đặc khu Hoàng Sa",
+    "division_type": "đặc khu",
+    "province_code": 48,
+    "district_name": "Đặc khu Hoàng Sa"
+  }
+]

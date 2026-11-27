@@ -407,7 +407,7 @@ export class AdminService {
   ): Promise<Category> {
     const existing = await this.categoryRepo.findById(id);
     if (!existing) {
-      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+      throw new AppError(404, ERROR_CODES.RESOURCE_NOT_FOUND, 'Không tìm thấy danh mục');
     }
 
     if (data.slug) {
@@ -448,7 +448,7 @@ export class AdminService {
   async toggleCategoryActive(id: string, isActive: boolean): Promise<Category> {
     const existing = await this.categoryRepo.findById(id);
     if (!existing) {
-      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+      throw new AppError(404, ERROR_CODES.RESOURCE_NOT_FOUND, 'Không tìm thấy danh mục');
     }
 
     const updated = await this.categoryRepo.update(id, {
@@ -473,7 +473,7 @@ export class AdminService {
   async deleteCategory(id: string): Promise<void> {
     const existing = await this.categoryRepo.findById(id);
     if (!existing) {
-      throw new AppError(404, ERROR_CODES.NOT_FOUND, 'Không tìm thấy danh mục');
+      throw new AppError(404, ERROR_CODES.RESOURCE_NOT_FOUND, 'Không tìm thấy danh mục');
     }
 
     const productCount = await this.categoryRepo.countProductsByCategoryId(id);
