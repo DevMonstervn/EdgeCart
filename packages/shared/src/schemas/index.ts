@@ -47,16 +47,17 @@ export const UpdateProfileSchema = z
 export type UpdateProfileInput = z.infer<typeof UpdateProfileSchema>;
 
 export const AddressSchema = z.object({
-  recipientName: z.string().min(2, 'Tên người nhận không được để trống'),
-  phone: z.string().regex(/^(0|\+84)[3|5|7|8|9][0-9]{8}$/, 'Số điện thoại không hợp lệ'),
-  province: z.string().min(1, 'Vui lòng chọn Tỉnh/Thành phố'),
-  district: z.string().min(1, 'Vui lòng chọn Quận/Huyện'),
-  ward: z.string().min(1, 'Vui lòng chọn Phường/Xã'),
-  streetAddress: z.string().min(5, 'Địa chỉ chi tiết phải từ 5 ký tự trở lên'),
-  isDefault: z.boolean().default(false),
+  recipientName: z.string().trim().min(2, 'Tên người nhận phải từ 2 ký tự trở lên'),
+  phone: z.string().trim().regex(VIETNAM_PHONE_REGEX, 'Số điện thoại không hợp lệ'),
+  province: z.string().trim().min(1, 'Vui lòng chọn hoặc nhập Tỉnh/Thành phố'),
+  district: z.string().trim().nullish().transform((v) => v ?? ''),
+  ward: z.string().trim().min(1, 'Vui lòng chọn hoặc nhập Phường/Xã'),
+  streetAddress: z.string().trim().min(3, 'Địa chỉ chi tiết phải từ 3 ký tự trở lên'),
+  isDefault: z.boolean().optional().default(false),
+  label: z.string().trim().max(50).nullish().transform((v) => v || 'HOME'),
 });
 
-export type AddressInput = z.infer<typeof AddressSchema>;
+export type AddressInput = z.input<typeof AddressSchema>;
 
 export const CartItemAddSchema = z.object({
   variantId: z.string().min(1, 'Mã biến thể không được để trống'),
@@ -307,3 +308,4 @@ export const UpdateStoreStatusSchema = z
 export type UpdateStoreStatusInput = z.infer<typeof UpdateStoreStatusSchema>;
 
 export * from './ai.js';
+

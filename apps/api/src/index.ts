@@ -13,6 +13,7 @@ import { uploadRouter } from './controllers/upload.controller.js';
 import { adminRouter } from './controllers/admin.controller.js';
 import { storeRouter } from './controllers/store.controller.js';
 import { sellerRouter } from './controllers/seller.controller.js';
+import { addressRouter } from './controllers/address.controller.js';
 import { aiRouter } from './controllers/ai.controller.js';
 import type { Env } from './types/env.js';
 
@@ -61,6 +62,7 @@ apiV1.route('/orders', orderRouter);
 apiV1.route('/uploads', uploadRouter);
 apiV1.route('/seller', sellerRouter);
 apiV1.route('/admin', adminRouter);
+apiV1.route('/addresses', addressRouter);
 apiV1.route('/ai', aiRouter);
 
 
