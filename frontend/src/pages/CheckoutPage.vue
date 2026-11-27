@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../stores/cart.js';
 import { useAuthStore } from '../stores/auth.js';
 import { useToastStore } from '../stores/toast.js';
+import { useAddressStore } from '../stores/address.js';
 import { orderService } from '../services/order.service.js';
 import { extractErrorMessage } from '../services/api.js';
 import { safeRandomUUID } from '../utils/uuid.js';
-import { PAYMENT_METHOD, type PaymentMethod } from '@edgecart/shared';
+import { PAYMENT_METHOD, type PaymentMethod, type Address, type AddressInput } from '@edgecart/shared';
 import DefaultLayout from '../layouts/DefaultLayout.vue';
+import Modal from '../components/Modal.vue';
+import AddressModal from '../components/AddressModal.vue';
 import {
   CreditCard,
   Banknote,
@@ -18,26 +21,136 @@ import {
   ArrowLeft,
   CheckCircle2,
   Loader2,
+  MapPin,
+  Plus,
+  Home,
+  Building2,
+  Check,
+  Mail,
 } from 'lucide-vue-next';
 
 const router = useRouter();
 const cart = useCartStore();
 const auth = useAuthStore();
 const toast = useToastStore();
+const addressStore = useAddressStore();
 
 const isSubmitting = ref(false);
-const guestEmail = ref('');
 const orderSuccessData = ref<any | null>(null);
 
-// Form Fields
-const recipientName = ref(auth.user?.fullName || '');
-const phone = ref(auth.user?.phone || '');
-const province = ref('Hà Nội');
-const district = ref('Cầu Giấy');
-const ward = ref('Dịch Vọng');
+// Guest Contact State
+const guestEmail = ref('');
+
+// Address Management State for Checkout
+const selectedAddress = ref<Address | null>(null);
+const isAddressSelectModalOpen = ref(false);
+const isAddressFormModalOpen = ref(false);
+const addressToEdit = ref<Address | null>(null);
+
+// Form Fields (Synced with selectedAddress or manually entered)
+const recipientName = ref('');
+const phone = ref('');
+const province = ref('');
+const district = ref('');
+const ward = ref('');
 const streetAddress = ref('');
 const selectedPaymentMethod = ref<PaymentMethod>(PAYMENT_METHOD.COD);
 const notes = ref('');
+
+function applyAddressToForm(addr: Address | null) {
+  if (addr) {
+    selectedAddress.value = addr;
+    recipientName.value = addr.recipientName;
+    phone.value = addr.phone;
+    province.value = addr.province;
+    district.value = addr.district || '';
+    ward.value = addr.ward;
+    streetAddress.value = addr.streetAddress;
+  }
+}
+
+onMounted(async () => {
+  if (auth.isAuthenticated) {
+    await addressStore.fetchAddresses();
+    if (addressStore.addresses.length > 0) {
+      const initial = addressStore.defaultAddress || addressStore.addresses[0];
+      applyAddressToForm(initial);
+    } else {
+      // Prefill profile info if available
+      if (auth.user) {
+        recipientName.value = auth.user.fullName || '';
+        phone.value = auth.user.phone || '';
+      }
+    }
+  }
+});
+
+function openAddressSelect() {
+  isAddressSelectModalOpen.value = true;
+}
+
+function handleSelectAddressItem(addr: Address) {
+  applyAddressToForm(addr);
+  isAddressSelectModalOpen.value = false;
+}
+
+function openAddNewAddress() {
+  addressToEdit.value = null;
+  isAddressFormModalOpen.value = true;
+}
+
+function openEditCurrentAddress() {
+  if (selectedAddress.value) {
+    addressToEdit.value = selectedAddress.value;
+    isAddressFormModalOpen.value = true;
+  } else {
+    openAddNewAddress();
+  }
+}
+
+async function handleSaveAddressFromModal(payload: AddressInput) {
+  if (addressToEdit.value) {
+    if (auth.isAuthenticated) {
+      const updated = await addressStore.updateAddress(addressToEdit.value.id, payload);
+      if (updated) {
+        applyAddressToForm(updated);
+        isAddressFormModalOpen.value = false;
+      }
+    } else {
+      applyAddressToForm({
+        id: addressToEdit.value.id,
+        userId: 'guest',
+        isDefault: true,
+        ...payload,
+        district: payload.district || '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+      isAddressFormModalOpen.value = false;
+    }
+  } else {
+    if (auth.isAuthenticated) {
+      const created = await addressStore.addAddress(payload);
+      if (created) {
+        applyAddressToForm(created);
+        isAddressFormModalOpen.value = false;
+        isAddressSelectModalOpen.value = false;
+      }
+    } else {
+      applyAddressToForm({
+        id: `guest_addr_${Date.now()}`,
+        userId: 'guest',
+        isDefault: true,
+        ...payload,
+        district: payload.district || '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+      isAddressFormModalOpen.value = false;
+      isAddressSelectModalOpen.value = false;
+    }
+  }
+}
 
 // Form Errors
 const errors = ref<Record<string, string>>({});
@@ -59,14 +172,12 @@ function validateForm(): boolean {
 
   if (!auth.isAuthenticated) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!guestEmail.value.trim()) {
-      errors.value.email = 'Vui lòng cung cấp email liên hệ để nhận mã tra cứu đơn hàng';
-    } else if (!emailRegex.test(guestEmail.value.trim())) {
-      errors.value.email = 'Email liên hệ không đúng định dạng';
+    if (!guestEmail.value.trim() || !emailRegex.test(guestEmail.value.trim())) {
+      errors.value.email = 'Vui lòng nhập địa chỉ email hợp lệ để nhận thông báo đơn hàng';
     }
   }
 
-  if (!recipientName.value.trim() || recipientName.value.length < 2) {
+  if (!recipientName.value.trim() || recipientName.value.trim().length < 2) {
     errors.value.recipientName = 'Vui lòng nhập họ tên người nhận (tối thiểu 2 ký tự)';
   }
 
@@ -76,16 +187,13 @@ function validateForm(): boolean {
   }
 
   if (!province.value.trim()) {
-    errors.value.province = 'Vui lòng chọn Tỉnh/Thành phố';
-  }
-  if (!district.value.trim()) {
-    errors.value.district = 'Vui lòng chọn Quận/Huyện';
+    errors.value.province = 'Vui lòng chọn hoặc nhập Tỉnh/Thành phố';
   }
   if (!ward.value.trim()) {
-    errors.value.ward = 'Vui lòng chọn Phường/Xã';
+    errors.value.ward = 'Vui lòng chọn hoặc nhập Phường/Xã';
   }
-  if (!streetAddress.value.trim() || streetAddress.value.length < 5) {
-    errors.value.streetAddress = 'Địa chỉ chi tiết phải từ 5 ký tự trở lên';
+  if (!streetAddress.value.trim() || streetAddress.value.trim().length < 3) {
+    errors.value.streetAddress = 'Địa chỉ chi tiết phải từ 3 ký tự trở lên';
   }
 
   return Object.keys(errors.value).length === 0;
@@ -158,13 +266,6 @@ async function handlePlaceOrder() {
         </p>
 
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs sm:text-sm space-y-2 text-left mb-6">
-          <div v-if="orderSuccessData.orderAccessToken" class="flex flex-col gap-1 pb-2 border-b border-slate-200/60 text-xs">
-            <div class="flex justify-between items-center">
-              <span class="text-slate-500">Mã tra cứu đơn hàng:</span>
-              <strong class="text-indigo-600 font-mono text-[11px] select-all bg-indigo-50 px-2 py-0.5 rounded-md">{{ orderSuccessData.orderAccessToken }}</strong>
-            </div>
-            <p class="text-[11px] text-slate-400 italic">Vui lòng lưu lại mã tra cứu để kiểm tra tiến độ giao hàng bất cứ lúc nào.</p>
-          </div>
           <div class="flex justify-between">
             <span class="text-slate-500">Mã đơn hàng:</span>
             <strong class="text-slate-900 font-mono">{{ orderSuccessData.orderNumber }}</strong>
@@ -176,6 +277,13 @@ async function handlePlaceOrder() {
           <div class="flex justify-between">
             <span class="text-slate-500">Tổng thanh toán:</span>
             <strong class="text-brand-700 font-bold">{{ formatVND(orderSuccessData.totalAmount) }}</strong>
+          </div>
+          <div v-if="orderSuccessData.orderAccessToken" class="flex flex-col gap-1 pt-2 border-t border-slate-200/60 text-xs">
+            <div class="flex justify-between items-center">
+              <span class="text-slate-500">Mã tra cứu đơn hàng:</span>
+              <strong class="text-indigo-600 font-mono text-[11px] select-all bg-indigo-50 px-2 py-0.5 rounded-md">{{ orderSuccessData.orderAccessToken }}</strong>
+            </div>
+            <p class="text-[11px] text-slate-400 italic">Vui lòng lưu lại mã tra cứu để kiểm tra tiến độ giao hàng bất cứ lúc nào.</p>
           </div>
         </div>
 
@@ -219,136 +327,138 @@ async function handlePlaceOrder() {
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Form Section (2 cols) -->
           <div class="lg:col-span-2 space-y-6">
-            <!-- Guest Contact Email Section -->
-            <div v-if="!auth.isAuthenticated" class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs space-y-3">
-              <h2 class="text-base font-bold text-slate-900 pb-2 border-b border-slate-100 flex items-center justify-between">
-                <span>Thông tin liên hệ (Khách vãng lai)</span>
-                <span class="text-xs text-slate-400 font-normal">* Bắt buộc</span>
-              </h2>
+            <!-- Guest Contact Information Section (Shown only for unauthenticated guests) -->
+            <div v-if="!auth.isAuthenticated" class="bg-white rounded-3xl border border-slate-100 shadow-xs p-5 sm:p-6 space-y-3">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+                  <Mail class="w-4.5 h-4.5 text-brand-600" />
+                  <span>Thông Tin Khách Mua Hàng</span>
+                </h2>
+                <RouterLink to="/login" class="text-xs font-bold text-brand-600 hover:text-brand-700">
+                  Đã có tài khoản? Đăng nhập
+                </RouterLink>
+              </div>
+
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Email nhận thông tin đơn hàng</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1">
+                  Email nhận thông báo đơn hàng <span class="text-rose-500">*</span>
+                </label>
                 <input
                   v-model="guestEmail"
                   type="email"
-                  placeholder="example@email.com"
-                  class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                  :class="errors.email ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
+                  placeholder="name@example.com"
+                  class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-hidden transition"
+                  :class="errors.email ? 'border-rose-400 bg-rose-50/30' : 'border-slate-200 focus:border-brand-500'"
                 />
-                <span v-if="errors.email" class="text-[11px] text-rose-500 mt-1 block">
-                  {{ errors.email }}
-                </span>
+                <p v-if="errors.email" class="text-xs text-rose-500 mt-1 font-semibold">{{ errors.email }}</p>
                 <p v-else class="text-[11px] text-slate-400 mt-1">
-                  EdgeCart sẽ cấp mã tra cứu đơn hàng bảo mật ngay sau khi đặt hàng thành công.
+                  EdgeCart sẽ gửi thông tin xác nhận và mã tra cứu đơn hàng qua email này.
                 </p>
               </div>
             </div>
-            <!-- 1. Shipping Address Form -->
-            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs space-y-4">
-              <h2 class="text-base font-bold text-slate-900 pb-3 border-b border-slate-100 flex items-center justify-between">
-                <span>1. Thông tin giao hàng</span>
-                <span class="text-xs text-slate-400 font-normal">* Bắt buộc</span>
-              </h2>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Recipient Name -->
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Họ và tên người nhận</label>
-                  <input
-                    v-model="recipientName"
-                    type="text"
-                    placeholder="Nguyễn Văn A"
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.recipientName ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.recipientName" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.recipientName }}
-                  </span>
+            <!-- 1. Shipping Address Section (Shopee / E-commerce Style) -->
+            <div class="bg-white rounded-3xl border border-slate-100 shadow-xs overflow-hidden">
+              <!-- Shopee-like top decorative accent stripe -->
+              <div class="h-1.5 bg-gradient-to-r from-brand-600 via-emerald-500 to-indigo-600" />
+
+              <div class="p-5 sm:p-6 space-y-4">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+                    <MapPin class="w-4.5 h-4.5 text-brand-600" />
+                    <span>Địa Chỉ Nhận Hàng</span>
+                  </h2>
+                  <div v-if="selectedAddress || addressStore.addresses.length > 0" class="flex items-center gap-2.5 text-xs">
+                    <button
+                      type="button"
+                      @click="openEditCurrentAddress"
+                      class="font-semibold text-slate-500 hover:text-slate-800 transition cursor-pointer"
+                    >
+                      Chỉnh sửa
+                    </button>
+                    <span class="text-slate-300">|</span>
+                    <button
+                      type="button"
+                      @click="openAddressSelect"
+                      class="font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1 rounded-xl transition cursor-pointer"
+                    >
+                      Thay đổi
+                    </button>
+                  </div>
                 </div>
 
-                <!-- Phone -->
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Số điện thoại</label>
-                  <input
-                    v-model="phone"
-                    type="tel"
-                    placeholder="0912345678"
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.phone ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.phone" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.phone }}
-                  </span>
+                <!-- Case A: Saved Address is Selected -->
+                <div v-if="selectedAddress" class="space-y-2">
+                  <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                    <span class="font-black text-slate-900 text-sm sm:text-base">{{ recipientName }}</span>
+                    <span class="text-slate-300">|</span>
+                    <span class="font-bold text-slate-700">{{ phone }}</span>
+
+                    <!-- Default Badge -->
+                    <span
+                      v-if="selectedAddress.isDefault"
+                      class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white flex items-center gap-1"
+                    >
+                      <CheckCircle2 class="w-3 h-3" />
+                      <span>Mặc định</span>
+                    </span>
+
+                    <!-- Label Badge -->
+                    <span
+                      class="text-[10px] font-semibold px-2 py-0.5 rounded-full border flex items-center gap-1"
+                      :class="
+                        selectedAddress.label === 'OFFICE'
+                          ? 'border-indigo-200 bg-indigo-50 text-indigo-700'
+                          : 'border-slate-200 bg-slate-50 text-slate-600'
+                      "
+                    >
+                      <Building2 v-if="selectedAddress.label === 'OFFICE'" class="w-2.5 h-2.5" />
+                      <Home v-else class="w-2.5 h-2.5" />
+                      <span>{{ selectedAddress.label === 'OFFICE' ? 'Văn phòng' : (selectedAddress.label === 'HOME' ? 'Nhà riêng' : selectedAddress.label) }}</span>
+                    </span>
+                  </div>
+
+                  <div class="text-slate-700 text-xs sm:text-sm leading-relaxed">
+                    <p class="font-semibold text-slate-800">{{ streetAddress }}</p>
+                    <p class="text-slate-500 text-xs">
+                      {{ ward }}{{ district ? ', ' + district : '' }}, {{ province }}
+                    </p>
+                  </div>
                 </div>
 
-                <!-- Province -->
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Tỉnh / Thành phố</label>
-                  <input
-                    v-model="province"
-                    type="text"
-                    placeholder="Hà Nội, TP.HCM..."
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.province ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.province" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.province }}
-                  </span>
-                </div>
-
-                <!-- District -->
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Quận / Huyện</label>
-                  <input
-                    v-model="district"
-                    type="text"
-                    placeholder="Cầu Giấy, Quận 1..."
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.district ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.district" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.district }}
-                  </span>
-                </div>
-
-                <!-- Ward -->
-                <div>
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Phường / Xã</label>
-                  <input
-                    v-model="ward"
-                    type="text"
-                    placeholder="Phường Dịch Vọng..."
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.ward ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.ward" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.ward }}
-                  </span>
-                </div>
-
-                <!-- Street Address -->
-                <div class="sm:col-span-2">
-                  <label class="block text-xs font-bold text-slate-700 mb-1">Địa chỉ cụ thể (Số nhà, đường...)</label>
-                  <input
-                    v-model="streetAddress"
-                    type="text"
-                    placeholder="Số 123 Đường Cầu Giấy, Toà nhà A..."
-                    class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-sm focus:bg-white focus:outline-hidden transition"
-                    :class="errors.streetAddress ? 'border-rose-400' : 'border-slate-200 focus:border-brand-500'"
-                  />
-                  <span v-if="errors.streetAddress" class="text-[11px] text-rose-500 mt-1 block">
-                    {{ errors.streetAddress }}
-                  </span>
+                <!-- Case B: User has NO saved addresses yet -->
+                <div v-else class="py-4 text-center space-y-3">
+                  <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 mx-auto flex items-center justify-center">
+                    <MapPin class="w-6 h-6 stroke-1" />
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-slate-800">Chưa có thông tin địa chỉ giao hàng</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                      Vui lòng thêm địa chỉ nhận hàng để hoàn tất thanh toán đơn hàng.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    @click="openAddNewAddress"
+                    class="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold shadow-md shadow-brand-600/20 active:scale-98 transition cursor-pointer"
+                  >
+                    <Plus class="w-3.5 h-3.5" />
+                    <span>Thêm địa chỉ giao hàng mới</span>
+                  </button>
+                  <div v-if="errors.recipientName || errors.phone || errors.province || errors.ward || errors.streetAddress" class="text-xs text-rose-500 font-semibold pt-2">
+                    {{ errors.recipientName || errors.phone || errors.province || errors.ward || errors.streetAddress }}
+                  </div>
                 </div>
               </div>
 
               <!-- Order Notes -->
-              <div>
+              <div class="px-5 sm:px-6 pb-5 pt-1 border-t border-slate-50">
                 <label class="block text-xs font-bold text-slate-700 mb-1">Ghi chú giao hàng (Tùy chọn)</label>
                 <textarea
                   v-model="notes"
                   rows="2"
-                  placeholder="Giao hàng trong giờ hành chính..."
-                  class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-hidden focus:border-brand-500"
+                  placeholder="Ví dụ: Giao hàng giờ hành chính, gọi trước khi tới..."
+                  class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-hidden focus:border-brand-500 transition resize-none"
                 ></textarea>
               </div>
             </div>
@@ -517,5 +627,101 @@ async function handlePlaceOrder() {
         </div>
       </div>
     </div>
+
+    <!-- Address Selection Modal (Shopee style) -->
+    <Modal :isOpen="isAddressSelectModalOpen" title="Địa Chỉ Nhận Hàng Của Tôi" @close="isAddressSelectModalOpen = false">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+          <span class="text-xs text-slate-500">Chọn địa chỉ giao hàng cho đơn hàng này</span>
+          <button
+            type="button"
+            @click="openAddNewAddress"
+            class="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 cursor-pointer"
+          >
+            <Plus class="w-3.5 h-3.5" />
+            <span>Thêm địa chỉ mới</span>
+          </button>
+        </div>
+
+        <!-- Address List -->
+        <div class="max-h-80 overflow-y-auto space-y-2.5 pr-1">
+          <div
+            v-for="addr in addressStore.addresses"
+            :key="addr.id"
+            @click="handleSelectAddressItem(addr)"
+            class="p-3.5 rounded-2xl border transition-all cursor-pointer flex items-start gap-3"
+            :class="
+              selectedAddress?.id === addr.id
+                ? 'border-brand-600 bg-brand-50/40 shadow-xs'
+                : 'border-slate-200 hover:border-brand-200 bg-white'
+            "
+          >
+            <!-- Radio Indicator -->
+            <div
+              class="w-4 h-4 rounded-full border mt-0.5 flex items-center justify-center shrink-0 transition"
+              :class="
+                selectedAddress?.id === addr.id
+                  ? 'border-brand-600 bg-brand-600 text-white'
+                  : 'border-slate-300 bg-white'
+              "
+            >
+              <div v-if="selectedAddress?.id === addr.id" class="w-1.5 h-1.5 rounded-full bg-white" />
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0 text-xs space-y-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-bold text-slate-900">{{ addr.recipientName }}</span>
+                <span class="text-slate-400">|</span>
+                <span class="font-semibold text-slate-600">{{ addr.phone }}</span>
+                <span
+                  v-if="addr.isDefault"
+                  class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white"
+                >
+                  Mặc định
+                </span>
+                <span
+                  class="text-[10px] font-semibold px-2 py-0.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600"
+                >
+                  {{ addr.label === 'OFFICE' ? 'Văn phòng' : (addr.label === 'HOME' ? 'Nhà riêng' : addr.label) }}
+                </span>
+              </div>
+              <p class="text-slate-700 font-medium">{{ addr.streetAddress }}</p>
+              <p class="text-slate-500 text-[11px]">
+                {{ addr.ward }}{{ addr.district ? ', ' + addr.district : '' }}, {{ addr.province }}
+              </p>
+            </div>
+
+            <!-- Edit Button -->
+            <button
+              type="button"
+              @click.stop="addressToEdit = addr; isAddressFormModalOpen = true"
+              class="text-xs text-brand-600 hover:text-brand-700 font-semibold px-2 py-1 rounded-lg hover:bg-white transition cursor-pointer"
+            >
+              Sửa
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2.5">
+          <button
+            type="button"
+            @click="isAddressSelectModalOpen = false"
+            class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition cursor-pointer"
+          >
+            Đóng
+          </button>
+        </div>
+      </div>
+    </Modal>
+
+    <!-- Add / Edit Address Modal in Checkout -->
+    <AddressModal
+      :isOpen="isAddressFormModalOpen"
+      :addressToEdit="addressToEdit"
+      :isSaving="addressStore.isSaving"
+      @close="isAddressFormModalOpen = false"
+      @save="handleSaveAddressFromModal"
+    />
   </DefaultLayout>
 </template>
